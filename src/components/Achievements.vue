@@ -9,7 +9,7 @@
         <div id="achiev" class="test">
           <div class="row">
             <div class="col-3">
-              <img :src="user_achiev.img" class="p-2"/>
+              <img :src="require('@/assets/' + user_achiev.img)" class="p-2"/>
             </div>
             <div class="col-9 default-text disabled">
               <h5>{{user_achiev.name}}</h5>
@@ -29,7 +29,7 @@
         <div id="achiev" class="">
           <div class="row">
             <div class="col-3">
-              <img :src="achiev.img" class="p-2"/>
+              <img :src="require('@/assets/' + achiev.img)" class="p-2"/>
             </div>
             <div class="col-9 default-text disabled">
               <h5>{{achiev.name}}</h5>
