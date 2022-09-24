@@ -1,0 +1,31 @@
+body {
+    background-color: #141414;
+}
+
+#main_div, #achiev {
+    background-color: #2B4965;
+}
+.mob-custom-border, .Navigation, .test{
+    background-color: #2B4965;
+}
+
+
+.default-text{
+    color: #fff;
+    text-decoration: none;
+}
+
+.default-text:hover{
+    color: #00AAFF;
+}
+
+.disabled:hover{
+    color: #fff;
+}
+
+.active{
+    color: #00AAFF;
+}
+#val_name{
+    border-right:1px solid #FFF;
+}
