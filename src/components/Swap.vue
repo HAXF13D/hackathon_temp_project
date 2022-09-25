@@ -23,7 +23,7 @@
                                         <p class="mb-0 mt-1 default-text disabled">{{valute1}}</p>
                                     </div>
                                     <div id="full" class="col-4 col-sm-3 col-md-4 col-lg-3 col-xl-3 mt-2">
-                                        <p class="mt-1 mb-1 default-text">Полн.</p>
+                                        <p class="mt-1 mb-1 default-text">Макс.</p>
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                                         <p class="mb-0 mt-1 default-text disabled">{{valute2}}</p>
                                     </div>
                                     <div id="full" class="col-4 col-sm-3 col-md-4 col-lg-3 col-xl-3 mt-2">
-                                        <p class="mt-1 mb-1 default-text">Полн.</p>
+                                        <p class="mt-1 mb-1 default-text">Макс.</p>
                                     </div>
                                 </div>
                             </div>

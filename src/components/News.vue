@@ -15,7 +15,7 @@
           </div>
         </div>
         <div class="row mt-3 pb-5">
-          <div class="col-12">
+          <div class="col-12 post-descr">
             <p>{{news.descr}}</p>
           </div>
         </div>
@@ -58,6 +58,9 @@ export default {
   .news-post{
     background-color: #FFFFFF;
     border-radius: 16px;
+  }
+  .post-descr{
+    font-weight: lighter;
   }
 </style>
 
