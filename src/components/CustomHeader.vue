@@ -1,7 +1,7 @@
 <!-- +++ Шальнев Владимир vovik0312@gmail.com +++ -->
 <template>
     <div id="header" class="row mx-auto ">
-      <div class="col-12 p-0 default-text disabled">
+      <div class="col-12 p-0 disabled default-text">
         <h2>{{ title }}</h2>
       </div>
     </div>

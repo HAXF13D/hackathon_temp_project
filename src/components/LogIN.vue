@@ -3,10 +3,10 @@
   <div class="container-xl container-fluid pt-0 my-4 text-left">
     <CustomHeader title="Вход"/>
       <div class="row justify-content-center mt-4">
-        <form class="col-11 col-sm-8 col-md-6 col-xl-5 form-block mt-5">
+        <form class="col-11 col-sm-8 col-md-6 col-xl-5 form-block mt-5 test">
           <div class="row justify-content-center mt-4">
             <div class="col-11">
-              <h5>Логин или адрес эл. почты</h5>
+              <h5 class="default-text disabled">Логин или адрес эл. почты</h5>
             </div>
           </div>
           <div class="row justify-content-center mt-1">
@@ -17,7 +17,7 @@
           </div>
           <div class="row justify-content-center mt-3">
             <div class="col-11">
-              <h5>Пароль</h5>
+              <h5 class="default-text disabled">Пароль</h5>
             </div>
           </div>
           <div class="row justify-content-center mt-1">
@@ -33,7 +33,7 @@
           </div>
           <div class="row mt-1 mb-4">
             <div class="d-grid col-11 mx-auto px-1">
-              <button class="btn btn-primary default-text button-hover-color" type="button">Войти</button>
+              <button class="btn default-text button-hover-color" type="button">Войти</button>
             </div>
           </div>
         </form>
@@ -63,10 +63,7 @@ export default {
 
 
 <style scoped>
-  .form-block{
-    background-color: #FFFFFF;
-    border-radius: 16px;
-  }
+
   .input-field{
     background-color: #007DFF;
     border-radius: 16px;
@@ -101,6 +98,10 @@ export default {
 </style>
 
 <style>
+  .form-block{
+    background-color: #FFFFFF;
+    border-radius: 16px;
+  }
   .default-text{
       color: #000;
       text-decoration: none;
