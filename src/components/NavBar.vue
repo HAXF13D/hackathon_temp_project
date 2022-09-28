@@ -132,7 +132,6 @@ export default {
         this._removeDarkTheme();
         this._addDarkTheme();
     }
-    console.log(activeTheme );
   },
   methods: {
     openNavBar() {

@@ -25,11 +25,19 @@ export default {
     News
   },
   data: () => ({
-    small: true
+    small: true,
+    registredStatus: null
   }),
   created() {
     window.addEventListener('resize', this.onResize);
     this.onResize();
+    let registredStatus = localStorage.getItem('registred');
+    if(registredStatus === null || registredStatus === "true"){
+        this.registredStatus = true;
+    }
+    else{
+        this.registredStatus = false;
+    }
   },
   destroyed() {
     window.removeEventListener('resize', this.onResize)
