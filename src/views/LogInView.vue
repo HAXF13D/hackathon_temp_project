@@ -3,10 +3,10 @@
   <div class="sign-in">
     <div v-if="small === false" >
       <NavBar/>
-      <SignIn/>
+      <LogIN/>
     </div>
     <div v-else>
-      <SignIn/>
+      <LogIN/>
       <MobileNavBar/>
     </div>
   </div>
@@ -16,14 +16,14 @@
 // @ is an alias to /src
 import NavBar from '@/components/NavBar.vue'
 import MobileNavBar from '../components/MobileNavBar.vue'
-import SignIn from '@/components/SignIn.vue';
+import LogIN from '@/components/LogIN.vue';
 
 export default {
   name: 'SignInView',
   components: {
     NavBar,
     MobileNavBar,
-    SignIn
+    LogIN
   },
   data: () => ({
     small: true,

@@ -26,12 +26,12 @@
                                     <ul class="navbar-nav">
                                         <div v-if="day_mode">
                                             <li class="nav-item"> 
-                                                <i class="bi bi-brightness-high default-text disabled" style="font-size: 24px; margin-left: 32px; margin-right: 32px;" @click="changeMode()"></i>
+                                                <i class="bi bi-brightness-high default-text disabled" style="font-size: 24px; margin-left: 64px;" @click="changeMode()"></i>
                                             </li>
                                         </div>
                                         <div v-else>
                                             <li class="nav-item">
-                                                <i class="bi bi-moon default-text disabled" style="font-size: 24px;  margin-left: 32px; margin-right: 32px;" @click="changeMode()"></i>
+                                                <i class="bi bi-moon default-text disabled" style="font-size: 24px;  margin-left: 64px;" @click="changeMode()"></i>
                                             </li>
                                         </div>
                                         <li class="nav-item">
@@ -78,7 +78,7 @@
                         </div>
                         <div class="col-2">
                             <button class="navbar-toggler default-text" @click="openNavBar()" type="button">
-                                <span class="navbar-toggler-icon"></span>                          
+                                <i class="bi bi-list" style="font-size: 24px;"></i>                         
                             </button>
                         </div>
                     </div>

@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="row justify-content-center mb-3" >
-                    <div class="col-2 col-sm-1 justify-content-center" v-on:click="replaceValutes()">
+                    <div class="col-2 col-sm-1 justify-content-center p-1" v-on:click="replaceValutes()">
                         <img id="change" class="default-text disabled" src="@/assets/arrow-down-up.png"/>
                     </div>
                 </div>
