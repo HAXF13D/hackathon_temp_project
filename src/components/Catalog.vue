@@ -1,18 +1,14 @@
 <template>
     <CustomHeader title="Каталог" class="pt-0 my-4"/>
     <div id="filter" class="container-fluid">
-        <div class="border row my-2 py-1 px-4 default-text justify-content-center">
-            <div class="col-2">
-                <p class="filter mb-0 m-0 p-0 mx-0">Сортировать по:</p>
-            </div>
-            <div class="col-2">
-                <p class="filter mb-0 w-25">Популярности</p>
-            </div>
-            <div class="col">
-                <p class="filter mb-0 w-25">Цене</p>
-            </div>
-            <div class="col">
-                <p class="filter mb-0 w-25">Новизне</p>
+        <div class="row justify-content-center">
+            <div class="border my-2 py-1 px-4 default-text col-12">
+                <div class="row">
+                    <p class="filter m-0 p-0 mx-0 w-15">Сортировать по:</p>
+                    <p class="filter mb-0 w-15">Популярности</p>
+                    <p class="filter mb-0 w-15">Цене</p>
+                    <p class="filter mb-0 w-15">Новизне</p>
+                </div>
             </div>
         </div>
     </div>
@@ -41,6 +37,9 @@
     .border {
         background-color: #FFF;
         border-radius: 16px;
+    }
+    .w-15{
+        width:15%;
     }
     @media screen and (min-width: 576px){
         #filter{
