@@ -1,18 +1,18 @@
 <template>
     <CustomHeader title="Каталог" class="pt-0 my-4"/>
-    <div id="filter" class="container-fluid">
-        <div class="border row my-2 py-1 px-4 default-text justify-content-center">
-            <div class="col-2">
-                <p class="filter mb-0 m-0 p-0 mx-0">Сортировать по:</p>
+    <div id="filter" class="container-fluid py">
+        <div class="row border px-4">
+            <div class="col-2 my-2 py-1 default-text">
+                <p class="filter mb-0 m-0 p-0">Сортировать по:</p>
             </div>
-            <div class="col-2">
-                <p class="filter mb-0 w-25">Популярности</p>
+            <div class="col-2 my-2 py-1 px-0 default-text">
+                <p class="filter mb-0">Популярности</p>
             </div>
-            <div class="col">
-                <p class="filter mb-0 w-25">Цене</p>
+            <div class="col-2 my-2 py-1 px-0 default-text">
+                <p class="filter mb-0">Цене</p>
             </div>
-            <div class="col">
-                <p class="filter mb-0 w-25">Новизне</p>
+            <div class="col-2 my-2 py-1 px-0 default-text">
+                <p class="filter mb-0">Новизне</p>
             </div>
         </div>
     </div>
@@ -37,11 +37,20 @@
 </script>
 
 <style scoped>
-
     .border {
         background-color: #FFF;
         border-radius: 16px;
     }
+    .sort-by {
+        width: 111px;
+    }
+    .popular{
+        width: 95px;
+    }
+    .price{
+        width: 34px;
+    }
+    
     @media screen and (min-width: 576px){
         #filter{
             padding-right: 3rem;

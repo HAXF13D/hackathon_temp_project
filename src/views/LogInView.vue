@@ -1,20 +1,15 @@
 <!-- +++ Шальнев Владимир vovik0312@gmail.com +++ -->
 <template>
-  <div class="sign-in">
-    <div v-if="registredStatus === true">
-      <div v-if="small === false" >
-        <NavBar :registredStatus="this.registredStatus" />
-        <LogIN/>
-      </div>
-      <div v-else>
-        <LogIN/>
-        <MobileNavBar :registredStatus="this.registredStatus" />
-      </div>
+      <div class="news">
+        <div v-if="small === false" >
+            <NavBar :registredStatus="this.registredStatus"  />
+            <LogIN />
+        </div>
+        <div v-else>
+            <LogIN/>
+            <MobileNavBar :registredStatus="this.registredStatus"  />
+        </div>
     </div>
-    <div v-else>
-      <!-- Тут будет компонет 404 -->
-    </div>
-  </div>
 </template>
 
 <script>
