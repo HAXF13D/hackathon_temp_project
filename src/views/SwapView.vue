@@ -1,13 +1,18 @@
 <!-- +++ Шальнев Владимир vovik0312@gmail.com +++ -->
 <template>
   <div class="swap">
-    <div v-if="small === false" >
-      <NavBar/>
-      <Swap/>
+    <div v-if="registredStatus === true">
+      <div v-if="small === false" >
+        <NavBar :registredStatus="this.registredStatus" />
+        <Swap/>
+      </div>
+      <div v-else>
+        <Swap/>
+        <MobileNavBar :registredStatus="this.registredStatus" />
+      </div>
     </div>
     <div v-else>
-      <Swap/>
-      <MobileNavBar/>
+      <!-- Тут будет компонет 404 -->
     </div>
   </div>
 </template>
@@ -32,8 +37,8 @@ export default {
   created() {
     window.addEventListener('resize', this.onResize);
     this.onResize();
-    let registredStatus = localStorage.getItem('registred');
-    if(registredStatus === null || registredStatus === "true"){
+    let Status = localStorage.getItem('registredStatus');
+    if(Status === "true"){
         this.registredStatus = true;
     }
     else{

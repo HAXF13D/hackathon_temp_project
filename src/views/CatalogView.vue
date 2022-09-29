@@ -1,18 +1,18 @@
 <!-- +++ Шальнев Владимир vovik0312@gmail.com +++ -->
 <template>
-    <div class="achievement">
+    <div class="swap">
       <div v-if="registredStatus === true">
         <div v-if="small === false" >
-          <NavBar :registredStatus="this.registredStatus" />
-          <Achievements/>
+            <NavBar :registredStatus="this.registredStatus" />
+            <Catalog/>
         </div>
         <div v-else>
-          <Achievements/>
-          <MobileNavBar :registredStatus="this.registredStatus" />
+            <Catalog/>
+            <MobileNavBar :registredStatus="this.registredStatus" />
         </div>
       </div>
       <div v-else>
-      <!-- Тут будет компонет 404 -->
+        <!-- Тут будет компонет 404 -->
       </div>
     </div>
   </template>
@@ -21,14 +21,14 @@
   // @ is an alias to /src
   import NavBar from '@/components/NavBar.vue'
   import MobileNavBar from '../components/MobileNavBar.vue'
-  import Achievements from '@/components/Achievements.vue';
+  import Catalog from '../components/Catalog.vue'
   
   export default {
-    name: 'achievementView',
+    name: 'CatalogView',
     components: {
       NavBar,
       MobileNavBar,
-      Achievements
+      Catalog
     },
     data: () => ({
       small: true,
@@ -55,4 +55,4 @@
     }
   }
   </script>
-  <!-- ---Шальнев Владимир--- -->
+   <!-- ---Шальнев Владимир--- -->

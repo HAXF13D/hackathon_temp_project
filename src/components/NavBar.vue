@@ -12,38 +12,64 @@
                                 </a>
                             </div>
                             <div class="col">
-                                <div class="first-word-margin">
-                                    <router-link to="/" class="default-text text-margin" active-class="active">НОВОСТИ</router-link>
-                                    <router-link to="/events" class="default-text text-margin" active-class="active">МЕРОПРИЯТИЯ</router-link>
-                                    <router-link to="/achievements" class="default-text text-margin" active-class="active">ДОСТИЖЕНИЯ</router-link>
-                                    <router-link to="/catalog" class="default-text text-margin" active-class="active">КАТАЛОГ</router-link>
-                                    <router-link to="/swap" class="default-text text-margin" active-class="active">ОБМЕН</router-link>
-                                    <router-link to="/rating" class="default-text text-margin" active-class="active" style="margin-right: 0px;">РЕЙТИНГ</router-link>
+                                <div v-if="registredStatus === true">
+                                    <div class="first-word-margin">
+                                        <router-link to="/news" class="default-text text-margin" active-class="active">НОВОСТИ</router-link>
+                                        <router-link to="/events" class="default-text text-margin" active-class="active">МЕРОПРИЯТИЯ</router-link>
+                                        <router-link to="/achievements" class="default-text text-margin" active-class="active">ДОСТИЖЕНИЯ</router-link>
+                                        <router-link to="/catalog" class="default-text text-margin" active-class="active">КАТАЛОГ</router-link>
+                                        <router-link to="/swap" class="default-text text-margin" active-class="active">ОБМЕН</router-link>
+                                        <router-link to="/rating" class="default-text text-margin" active-class="active" style="margin-right: 0px;">РЕЙТИНГ</router-link>
+                                    </div>
+                                </div>
+                                <div v-else>
+                                    <div class="void"></div>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class=" icons-margin-top">
-                                    <ul class="navbar-nav">
-                                        <div v-if="day_mode">
-                                            <li class="nav-item"> 
-                                                <i class="bi bi-brightness-high default-text disabled" style="font-size: 24px; margin-left: 64px;" @click="changeMode()"></i>
-                                            </li>
-                                        </div>
-                                        <div v-else>
+                                    <div v-if="registredStatus === true">
+                                        <ul class="navbar-nav">
+                                            <div v-if="day_mode">
+                                                <li class="nav-item"> 
+                                                    <i class="bi bi-brightness-high default-text disabled" style="font-size: 24px; margin-left: 64px;" @click="changeMode()"></i>
+                                                </li>
+                                            </div>
+                                            <div v-else>
+                                                <li class="nav-item">
+                                                    <i class="bi bi-moon default-text disabled" style="font-size: 24px;  margin-left: 64px;" @click="changeMode()"></i>
+                                                </li>
+                                            </div>
                                             <li class="nav-item">
-                                                <i class="bi bi-moon default-text disabled" style="font-size: 24px;  margin-left: 64px;" @click="changeMode()"></i>
+                                                <i 
+                                                class="bi bi-bell default-text" style="font-size: 24px; margin-right: 24px; margin-left: 24px;"></i>
                                             </li>
-                                        </div>
-                                        <li class="nav-item">
-                                            <i 
-                                            class="bi bi-bell default-text" style="font-size: 24px; margin-right: 24px; margin-left: 24px;"></i>
-                                        </li>
-                                        <li class="nav-item">
-                                            <router-link to="/profile" class="default-text" active-class="active">
-                                                <i class="bi bi-person-circle default-text bell-profile-margin" style="font-size: 24px; margin-right: 2px;"></i>
-                                            </router-link>
-                                        </li>
-                                    </ul>
+                                            <li class="nav-item">
+                                                <router-link to="/profile" class="default-text" active-class="active">
+                                                    <i class="bi bi-person-circle default-text bell-profile-margin" style="font-size: 24px; margin-right: 2px;"></i>
+                                                </router-link>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div v-else>
+                                        <ul class="navbar-nav">
+                                            <div v-if="day_mode">
+                                                <li class="nav-item"> 
+                                                    <i class="bi bi-brightness-high default-text disabled" style="font-size: 24px; margin-right: 24px; margin-left: 112px;" @click="changeMode()"></i>
+                                                </li>
+                                            </div>
+                                            <div v-else>
+                                                <li class="nav-item">
+                                                    <i class="bi bi-moon default-text disabled" style="font-size: 24px;  margin-right: 24px; margin-left: 112px;" @click="changeMode()"></i>
+                                                </li>
+                                            </div>
+                                            <li class="nav-item">
+                                                <router-link to="/login" class="default-text" active-class="active">
+                                                    <i class="bi bi-box-arrow-in-right default-text bell-profile-margin" style="font-size: 24px; margin-right: 2px;"></i>
+                                                </router-link>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>             
@@ -55,31 +81,55 @@
         <nav class="mob-custom-border navbar navbar-expand-xl d-none d-sm-block d-md-block d-lg-block d-xl-none">
             <div class="container-fluid">
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-1"></div>
-                        <div class="col-6">
-                            <a class="navbar-brand" href="/">
-                                <img src="VTB_logo.svg" alt="" width="92" height="32"/>
-                            </a>
+                    <div v-if="registredStatus === true">
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <div class="col-6">
+                                <a class="navbar-brand" href="/">
+                                    <img src="VTB_logo.svg" alt="" width="92" height="32"/>
+                                </a>
+                            </div>
+                            <div v-if="day_mode" class="col-1">
+                                <i class="bi bi-brightness-high default-text" style="font-size: 24px;" @click="changeMode()"></i>
+                            </div>
+                            <div v-else class="col-1">
+                                <i class="bi bi-moon default-text" style="font-size: 24px;" @click="changeMode()"></i>
+                            </div>
+                            <div class="col-1">
+                                <i class="bi bi-bell default-text" style="font-size: 24px;"></i>
+                            </div>
+                            <div class="col-1">
+                                <router-link to="/profile" class="default-text" active-class="active">
+                                    <i class="bi bi-person-circle default-text bell-profile-margin" style="font-size: 24px;"></i>
+                                </router-link>
+                            </div>
+                            <div class="col-2">
+                                <button class="navbar-toggler default-text" @click="openNavBar()" type="button">
+                                    <i class="bi bi-list" style="font-size: 24px;"></i>                         
+                                </button>
+                            </div>
                         </div>
-                        <div v-if="day_mode" class="col-1">
-                            <i class="bi bi-brightness-high default-text" style="font-size: 24px;" @click="changeMode()"></i>
-                        </div>
-                        <div v-else class="col-1">
-                            <i class="bi bi-moon default-text" style="font-size: 24px;" @click="changeMode()"></i>
-                        </div>
-                        <div class="col-1">
-                            <i class="bi bi-bell default-text" style="font-size: 24px;"></i>
-                        </div>
-                        <div class="col-1">
-                            <router-link to="/profile" class="default-text" active-class="active">
-                                <i class="bi bi-person-circle default-text bell-profile-margin" style="font-size: 24px;"></i>
-                            </router-link>
-                        </div>
-                        <div class="col-2">
-                            <button class="navbar-toggler default-text" @click="openNavBar()" type="button">
-                                <i class="bi bi-list" style="font-size: 24px;"></i>                         
-                            </button>
+                    </div>
+                    <div v-else>
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <div class="col-6">
+                                <a class="navbar-brand" href="/">
+                                    <img src="VTB_logo.svg" alt="" width="92" height="32"/>
+                                </a>
+                            </div>
+                            <div class="col-2"></div>
+                            <div v-if="day_mode" class="col-1">
+                                <i class="bi bi-brightness-high default-text" style="font-size: 24px;" @click="changeMode()"></i>
+                            </div>
+                            <div v-else class="col-1">
+                                <i class="bi bi-moon default-text" style="font-size: 24px;" @click="changeMode()"></i>
+                            </div>
+                            <div class="col-1">
+                                <router-link to="/login" class="default-text" active-class="active">
+                                    <i class="bi bi-box-arrow-in-right default-text bell-profile-margin" style="font-size: 24px;"></i>
+                                </router-link>
+                            </div>
                         </div>
                     </div>
                     <transition name="bounce">
@@ -88,7 +138,7 @@
                                 <div class="mt-2">
                                     <ul class="navbar-nav">
                                     <li class="nav-item pb-2">
-                                        <router-link to="/" class="default-text" active-class="active">НОВОСТИ</router-link>
+                                        <router-link to="/news" class="default-text" active-class="active">НОВОСТИ</router-link>
                                     </li>
                                     <li class="nav-item pb-2">
                                         <router-link to="/events" class="default-text" active-class="active">МЕРОПРИЯТИЯ</router-link>
@@ -122,7 +172,11 @@ export default {
     open: false,
     day_mode: true
   }),
+  props: { 
+    registredStatus: { type: Boolean, required: true }
+ },
   mounted(){
+    console.log(this.registredStatus, 1);
     let activeTheme = localStorage.getItem('day_mode');
     if(activeTheme === null || activeTheme === 'true') {
         this.day_mode = true;
@@ -132,11 +186,11 @@ export default {
         this._removeDarkTheme();
         this._addDarkTheme();
     }
+    console.log(this.registredStatus, 1337);
   },
   methods: {
     openNavBar() {
         this.open = !this.open;
-        console.log(this.open)
     },
     _addDarkTheme() {
             let darkThemeLinkEl = document.createElement("link");
@@ -152,7 +206,6 @@ export default {
             try {
                 
                 let darkThemeLinkEl = document.querySelector("#dark-theme-style");
-                console.log(darkThemeLinkEl);
                 let parentNode = darkThemeLinkEl.parentNode;
                 parentNode.removeChild(darkThemeLinkEl);
                 localStorage.setItem('day_mode', 'true');
@@ -160,8 +213,7 @@ export default {
                 console.log('uiu');
             }catch(e){}
         },
-        changeMode(){       
-            console.log(123312);    
+        changeMode(){  
             let activeTheme = localStorage.getItem('day_mode');
             console.log(activeTheme);
             if(activeTheme === null || activeTheme === 'true')
@@ -183,6 +235,10 @@ export default {
 <style scoped>
     .active{
         color: #00AAFF;
+    }
+    .void{
+        margin-left: 721.96px;
+        padding: 0px;
     }
 </style>
 

@@ -1,7 +1,7 @@
 <!-- +++ Шальнев Владимир vovik0312@gmail.com +++ -->
 <template>
-    <div id="header" class="row mx-auto ">
-      <div class="col-12 p-0 disabled default-text">
+    <div id="header" class="row mx-auto mb-0">
+      <div class="col-12 p-0 disabled header-text">
         <h2>{{ title }}</h2>
       </div>
     </div>
@@ -41,9 +41,6 @@
           padding-left:1rem;
           width:1100px;
       }
-  }
-  .disabled:hover{
-      color: #000;
   }
 </style>
 <!-- ---Шальнев Владимир--- -->

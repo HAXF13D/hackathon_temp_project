@@ -1,14 +1,19 @@
 <template>
   <div class="news">
+    <div v-if="registredStatus === true">
       <div v-if="small === false" >
-        <NavBar/>
+        <NavBar :registredStatus="this.registredStatus" />
         <News/>
       </div>
       <div v-else>
         <News/>
-        <MobileNavBar/>
+        <MobileNavBar :registredStatus="this.registredStatus" />
       </div>
     </div>
+    <div v-else>
+      <!-- Тут будет компонет 404 -->
+    </div>
+  </div>
 </template>
 
 <script>
@@ -31,13 +36,14 @@ export default {
   created() {
     window.addEventListener('resize', this.onResize);
     this.onResize();
-    let registredStatus = localStorage.getItem('registred');
-    if(registredStatus === null || registredStatus === "true"){
+    let Status = localStorage.getItem('registredStatus');
+    if(Status === "true"){
         this.registredStatus = true;
     }
     else{
         this.registredStatus = false;
     }
+    console.log(this.registredStatus, 228);
   },
   destroyed() {
     window.removeEventListener('resize', this.onResize)

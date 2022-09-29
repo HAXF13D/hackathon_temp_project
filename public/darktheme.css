@@ -10,10 +10,11 @@ body {
 }
 
 
-.default-text{
+.default-text, .header-text{
     color: #fff;
     text-decoration: none;
 }
+
 
 .default-text:hover{
     color: #00AAFF;
