@@ -193,42 +193,42 @@ export default {
         this.open = !this.open;
     },
     _addDarkTheme() {
-            let darkThemeLinkEl = document.createElement("link");
-            darkThemeLinkEl.setAttribute("rel", "stylesheet");
-            darkThemeLinkEl.setAttribute("href", "/darktheme.css");
-            darkThemeLinkEl.setAttribute("id", "dark-theme-style");
-            let docHead = document.querySelector("head");
-            docHead.append(darkThemeLinkEl);
-            localStorage.setItem('day_mode', 'false');
+        let darkThemeLinkEl = document.createElement("link");
+        darkThemeLinkEl.setAttribute("rel", "stylesheet");
+        darkThemeLinkEl.setAttribute("href", "/darktheme.css");
+        darkThemeLinkEl.setAttribute("id", "dark-theme-style");
+        let docHead = document.querySelector("head");
+        docHead.append(darkThemeLinkEl);
+        localStorage.setItem('day_mode', 'false');
+        this.day_mode = false;
+    },
+    _removeDarkTheme() {
+        try {
+            
+            let darkThemeLinkEl = document.querySelector("#dark-theme-style");
+            let parentNode = darkThemeLinkEl.parentNode;
+            parentNode.removeChild(darkThemeLinkEl);
+            localStorage.setItem('day_mode', 'true');
+            this.day_mode = true;
+            console.log('uiu');
+        }catch(e){}
+    },
+    changeMode(){  
+        let activeTheme = localStorage.getItem('day_mode');
+        console.log(activeTheme);
+        if(activeTheme === null || activeTheme === 'true')
+        { 
+            this.day_mode = true;
+            this._addDarkTheme();
+            
+        } else if (activeTheme === 'false')
+        {
+            console.log('test');
             this.day_mode = false;
-        },
-        _removeDarkTheme() {
-            try {
-                
-                let darkThemeLinkEl = document.querySelector("#dark-theme-style");
-                let parentNode = darkThemeLinkEl.parentNode;
-                parentNode.removeChild(darkThemeLinkEl);
-                localStorage.setItem('day_mode', 'true');
-                this.day_mode = true;
-                console.log('uiu');
-            }catch(e){}
-        },
-        changeMode(){  
-            let activeTheme = localStorage.getItem('day_mode');
-            console.log(activeTheme);
-            if(activeTheme === null || activeTheme === 'true')
-            { 
-                this.day_mode = true;
-                this._addDarkTheme();
-                
-            } else if (activeTheme === 'false')
-            {
-                console.log('test');
-                this.day_mode = false;
-                this._removeDarkTheme();
-            }
+            this._removeDarkTheme();
         }
     }
+}
 }
 </script>
 

@@ -21,7 +21,8 @@
 
 <style>
   *{    
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Ubuntu';
+    -webkit-font-smoothing: antialiased;
   }
   body{
     background-color: #F3F7FA;
@@ -30,4 +31,5 @@
     font-family: Ubuntu;
     font-weight: bold;
   }
+  
 </style>

@@ -2,10 +2,10 @@ body {
     background-color: #141414;
 }
 
-#main_div, #achiev {
+#main_div, #achiev{
     background-color: #2B4965;
 }
-.mob-custom-border, .Navigation, .test{
+.mob-custom-border, .Navigation, .test, .border{
     background-color: #2B4965;
 }
 
@@ -15,6 +15,21 @@ body {
     text-decoration: none;
 }
 
+.form-control::-webkit-input-placeholder {
+    color: #fff;
+}
+
+.selected-text{
+    color:#fff;
+}
+
+.selected-text:hover{
+    color:#fff;
+}
+
+.selected-text:focus{
+    color:#fff;
+}
 
 .default-text:hover{
     color: #00AAFF;

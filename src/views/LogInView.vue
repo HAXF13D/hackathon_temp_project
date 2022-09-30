@@ -1,6 +1,6 @@
 <!-- +++ Шальнев Владимир vovik0312@gmail.com +++ -->
 <template>
-      <div class="news">
+      <div class="Login">
         <div v-if="small === false" >
             <NavBar :registredStatus="this.registredStatus"  />
             <LogIN />

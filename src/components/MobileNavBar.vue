@@ -32,8 +32,8 @@
                     </div>
                 </transition>
                 <div v-if="registredStatus === true">
-                    <div class="row">
-                        <div v-if="!open" class="col-2 d-flex justify-content-center">
+                    <div class="row ">
+                        <div v-if="!open" class="col-2 d-flex ">
                             <i class="bi bi-chevron-double-up default-text" style="font-size: 32px;" @click="openNavBar()"></i>
                         </div>
                         <div v-else class="col-2 d-flex justify-content-center">
