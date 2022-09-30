@@ -45,7 +45,7 @@
 
 <script>
 
-import CustomHeader from './CustomHeader.vue';
+import CustomHeader from '@/components/CustomHeader.vue';
 
 export default {
   name: 'SignInComp',

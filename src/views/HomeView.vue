@@ -20,7 +20,7 @@
 // @ is an alias to /src
 import NavBar from '@/components/NavBar.vue'
 import MobileNavBar from '../components/MobileNavBar.vue'
-import News from '@/components/News.vue';
+import News from '@/components/NewsComponents/News.vue';
 
 export default {
   name: 'SWapView',

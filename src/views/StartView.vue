@@ -15,7 +15,7 @@
   // @ is an alias to /src
   import NavBar from '@/components/NavBar.vue'
   import MobileNavBar from '../components/MobileNavBar.vue'
-  import Start from '@/components/Start.vue';
+  import Start from '@/components/StartComponents/Start.vue';
   
   export default {
     name: 'StartView',

@@ -1,14 +1,13 @@
-<!-- +++ Шальнев Владимир vovik0312@gmail.com +++ -->
 <template>
-    <div class="swap">
+    <div class="news">
       <div v-if="registredStatus === true">
         <div v-if="small === false" >
-            <NavBar :registredStatus="this.registredStatus" />
-            <Catalog/>
+          <NavBar :registredStatus="this.registredStatus" />
+          <Events/>
         </div>
         <div v-else>
-            <Catalog/>
-            <MobileNavBar :registredStatus="this.registredStatus" />
+          <Events/>
+          <MobileNavBar :registredStatus="this.registredStatus" />
         </div>
       </div>
       <div v-else>
@@ -21,14 +20,14 @@
   // @ is an alias to /src
   import NavBar from '@/components/NavBar.vue'
   import MobileNavBar from '../components/MobileNavBar.vue'
-  import Catalog from '../components/CatalogComponents/Catalog.vue'
+  import Events from '@/components/EventsComponents/Events.vue';
   
   export default {
-    name: 'CatalogView',
+    name: 'SWapView',
     components: {
       NavBar,
       MobileNavBar,
-      Catalog
+      Events
     },
     data: () => ({
       small: true,
@@ -44,6 +43,7 @@
       else{
           this.registredStatus = false;
       }
+      console.log(this.registredStatus, 228);
     },
     destroyed() {
       window.removeEventListener('resize', this.onResize)
@@ -55,4 +55,4 @@
     }
   }
   </script>
-   <!-- ---Шальнев Владимир--- -->
+  

@@ -16,7 +16,7 @@
 // @ is an alias to /src
 import NavBar from '@/components/NavBar.vue'
 import MobileNavBar from '../components/MobileNavBar.vue'
-import LogIN from '@/components/LogIN.vue';
+import LogIN from '@/components/LoginComponents/LogIN.vue';
 
 export default {
   name: 'SignInView',

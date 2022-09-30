@@ -21,7 +21,7 @@
 // @ is an alias to /src
 import NavBar from '@/components/NavBar.vue'
 import MobileNavBar from '../components/MobileNavBar.vue'
-import Swap from '@/components/Swap.vue';
+import Swap from '@/components/SwapComponents/Swap.vue';
 
 export default {
   name: 'SWapView',

@@ -5,6 +5,7 @@ import AchievementsView from '../views/AchievementsView.vue'
 import LogInView from '../views/LogInView.vue'
 import StartView from '../views/StartView.vue'
 import CatalogView from '../views/CatalogView.vue'
+import EventsView from '../views/EventsView.vue'
 
 const routes = [
   {
@@ -30,6 +31,10 @@ const routes = [
   {
     path: '/catalog',
     component: CatalogView
+  },
+  {
+    path: '/events',
+    component: EventsView
   }
 ]
 

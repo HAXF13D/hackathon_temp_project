@@ -21,7 +21,7 @@
   // @ is an alias to /src
   import NavBar from '@/components/NavBar.vue'
   import MobileNavBar from '../components/MobileNavBar.vue'
-  import Achievements from '@/components/Achievements.vue';
+  import Achievements from '@/components/AchievmentsComponents/Achievements.vue';
   
   export default {
     name: 'achievementView',

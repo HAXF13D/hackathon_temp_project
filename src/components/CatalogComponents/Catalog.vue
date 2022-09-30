@@ -10,12 +10,12 @@
                 v-bind:items="items"
             ></Item>
         </div>
-        <div class="mb-5 pb-5"></div>
+        <div class=".d-block .d-sm-none" style="margin-bottom: 100px;"></div>
     </div>
 </template>
 
 <script>
-import CustomHeader from './CustomHeader.vue';
+import CustomHeader from '@/components/CustomHeader.vue';
 import Filter from './Filter.vue';
 import Item from './Item.vue';
 
