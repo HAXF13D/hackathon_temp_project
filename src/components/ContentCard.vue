@@ -11,9 +11,17 @@
                 <img :src="require('@/assets/' + event.img)"/>
                 </div>
             </div>
-            <div class="row mt-3 pb-5">
+            <div class="row mt-3">
                 <div class="col-12 post-descr">
                 <p class="default-text disabled">{{event.descr}}</p>
+                </div>
+            </div>
+            <div v-if="event.award" class="row mt-3">
+                <div class="col-6 align-middle">
+                    <p class="text-start fw-bold align-top">Дата проведения: {{event.date_time}}</p>
+                </div>
+                <div class="col-6 align-middle">
+                    <p class="text-end fw-bold align-top">Награда: {{event.award}}</p>
                 </div>
             </div>
         </div>
@@ -23,7 +31,10 @@
 <script>
     export default {
         name: "events",
-        props: ['event']
+        props: ['event'],
+        beforeMount(){
+            console.log(this.event.award, 123321);
+        }
     }
 </script>
 
