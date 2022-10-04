@@ -8,7 +8,7 @@
                         <div class="row">
                             <div class="logo-margin col">
                                 <a class="navbar-brand" href="/">
-                                    <img class="" src="VTB_logo.svg" alt="" width="92" height="32"/>
+                                    <img class="" src="@/assets/VTB_logo.svg" alt="" width="92" height="32"/>
                                 </a>
                             </div>
                             <div class="col">

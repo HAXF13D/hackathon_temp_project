@@ -6,6 +6,7 @@ import LogInView from '../views/LogInView.vue'
 import StartView from '../views/StartView.vue'
 import CatalogView from '../views/CatalogView.vue'
 import EventsView from '../views/EventsView.vue'
+import UserAddView from '../views/UserAddView.vue'
 
 const routes = [
   {
@@ -35,6 +36,10 @@ const routes = [
   {
     path: '/events',
     component: EventsView
+  },
+  {
+    path: '/useradd',
+    component: UserAddView
   }
 ]
 

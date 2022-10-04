@@ -32,28 +32,23 @@
                     </div>
                 </transition>
                 <div v-if="registredStatus === true">
-                    <div class="row ">
-                        <div v-if="!open" class="col-2 d-flex ">
-                            <i class="bi bi-chevron-double-up default-text" style="font-size: 32px;" @click="openNavBar()"></i>
+                    <div class="row d-flex justify-content-between">
+                        <div v-if="!open" class="col-3 d-flex justify-content-center">
+                            <i class="bi bi-chevron-double-up default-text align-self-center" style="font-size: 32px;" @click="openNavBar()"></i>
                         </div>
-                        <div v-else class="col-2 d-flex justify-content-center">
-                            <i class="bi bi-chevron-down  default-text" style="font-size: 32px;" @click="openNavBar()"></i>
+                        <div v-else class="col-3 d-flex justify-content-center">
+                            <i class="bi bi-chevron-down  default-tex " style="font-size: 32px;" @click="openNavBar()"></i>
                         </div>
-                        <div v-if="day_mode" class="col-2 d-flex justify-content-end">
+                        <div v-if="day_mode" class="col-3 d-flex justify-content-center">
                             <i class="bi bi-brightness-high default-text" style="font-size: 32px;" @click="changeMode()"></i>
                         </div>
-                        <div v-else class="col-2 d-flex justify-content-end">
+                        <div v-else class="col-3 d-flex justify-content-center">
                             <i class="bi bi-moon default-text" style="font-size: 32px;" @click="changeMode()"></i>
                         </div>
-                        <div class="col-4 d-flex justify-content-center">
-                            <router-link to="/events" class="default-text" active-class="active">
-                                <i class="bi bi-briefcase default-text" style="font-size: 32px;"></i>
-                            </router-link>
-                        </div>
-                        <div class="col-2 d-flex justify-content-start">
+                        <div class="col-3 d-flex justify-content-center">
                              <i class="bi bi-bell default-text" style="font-size: 32px;"></i>
                         </div>
-                        <div class="col-2 d-flex justify-content-center">
+                        <div class="col-3 d-flex justify-content-center">
                             <router-link to="/profile" class="default-text" active-class="active">
                                 <i class="bi bi-person-circle default-text" style="font-size: 32px;"></i>
                             </router-link>

@@ -96,7 +96,7 @@
                 // Обработка записи
                 this.toast.success("Запись прошла успешно!", {
                     position: "bottom-right",
-                    timeout: 2970,
+                    timeout: 3000,
                     closeOnClick: true,
                     pauseOnFocusLoss: false,
                     pauseOnHover: true,
@@ -143,6 +143,7 @@
     .post-descr{
         font-weight: lighter;
     }
+
 </style>
 
 <style>
@@ -157,5 +158,10 @@
     .news-post{
       border-radius: 16px;
       background-color: #FFF;
+    }
+    @media only screen and (max-width: 575px){
+        .Vue-Toastification__toast{
+            margin-bottom: 5.5rem;
+        }
     }
 </style>
