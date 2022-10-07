@@ -30,9 +30,9 @@ export default {
   methods:{
   },
   created:
-    function (){
+    async function (){
       try{
-        axios.get(this.base_url + '/api/get/news').then(response => (this.news_arr = response.data.resp));
+        await axios.get(this.base_url + '/api/get/news').then(response => (this.news_arr = response.data.resp));
       }
       catch(error){
         console.log(error);
