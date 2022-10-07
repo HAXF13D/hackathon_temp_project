@@ -8,11 +8,14 @@
                         <div class="row">
                             <div class="logo-margin col">
                                 <a class="navbar-brand" href="/">
-                                    <img class="" src="VTB_logo.svg" alt="" width="92" height="32"/>
+                                    <img class="" src="@/assets/VTB_logo.svg" alt="" width="92" height="32"/>
                                 </a>
                             </div>
                             <div class="col">
-                                <div v-if="registredStatus === true">
+                                <div v-if="registredStatus === 'false'">
+                                    <div class="void"></div>
+                                </div>
+                                <div v-else>
                                     <div class="first-word-margin">
                                         <router-link to="/news" class="default-text text-margin" active-class="active">НОВОСТИ</router-link>
                                         <router-link to="/events" class="default-text text-margin" active-class="active">МЕРОПРИЯТИЯ</router-link>
@@ -21,14 +24,30 @@
                                         <router-link to="/swap" class="default-text text-margin" active-class="active">ОБМЕН</router-link>
                                         <router-link to="/rating" class="default-text text-margin" active-class="active" style="margin-right: 0px;">РЕЙТИНГ</router-link>
                                     </div>
-                                </div>
-                                <div v-else>
-                                    <div class="void"></div>
-                                </div>
+                                </div>                                
                             </div>
                             <div class="col">
                                 <div class=" icons-margin-top">
-                                    <div v-if="registredStatus === true">
+                                    <div v-if="registredStatus === 'false'">
+                                        <ul class="navbar-nav">
+                                            <div v-if="day_mode">
+                                                <li class="nav-item"> 
+                                                    <i class="bi bi-brightness-high default-text disabled" style="font-size: 24px; margin-right: 24px; margin-left: 112px;" @click="changeMode()"></i>
+                                                </li>
+                                            </div>
+                                            <div v-else>
+                                                <li class="nav-item">
+                                                    <i class="bi bi-moon default-text disabled" style="font-size: 24px;  margin-right: 24px; margin-left: 112px;" @click="changeMode()"></i>
+                                                </li>
+                                            </div>
+                                            <li class="nav-item">
+                                                <router-link to="/login" class="default-text" active-class="active">
+                                                    <i class="bi bi-box-arrow-in-right default-text bell-profile-margin" style="font-size: 24px; margin-right: 2px;"></i>
+                                                </router-link>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div v-else>
                                         <ul class="navbar-nav">
                                             <div v-if="day_mode">
                                                 <li class="nav-item"> 
@@ -51,25 +70,6 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <div v-else>
-                                        <ul class="navbar-nav">
-                                            <div v-if="day_mode">
-                                                <li class="nav-item"> 
-                                                    <i class="bi bi-brightness-high default-text disabled" style="font-size: 24px; margin-right: 24px; margin-left: 112px;" @click="changeMode()"></i>
-                                                </li>
-                                            </div>
-                                            <div v-else>
-                                                <li class="nav-item">
-                                                    <i class="bi bi-moon default-text disabled" style="font-size: 24px;  margin-right: 24px; margin-left: 112px;" @click="changeMode()"></i>
-                                                </li>
-                                            </div>
-                                            <li class="nav-item">
-                                                <router-link to="/login" class="default-text" active-class="active">
-                                                    <i class="bi bi-box-arrow-in-right default-text bell-profile-margin" style="font-size: 24px; margin-right: 2px;"></i>
-                                                </router-link>
-                                            </li>
-                                        </ul>
-                                    </div>
                                 </div>
                             </div>
                         </div>             
@@ -81,7 +81,29 @@
         <nav class="mob-custom-border navbar navbar-expand-xl d-none d-sm-block d-md-block d-lg-block d-xl-none">
             <div class="container-fluid">
                 <div class="container-fluid">
-                    <div v-if="registredStatus === true">
+                    <div v-if="registredStatus === 'false'">
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <div class="col-6">
+                                <a class="navbar-brand" href="/">
+                                    <img src="VTB_logo.svg" alt="" width="92" height="32"/>
+                                </a>
+                            </div>
+                            <div class="col-2"></div>
+                            <div v-if="day_mode" class="col-1">
+                                <i class="bi bi-brightness-high default-text" style="font-size: 24px;" @click="changeMode()"></i>
+                            </div>
+                            <div v-else class="col-1">
+                                <i class="bi bi-moon default-text" style="font-size: 24px;" @click="changeMode()"></i>
+                            </div>
+                            <div class="col-1">
+                                <router-link to="/login" class="default-text" active-class="active">
+                                    <i class="bi bi-box-arrow-in-right default-text bell-profile-margin" style="font-size: 24px;"></i>
+                                </router-link>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-else>
                         <div class="row">
                             <div class="col-1"></div>
                             <div class="col-6">
@@ -107,28 +129,6 @@
                                 <button class="navbar-toggler default-text" @click="openNavBar()" type="button">
                                     <i class="bi bi-list" style="font-size: 24px;"></i>                         
                                 </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div v-else>
-                        <div class="row">
-                            <div class="col-1"></div>
-                            <div class="col-6">
-                                <a class="navbar-brand" href="/">
-                                    <img src="VTB_logo.svg" alt="" width="92" height="32"/>
-                                </a>
-                            </div>
-                            <div class="col-2"></div>
-                            <div v-if="day_mode" class="col-1">
-                                <i class="bi bi-brightness-high default-text" style="font-size: 24px;" @click="changeMode()"></i>
-                            </div>
-                            <div v-else class="col-1">
-                                <i class="bi bi-moon default-text" style="font-size: 24px;" @click="changeMode()"></i>
-                            </div>
-                            <div class="col-1">
-                                <router-link to="/login" class="default-text" active-class="active">
-                                    <i class="bi bi-box-arrow-in-right default-text bell-profile-margin" style="font-size: 24px;"></i>
-                                </router-link>
                             </div>
                         </div>
                     </div>
@@ -172,9 +172,7 @@ export default {
     open: false,
     day_mode: true
   }),
-  props: { 
-    registredStatus: { type: Boolean, required: true }
- },
+  props: ['registredStatus', 'hashedStatus'],
   mounted(){
     console.log(this.registredStatus, 1);
     let activeTheme = localStorage.getItem('day_mode');
@@ -193,42 +191,42 @@ export default {
         this.open = !this.open;
     },
     _addDarkTheme() {
-            let darkThemeLinkEl = document.createElement("link");
-            darkThemeLinkEl.setAttribute("rel", "stylesheet");
-            darkThemeLinkEl.setAttribute("href", "/darktheme.css");
-            darkThemeLinkEl.setAttribute("id", "dark-theme-style");
-            let docHead = document.querySelector("head");
-            docHead.append(darkThemeLinkEl);
-            localStorage.setItem('day_mode', 'false');
+        let darkThemeLinkEl = document.createElement("link");
+        darkThemeLinkEl.setAttribute("rel", "stylesheet");
+        darkThemeLinkEl.setAttribute("href", "/darktheme.css");
+        darkThemeLinkEl.setAttribute("id", "dark-theme-style");
+        let docHead = document.querySelector("head");
+        docHead.append(darkThemeLinkEl);
+        localStorage.setItem('day_mode', 'false');
+        this.day_mode = false;
+    },
+    _removeDarkTheme() {
+        try {
+            
+            let darkThemeLinkEl = document.querySelector("#dark-theme-style");
+            let parentNode = darkThemeLinkEl.parentNode;
+            parentNode.removeChild(darkThemeLinkEl);
+            localStorage.setItem('day_mode', 'true');
+            this.day_mode = true;
+            console.log('uiu');
+        }catch(e){}
+    },
+    changeMode(){  
+        let activeTheme = localStorage.getItem('day_mode');
+        console.log(activeTheme);
+        if(activeTheme === null || activeTheme === 'true')
+        { 
+            this.day_mode = true;
+            this._addDarkTheme();
+            
+        } else if (activeTheme === 'false')
+        {
+            console.log('test');
             this.day_mode = false;
-        },
-        _removeDarkTheme() {
-            try {
-                
-                let darkThemeLinkEl = document.querySelector("#dark-theme-style");
-                let parentNode = darkThemeLinkEl.parentNode;
-                parentNode.removeChild(darkThemeLinkEl);
-                localStorage.setItem('day_mode', 'true');
-                this.day_mode = true;
-                console.log('uiu');
-            }catch(e){}
-        },
-        changeMode(){  
-            let activeTheme = localStorage.getItem('day_mode');
-            console.log(activeTheme);
-            if(activeTheme === null || activeTheme === 'true')
-            { 
-                this.day_mode = true;
-                this._addDarkTheme();
-                
-            } else if (activeTheme === 'false')
-            {
-                console.log('test');
-                this.day_mode = false;
-                this._removeDarkTheme();
-            }
+            this._removeDarkTheme();
         }
     }
+}
 }
 </script>
 

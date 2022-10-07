@@ -1,28 +1,37 @@
 <template>
     <div class="news">
+      <div v-if="registredStatus === 'false'">
+        <!-- Тут будет компонет 404 -->
+        <PageNotFoundComponent />
+      </div>
+      <div v-else>
         <div v-if="small === false" >
-            <NavBar :registredStatus="this.registredStatus"  :hashedStatus="this.hashedStatus"/>
-            <Start />
+          <NavBar :registredStatus="this.registredStatus" :hashedStatus="this.hashedStatus"/>
+          <UserAdd />
         </div>
         <div v-else>
-            <Start/>
-            <MobileNavBar :registredStatus="this.registredStatus" :hashedStatus="this.hashedStatus" />
+          <UserAdd />
+          <MobileNavBar :registredStatus="this.registredStatus" :hashedStatus="this.hashedStatus"/>
         </div>
+      </div>
+
     </div>
   </template>
   
   <script>
   // @ is an alias to /src
   import NavBar from '@/components/NavBar.vue'
-  import MobileNavBar from '../components/MobileNavBar.vue'
-  import Start from '@/components/StartComponents/Start.vue';
+  import MobileNavBar from '@/components/MobileNavBar.vue'
+  import UserAdd from '@/components/UserAddComponent/UserAdd.vue';
+  import PageNotFoundComponent from '@/components/PageNotFoundComponent.vue';
   
   export default {
-    name: 'StartView',
+    name: 'SWapView',
     components: {
       NavBar,
       MobileNavBar,
-      Start
+      UserAdd,
+      PageNotFoundComponent
     },
     data: () => ({
       small: true,
@@ -35,6 +44,8 @@
 
       let Status = localStorage.getItem('registredStatus');
       this.hashedStatus = localStorage.getItem('token');
+
+      // Добавить проеврку по токену, с испольщованием статуса
 
       if(Status === "false" || Status === null){
           this.registredStatus = 'false';

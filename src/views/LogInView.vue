@@ -1,49 +1,56 @@
 <!-- +++ Шальнев Владимир vovik0312@gmail.com +++ -->
 <template>
-  <div class="sign-in">
-    <div v-if="registredStatus === true">
-      <div v-if="small === false" >
-        <NavBar :registredStatus="this.registredStatus" />
-        <LogIN/>
-      </div>
-      <div v-else>
-        <LogIN/>
-        <MobileNavBar :registredStatus="this.registredStatus" />
+      <div class="Login">
+        <div v-if="registredStatus === 'false'">
+          <div v-if="small === false" >
+              <NavBar :registredStatus="this.registredStatus" :hashedStatus="this.hashedStatus"/>
+              <LogIN />
+          </div>
+          <div v-else>
+              <LogIN/>
+              <MobileNavBar :registredStatus="this.registredStatus" :hashedStatus="this.hashedStatus"/>
+          </div>
+        </div>
+        <div v-else>
+        <!-- Тут будет компонет 404 -->
+        <PageNotFoundComponent />
       </div>
     </div>
-    <div v-else>
-      <!-- Тут будет компонет 404 -->
-    </div>
-  </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import NavBar from '@/components/NavBar.vue'
 import MobileNavBar from '../components/MobileNavBar.vue'
-import LogIN from '@/components/LogIN.vue';
+import LogIN from '@/components/LoginComponents/LogIN.vue';
+import PageNotFoundComponent from '@/components/PageNotFoundComponent.vue';
 
 export default {
   name: 'SignInView',
   components: {
     NavBar,
     MobileNavBar,
-    LogIN
+    LogIN,
+    PageNotFoundComponent
   },
   data: () => ({
     small: true,
-    registredStatus: null
+    registredStatus: null,
+      hashedStatus: null
   }),
   created() {
     window.addEventListener('resize', this.onResize);
     this.onResize();
+
     let Status = localStorage.getItem('registredStatus');
-    if(Status === "true"){
-        this.registredStatus = true;
-    }
-    else{
-        this.registredStatus = false;
-    }
+    this.hashedStatus = localStorage.getItem('token');
+
+    if(Status === "false" || Status === null){
+          this.registredStatus = 'false';
+      }
+      else{
+          this.registredStatus = Status;
+      }
   },
   destroyed() {
     window.removeEventListener('resize', this.onResize)

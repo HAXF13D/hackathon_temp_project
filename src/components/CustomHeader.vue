@@ -1,8 +1,11 @@
 <!-- +++ Шальнев Владимир vovik0312@gmail.com +++ -->
 <template>
     <div id="header" class="row mx-auto mb-0">
-      <div class="col-12 p-0 disabled header-text">
+      <div class="col-12 p-0 disabled header-text d-none d-sm-block">
         <h2>{{ title }}</h2>
+      </div>
+      <div class="col-12 p-0 disabled header-text d-block d-sm-none">
+        <h2 class="ps-2">{{ title }}</h2>
       </div>
     </div>
 </template>

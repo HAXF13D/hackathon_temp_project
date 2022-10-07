@@ -1,13 +1,20 @@
 <template>
     <div class="news">
+      <div v-if="registredStatus === 'false'">
+        <!-- Тут будет компонет 404 -->
+        <PageNotFoundComponent />
+      </div>
+      <div v-else>
         <div v-if="small === false" >
-            <NavBar :registredStatus="this.registredStatus"  :hashedStatus="this.hashedStatus"/>
-            <Start />
+          <NavBar :registredStatus="this.registredStatus" :hashedStatus="this.hashedStatus"/>
+          <Events/>
         </div>
         <div v-else>
-            <Start/>
-            <MobileNavBar :registredStatus="this.registredStatus" :hashedStatus="this.hashedStatus" />
+          <Events/>
+          <MobileNavBar :registredStatus="this.registredStatus" :hashedStatus="this.hashedStatus"/>
         </div>
+      </div>
+      
     </div>
   </template>
   
@@ -15,14 +22,16 @@
   // @ is an alias to /src
   import NavBar from '@/components/NavBar.vue'
   import MobileNavBar from '../components/MobileNavBar.vue'
-  import Start from '@/components/StartComponents/Start.vue';
+  import Events from '@/components/EventsComponents/Events.vue';
+  import PageNotFoundComponent from '@/components/PageNotFoundComponent.vue';
   
   export default {
-    name: 'StartView',
+    name: 'SWapView',
     components: {
       NavBar,
       MobileNavBar,
-      Start
+      Events,
+      PageNotFoundComponent
     },
     data: () => ({
       small: true,
@@ -37,7 +46,7 @@
       this.hashedStatus = localStorage.getItem('token');
 
       if(Status === "false" || Status === null){
-          this.registredStatus = 'false';
+        this.registredStatus = 'false';
       }
       else{
           this.registredStatus = Status;

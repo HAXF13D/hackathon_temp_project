@@ -2,22 +2,52 @@ body {
     background-color: #141414;
 }
 
-#main_div, #achiev {
+#main_div, #achiev{
     background-color: #2B4965;
 }
-.mob-custom-border, .Navigation, .test{
+.mob-custom-border, .Navigation, .test, .border, .user-wallets{
     background-color: #2B4965;
 }
 
+.modal-user-color, .profile-block-background{
+    background-color: #2B4965 !important;
+}
+
+h5{
+    color: #FFF;
+}
 
 .default-text, .header-text{
     color: #fff;
     text-decoration: none;
 }
 
+.sort-choosed{
+    color: #00AAFF;
+}
+
+.form-control::-webkit-input-placeholder {
+    color: #fff;
+}
+
+.selected-text, .user-name-text, .user-emal-text, .about-header-text, .about-text, .user-wallet-text{
+    color:#fff;
+}
+
+.selected-text:hover{
+    color:#fff;
+}
+
+.selected-text:focus{
+    color:#fff;
+}
 
 .default-text:hover{
     color: #00AAFF;
+}
+
+.default-text:focus{
+    color: #fff;
 }
 
 .disabled:hover{
@@ -35,6 +65,4 @@ button:focus{
     outline:none;
 }
 
-.custom-toggler .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-  }
+
