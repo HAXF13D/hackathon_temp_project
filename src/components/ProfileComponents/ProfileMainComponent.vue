@@ -1,0 +1,197 @@
+<template>
+    <CustomHeader title="Профиль" class="pt-0 my-4"/>
+    <div id="profile" class="container-fluid my-4">
+        <div class="row mx-1">
+            <div class="col-lg-3 align-items-stretch profile-block-background">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center">
+                        <img src="https://via.placeholder.com/150" alt="" class="profile-picture mx-auto mt-3" />
+                    </div>
+                    <div class="col-12 d-flex justify-content-center mt-1">
+                        <p class="user-name-text text-left mb-0">{{user.lastName}} {{user.firstName}}</p>
+                    </div>
+                    <div  v-if="user.middleName != '' " class="col-12 d-flex justify-content-center">
+                        <p class="user-name-text text-left mb-0 text-break">{{user.middleName}}</p>
+                    </div>
+                    <div class="col-12 mt-1 mb-2">
+                        <p class="user-emal-text text-center mb-0 text-break">{{user.emailAdres}}</p>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <p class="about-header-text text-left mb-0 px-1 text-break">Обо мне:</p>
+                    </div>
+                    <div class="col-12 mt-1">
+                        <p class="about-text text-left mb-0 px-1 text-break mb-3">{{user.about}}</p>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <p class="about-header-text text-left mb-0 text-break">Текущий кошелёк:</p>
+                    </div>
+                    <div class="col-12 mt-1 mb-3">
+                        <p class="user-wallet-text text-left mb-0 text-break">{{user.walletAdres}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="d-lg-none mb-4"></div>
+            <div class="col-lg-8 ms-auto align-items-stretch profile-block-background">
+                <form class="row g-3" @submit.prevent="checkForm">
+                    <div class="col-md-6 pe-md-3 ps-md-4">
+                        <label for="inputName" class="form-label label-text mt-4 header-text">Имя</label>
+                        <input
+                            required type="text" 
+                            class="form-control input-form text-start py-2 me-3 pe-0" 
+                            id="inputName" 
+                            placeholder="Введите имя"
+                            name="inputName"
+                            v-model="inputName"
+                            
+                        >
+                    </div>
+                    <div class="col-md-6 ps-md-3 pe-md-4">
+                        <label for="inputSurname" class="form-label label-text mt-4 header-text">Фамилия</label>
+                        <input 
+                            required type="text" 
+                            class="form-control input-form text-start py-2 me-3 pe-0" 
+                            id="inputSurname" 
+                            placeholder="Введите фамилию"
+                            name="inputSurname"
+                            v-model="inputSurname"
+                        >
+                    </div>
+                    <div class="col-md-6 pe-md-3 ps-md-4 mt-0">
+                        <label for="inputSurname" class="form-label label-text mt-4 header-text">Отчество</label>
+                        <input 
+                            required type="text" 
+                            class="form-control input-form text-start py-2 me-3 pe-0" 
+                            id="inputMiddleName" 
+                            placeholder="Введите отчество"
+                            name="inputMiddleName"
+                            v-model="inputMiddleName"
+                        >
+                    </div>
+                    <div class="col-md-6 pe-md-4 ps-md-3 mt-0">
+                        <label for="inputEmail" class="form-label label-text mt-4 header-text">Эл. почта</label>
+                        <input 
+                            type="email" 
+                            class="form-control input-form text-start py-2 me-3 pe-0" 
+                            id="inputEmail" 
+                            name="inputEmail"
+                            placeholder="Введите эл. почту"
+                            v-model="inputEmail"
+                        >
+                    </div>
+                    <div class="col-md-6 pe-md-3 ps-md-4 mt-0">
+                        <label for="inputBirthYear" class="form-label label-text mt-4 header-text">Дата рождения</label>
+                        <input 
+                            required type="date" 
+                            class="form-control input-form text-start py-2 me-3 pe-0 header-text" 
+                            id="inputBirthYear"
+                            name="inputBirthYear"
+                            v-model="inputBirthYear"
+                        >
+                    </div>
+                    <div class="col-md-6 pe-md-3 ps-md-4 mt-0">
+                        <label for="inputTelephoneNumber" class="form-label label-text mt-4 header-text">Номер телефона</label>
+                        <input 
+                            type="tel" 
+                            class="form-control input-form text-start py-2 me-3 pe-0" 
+                            id="inputTelephoneNumber"
+                            name="inputTelephoneNumber" 
+                            pattern="^\8\d{10}$" 
+                            placeholder="81234567890"
+                            v-model="inputTelephoneNumber"
+                        >
+                    </div>
+                    <div class="d-md-none pt-2"></div>
+                    <div class="d-none d-lg-block col-md-6"></div>
+                    <div class="d-grid col-lg-3 col-md-6 col-12 mx-auto pe-md-3 ps-md-4 py-md-4">
+                        <button class="btn btn-primary header-text">Привязать кошелёк</button>
+                    </div>
+                    <div class="d-grid col-lg-3 col-md-6 col-12 mx-auto pe-md-4 ps-md-3 py-md-4 pb-4">
+                        <button class="btn btn-primary header-text">Сохранить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class=".d-block .d-sm-none" style="margin-bottom: 100px;"></div>
+</template>
+
+<script>
+    import CustomHeader from '@/components/CustomHeader.vue';
+
+    export default{
+        name: 'ProfileMainComponent',
+        components: {
+            CustomHeader
+        },
+        data: () => ({
+            user: {
+                firstName: 'Владимир',
+                lastName: 'Шальнев',
+                middleName: 'Сергеевич',
+                emailAdres: 'vovik0312@gmail.com',
+                walletAdres: '9HtLARfdrcnSzeipRUe2GQTRLBhe62SQkMF6FTJ6JZP',
+                phoneNumber: '891888805034',
+                isOnline: true,
+                birthDate: '03.12.2002',
+                about: 'Я делаю этот гребанный сайт и я заебался нахуй сука, помогите мне пожалуйста',
+                sex: 'Male',
+                profilePhoto: '',
+                
+            }
+        })
+    }
+</script>
+
+<style scoped>
+    @media screen and (min-width: 576px) {
+        #profile {
+            padding-right: 3rem;
+            padding-left: 5rem;
+        }
+    }
+  
+    @media screen and (min-width: 768px) {
+        #profile {
+            padding-right: 7rem;
+            padding-left: 7rem;
+        }
+    }
+  
+    @media screen and (min-width: 1200px) {
+        #profile {
+            padding-right: .5rem;
+            padding-left: 1rem;
+            width: 1100px;
+        }
+    }
+    .profile-picture{
+        border-radius: 100px;
+    }
+    .user-name-text{
+        font-size: 18px;
+        font-weight: 400;
+    }
+    .user-emal-text{
+        font-size: 16px;
+        font-weight: 400;
+    }
+    .about-header-text{
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .about-text{
+        font-size: 14px;
+        font-weight: 400;
+    }
+    .user-wallet-text{
+        font-size: 14px;
+        font-weight: 400;
+    }
+  </style>
+
+  <style>
+    .profile-block-background{
+        background-color: white;
+        border-radius: 16px;
+    }
+  </style>

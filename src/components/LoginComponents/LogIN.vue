@@ -6,13 +6,13 @@
         <form class="col-11 col-sm-8 col-md-6 col-xl-5 form-block mt-5 test">
           <div class="row justify-content-center mt-4">
             <div class="col-11">
-              <h5 class="default-text disabled">Логин или адрес эл. почты</h5>
+              <h5 class="default-text disabled">Адрес эл. почты</h5>
             </div>
           </div>
           <div class="row justify-content-center mt-1">
             <div class="col-11 input-field">
               <img src="@/assets/person-circle.png" class="py-3"/>
-              <input type="text" class="input-text w-75 w-sm-85 h-100 mx-3"/>
+              <input v-model="userLogin" type="text" class="input-text w-75 w-sm-85 h-100 mx-3"/>
             </div>
           </div>
           <div class="row justify-content-center mt-3">
@@ -23,7 +23,7 @@
           <div class="row justify-content-center mt-1">
             <div class="col-11 input-field">
               <img src="@/assets/key.png" class="py-3"/>
-              <input type="password" class="input-text w-75 w-sm-85 h-100 mx-3"/>
+              <input v-model="userPassword" type="password" class="input-text w-75 w-sm-85 h-100 mx-3"/>
             </div>
           </div>
           <div class="row justify-content-center mt-3">
@@ -33,7 +33,7 @@
           </div>
           <div class="row mt-1 mb-4">
             <div class="d-grid col-11 mx-auto px-1">
-              <button class="btn default-text button-hover-color" type="button">Войти</button>
+              <button class="btn default-text button-hover-color" type="button" @click="loginUser()">Войти</button>
             </div>
           </div>
         </form>
@@ -45,20 +45,42 @@
 
 <script>
 
-import CustomHeader from '@/components/CustomHeader.vue';
+  import CustomHeader from '@/components/CustomHeader.vue';
+  import axios from 'axios'
 
-export default {
-  name: 'SignInComp',
-  data(){
-    return{
+  export default {
+    name: 'SignInComp',
+    data(){
+      return{
+        }
+    },
+    components: {
+      CustomHeader
+    },
+    methods:{
+      async loginUser(){
+        const baseUrl = 'http://192.168.0.108:3000'
+        const params = {
+          'userLogin': this.userLogin,
+          'userPassword': this.userPassword,
+        };
+        try {
+          let res = await Axios({
+            method: 'post',
+            url: `${baseUrl}/api/doSmth`,
+            data: params
+          });
+
+          let data = res.data;
+          return data;
+        } catch (error) {
+          console.log(error.response);
+          return error.response;
+        }
+
       }
-  },
-  components: {
-    CustomHeader
-  },
-  methods:{
+    }
   }
-}
 </script>
 
 

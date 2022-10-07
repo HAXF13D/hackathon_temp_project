@@ -1,7 +1,11 @@
 <!-- +++ Шальнев Владимир vovik0312@gmail.com +++ -->
 <template>
     <div class="achievement">
-      <div v-if="registredStatus === true">
+      <div v-if="registredStatus === 'false'">
+      <!-- Тут будет компонет 404 -->
+        <PageNotFoundComponent />
+      </div>
+      <div v-else>
         <div v-if="small === false" >
           <NavBar :registredStatus="this.registredStatus" />
           <Achievements/>
@@ -11,9 +15,7 @@
           <MobileNavBar :registredStatus="this.registredStatus" />
         </div>
       </div>
-      <div v-else>
-      <!-- Тут будет компонет 404 -->
-      </div>
+      
     </div>
   </template>
   
@@ -22,13 +24,15 @@
   import NavBar from '@/components/NavBar.vue'
   import MobileNavBar from '../components/MobileNavBar.vue'
   import Achievements from '@/components/AchievmentsComponents/Achievements.vue';
+  import PageNotFoundComponent from '@/components/PageNotFoundComponent.vue';
   
   export default {
     name: 'achievementView',
     components: {
       NavBar,
       MobileNavBar,
-      Achievements
+      Achievements,
+      PageNotFoundComponent
     },
     data: () => ({
       small: true,
@@ -38,11 +42,11 @@
       window.addEventListener('resize', this.onResize);
       this.onResize();
       let Status = localStorage.getItem('registredStatus');
-      if(Status === "true"){
-          this.registredStatus = true;
+      if(Status === "false" || Status === null){
+          this.registredStatus = 'false';
       }
       else{
-          this.registredStatus = false;
+          this.registredStatus = Status;
       }
     },
     destroyed() {

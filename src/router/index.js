@@ -7,6 +7,9 @@ import StartView from '../views/StartView.vue'
 import CatalogView from '../views/CatalogView.vue'
 import EventsView from '../views/EventsView.vue'
 import UserAddView from '../views/UserAddView.vue'
+import EmptyPageView from '../views/EmptyPageView.vue'
+import RatingView from '../views/RatingView.vue'
+import ProfileView from '../views/ProfileView.vue'
 
 const routes = [
   {
@@ -40,6 +43,18 @@ const routes = [
   {
     path: '/useradd',
     component: UserAddView
+  },
+  { 
+    path: '/:pathMatch(.*)*', 
+    component: EmptyPageView
+  },
+  {
+    path: '/rating',
+    component: RatingView
+  },
+  {
+    path: '/profile',
+    component: ProfileView
   }
 ]
 

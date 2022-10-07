@@ -5,7 +5,7 @@
         <Filter/>
         <div class="row">
             <Item 
-                v-for="items in items_array"
+                v-for="items in itemsArray"
                 v-bind:key="items.id"
                 v-bind:items="items"
             ></Item>
@@ -22,7 +22,7 @@ import Item from './Item.vue';
 export default {
     name: 'Catalog',
     data: () => ({
-        items_array: [
+        itemsArray: [
             {title: "Наименование услуги/товара", image: "item.png", price: 255.5}, 
             {title: "Наименование услуги/товара", image: "item.png", price: 255.5}, 
             {title: "Наименование услуги/товара", image: "item.png", price: 255.5}

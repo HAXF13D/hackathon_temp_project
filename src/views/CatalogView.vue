@@ -1,19 +1,21 @@
 <!-- +++ Шальнев Владимир vovik0312@gmail.com +++ -->
 <template>
     <div class="swap">
-      <div v-if="registredStatus === true">
+      <div v-if="registredStatus === 'false'">
+        <!-- Тут будет компонет 404 -->
+        <PageNotFoundComponent />
+      </div>
+      <div v-else>
         <div v-if="small === false" >
-            <NavBar :registredStatus="this.registredStatus" />
+            <NavBar :registredStatus="this.registredStatus" :hashedStatus="this.hashedStatus"/>
             <Catalog/>
         </div>
         <div v-else>
             <Catalog/>
-            <MobileNavBar :registredStatus="this.registredStatus" />
+            <MobileNavBar :registredStatus="this.registredStatus" :hashedStatus="this.hashedStatus"/>
         </div>
       </div>
-      <div v-else>
-        <!-- Тут будет компонет 404 -->
-      </div>
+      
     </div>
   </template>
   
@@ -22,27 +24,33 @@
   import NavBar from '@/components/NavBar.vue'
   import MobileNavBar from '../components/MobileNavBar.vue'
   import Catalog from '../components/CatalogComponents/Catalog.vue'
+  import PageNotFoundComponent from '@/components/PageNotFoundComponent.vue';
   
   export default {
     name: 'CatalogView',
     components: {
       NavBar,
       MobileNavBar,
-      Catalog
+      Catalog,
+      PageNotFoundComponent
     },
     data: () => ({
       small: true,
-      registredStatus: null
+      registredStatus: null,
+      hashedStatus: null
     }),
     created() {
       window.addEventListener('resize', this.onResize);
       this.onResize();
+
       let Status = localStorage.getItem('registredStatus');
-      if(Status === "true"){
-          this.registredStatus = true;
+      this.hashedStatus = localStorage.getItem('token');
+
+      if(Status === "false" || Status === null){
+          this.registredStatus = 'false';
       }
       else{
-          this.registredStatus = false;
+          this.registredStatus = Status;
       }
     },
     destroyed() {

@@ -88,7 +88,6 @@
                 console.log(1);
                 let myModal = new bootstrap.Modal(document.getElementById(this.event.id), {
                     keyboard: false,
-
                 });
                 myModal.hide();
                 this.isModalOpen = false;

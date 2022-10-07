@@ -5,8 +5,12 @@ body {
 #main_div, #achiev{
     background-color: #2B4965;
 }
-.mob-custom-border, .Navigation, .test, .border{
+.mob-custom-border, .Navigation, .test, .border, .user-wallets{
     background-color: #2B4965;
+}
+
+.modal-user-color, .profile-block-background{
+    background-color: #2B4965 !important;
 }
 
 h5{
@@ -18,11 +22,15 @@ h5{
     text-decoration: none;
 }
 
+.sort-choosed{
+    color: #00AAFF;
+}
+
 .form-control::-webkit-input-placeholder {
     color: #fff;
 }
 
-.selected-text{
+.selected-text, .user-name-text, .user-emal-text, .about-header-text, .about-text, .user-wallet-text{
     color:#fff;
 }
 

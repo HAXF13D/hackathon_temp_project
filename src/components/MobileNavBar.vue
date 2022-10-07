@@ -31,7 +31,25 @@
                         </div>
                     </div>
                 </transition>
-                <div v-if="registredStatus === true">
+                <div v-if="registredStatus === 'false'">
+                    <div class="row">
+                        <div v-if="day_mode" class="col-2 d-flex justify-content-end">
+                            <i class="bi bi-brightness-high default-text" style="font-size: 32px;" @click="changeMode()"></i>
+                        </div>
+                        <div v-else class="col-2 d-flex justify-content-end">
+                            <i class="bi bi-moon default-text" style="font-size: 32px;" @click="changeMode()"></i>
+                        </div>
+                        <div class="col-2 d-flex justify-content-center"></div>
+                        <div class="col-4 d-flex justify-content-center"></div>
+                        <div class="col-2 d-flex justify-content-start"></div>
+                        <div class="col-2 d-flex justify-content-center">
+                            <router-link to="/login" class="default-text" active-class="active">
+                                <i class="bi bi-box-arrow-in-right" style="font-size: 32px;"></i>
+                            </router-link>
+                        </div>
+                    </div>
+                </div>
+                <div v-else>
                     <div class="row d-flex justify-content-between">
                         <div v-if="!open" class="col-3 d-flex justify-content-center">
                             <i class="bi bi-chevron-double-up default-text align-self-center" style="font-size: 32px;" @click="openNavBar()"></i>
@@ -55,24 +73,6 @@
                         </div>
                     </div>
                 </div>
-                <div v-else>
-                    <div class="row">
-                        <div v-if="day_mode" class="col-2 d-flex justify-content-end">
-                            <i class="bi bi-brightness-high default-text" style="font-size: 32px;" @click="changeMode()"></i>
-                        </div>
-                        <div v-else class="col-2 d-flex justify-content-end">
-                            <i class="bi bi-moon default-text" style="font-size: 32px;" @click="changeMode()"></i>
-                        </div>
-                        <div class="col-2 d-flex justify-content-center"></div>
-                        <div class="col-4 d-flex justify-content-center"></div>
-                        <div class="col-2 d-flex justify-content-start"></div>
-                        <div class="col-2 d-flex justify-content-center">
-                            <router-link to="/login" class="default-text" active-class="active">
-                                <i class="bi bi-box-arrow-in-right" style="font-size: 32px;"></i>
-                            </router-link>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </nav>
@@ -84,7 +84,7 @@
     open: false,
     day_mode: true
   }),
-  props: ['registredStatus'],
+  props: ['registredStatus', 'hashedStatus'],
   mounted(){
     let activeTheme = localStorage.getItem('day_mode');
     if(activeTheme === null || activeTheme === 'true') {

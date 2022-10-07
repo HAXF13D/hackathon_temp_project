@@ -1,18 +1,20 @@
 <template>
   <div class="news">
-    <div v-if="registredStatus === true">
+    <div v-if="registredStatus === 'false'">
+      <!-- Тут будет компонет 404 -->
+      <PageNotFoundComponent />
+    </div>
+    <div v-else>
       <div v-if="small === false" >
-        <NavBar :registredStatus="this.registredStatus" />
+        <NavBar :registredStatus="this.registredStatus" :hashedStatus="this.hashedStatus"/>
         <News/>
       </div>
       <div v-else>
         <News/>
-        <MobileNavBar :registredStatus="this.registredStatus" />
+        <MobileNavBar :registredStatus="this.registredStatus" :hashedStatus="this.hashedStatus"/>
       </div>
     </div>
-    <div v-else>
-      <!-- Тут будет компонет 404 -->
-    </div>
+    
   </div>
 </template>
 
@@ -21,29 +23,34 @@
 import NavBar from '@/components/NavBar.vue'
 import MobileNavBar from '../components/MobileNavBar.vue'
 import News from '@/components/NewsComponents/News.vue';
+import PageNotFoundComponent from '@/components/PageNotFoundComponent.vue';
 
 export default {
   name: 'SWapView',
   components: {
     NavBar,
     MobileNavBar,
-    News
+    News,
+    PageNotFoundComponent
   },
   data: () => ({
     small: true,
-    registredStatus: null
+    registredStatus: null,
+      hashedStatus: null
   }),
   created() {
     window.addEventListener('resize', this.onResize);
     this.onResize();
+
     let Status = localStorage.getItem('registredStatus');
-    if(Status === "true"){
-        this.registredStatus = true;
+    this.hashedStatus = localStorage.getItem('token');
+
+    if(Status === "false" || Status === null){
+        this.registredStatus = 'false';
     }
     else{
-        this.registredStatus = false;
+        this.registredStatus = Status;
     }
-    console.log(this.registredStatus, 228);
   },
   destroyed() {
     window.removeEventListener('resize', this.onResize)
