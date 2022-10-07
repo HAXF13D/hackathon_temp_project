@@ -1,6 +1,6 @@
 <!-- +++ Шальнев Владимир vovik0312@gmail.com +++ -->
 <template>
-    <div class="rating">
+    <div class="sendmoney">
       <div v-if="registredStatus === 'false'">
         <!-- Тут будет компонет 404 -->
         <PageNotFoundComponent />
@@ -8,10 +8,10 @@
       <div v-else>
         <div v-if="small === false" >
           <NavBar :registredStatus="this.registredStatus" :hashedStatus="this.hashedStatus"/>
-          <Rating />
+          <SendMoney />
         </div>
         <div v-else>
-          <Rating />
+          <SendMoney />
           <MobileNavBar :registredStatus="this.registredStatus" :hashedStatus="this.hashedStatus"/>
         </div>
       </div>
@@ -24,7 +24,7 @@
   import NavBar from '@/components/NavBar.vue'
   import MobileNavBar from '../components/MobileNavBar.vue'
   import PageNotFoundComponent from '@/components/PageNotFoundComponent.vue';
-  import Rating from '@/components/RatingComponents/Rating.vue';
+  import SendMoney from '@/components/SendMoneyComponents/SendMoney.vue';
   
   export default {
     name: 'SWapView',
@@ -32,7 +32,7 @@
       NavBar,
       MobileNavBar,
       PageNotFoundComponent,
-      Rating
+      SendMoney
     },
     data: () => ({
       small: true,

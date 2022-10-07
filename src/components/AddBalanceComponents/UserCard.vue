@@ -4,7 +4,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content modal-user-color">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Информация о пользователе  {{user.lastName}} {{ user.firstName }} {{user.middleName}}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Информация о пользователе {{user.lastName}} {{ user.firstName }} {{user.middleName}}</h5>
                 </div>
                 <div class="modal-body">
                     <p class="default-text disabled" >Информация о пользователе: {{user.about}}</p>
@@ -12,7 +12,7 @@
                     <p class="default-text disabled text-break" >Адрес кошелька: {{user.walletAdress}}</p>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-success default-text" data-bs-dismiss="modal" @click="sendMoney()">Отправить деньги</button>
+                    <button type="button" class="btn btn-success default-text" data-bs-dismiss="modal" @click="sendMoney()">Пополнить баланс</button>
                     <button type="button" class="btn btn-danger default-text" data-bs-dismiss="modal" @click="closeModal()">Закрыть</button>
                 </div>
             </div>
@@ -24,13 +24,13 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content modal-user-color">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Информация о пользователе  {{user.lastName}} {{ user.firstName }} {{user.middleName}}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Пополнить баланс пользователя {{user.lastName}} {{ user.firstName }} {{user.middleName}}</h5>
                 </div>
                 <div class="modal-body">
                     <p class="default-text disabled text-break" >Адрес кошелька: {{user.walletAdress}}</p>
                     <form>
                         <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Сумма:</label>
+                            <label for="message-text" class="col-form-label default-text disabled">Сумма:</label>
                             <input type="number" class="form-control text-start" id="message-text" v-model="amountToSend">
                         </div>
                     </form>

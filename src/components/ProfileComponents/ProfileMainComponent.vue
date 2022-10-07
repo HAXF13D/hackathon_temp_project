@@ -2,6 +2,46 @@
     <CustomHeader title="Профиль" class="pt-0 my-4"/>
     <div id="profile" class="container-fluid my-4">
         <div class="row mx-1">
+
+            <div class="col-12 profile-block-background mb-3 py-2">
+                <div class="row">
+                    <div class="col-md-5 col-12 d-grid ps-md-4">
+                        <button @click="relocateToUserAdd()" class="btn btn-primary header-text">Добавить нового пользователя</button>   
+                    </div>
+                    <div class="mt-3 d-md-none"></div>
+                    <div class="col-2"></div>
+                    <div class="col-md-5 col-12 d-grid pe-md-4">
+                        <button @click="relocateToAddBalnce()" class="btn btn-primary header-text">Пополнить баланс пользователя</button>   
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 profile-block-background mb-3 py-2">
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-5 col-12 d-grid ps-lg-4 mb-0 ps-md-4">
+                        <button @click="relocateToAddNews()" class="btn btn-primary header-text">Добавить новость</button>   
+                    </div>
+                    <div class="mt-3 d-md-none"></div>
+                    <div class="col-md-2 d-lg-none" ></div>
+                    <div class="col-lg-3 col-md-5 col-12 d-grid pe-md-4">
+                        <button @click="relocateToAddEvent()" class="btn btn-primary header-text">Добавить мероприятие</button>
+                    </div>
+
+                    <div class="mt-3 d-lg-none"></div>
+
+                    <div class="col-lg-3 col-md-5 col-12 d-grid mb-0 ps-md-4">
+                        <button @click="relocateToEditCatalog()" class="btn btn-primary header-text">Редактировать каталог</button>   
+                    </div>
+                    <div class="mt-3 d-md-none"></div>
+                    <div class="col-md-2 d-lg-none" ></div>
+                    <div class="col-lg-3 col-md-5 col-12 d-grid pe-md-4">
+                        <button @click="relocateToAwardUser()" class="btn btn-primary header-text">Наградить пользователя</button>   
+                    </div>
+
+                </div>
+            </div>
+            
             <div class="col-lg-3 align-items-stretch profile-block-background">
                 <div class="row">
                     <div class="col-12 d-flex justify-content-center">
@@ -16,16 +56,16 @@
                     <div class="col-12 mt-1 mb-2">
                         <p class="user-emal-text text-center mb-0 text-break">{{user.emailAdres}}</p>
                     </div>
-                    <div class="col-12 mt-2">
+                    <div class="col-12 mt-2 px-md-4">
                         <p class="about-header-text text-left mb-0 px-1 text-break">Обо мне:</p>
                     </div>
-                    <div class="col-12 mt-1">
+                    <div class="col-12 mt-1 px-md-4">
                         <p class="about-text text-left mb-0 px-1 text-break mb-3">{{user.about}}</p>
                     </div>
-                    <div class="col-12 mt-2">
+                    <div class="col-12 mt-2 px-md-4">
                         <p class="about-header-text text-left mb-0 text-break">Текущий кошелёк:</p>
                     </div>
-                    <div class="col-12 mt-1 mb-3">
+                    <div class="col-12 mt-1 mb-3 px-md-4">
                         <p class="user-wallet-text text-left mb-0 text-break">{{user.walletAdres}}</p>
                     </div>
                 </div>
@@ -36,7 +76,7 @@
                     <div class="col-md-6 pe-md-3 ps-md-4">
                         <label for="inputName" class="form-label label-text mt-4 header-text">Имя</label>
                         <input
-                            required type="text" 
+                            type="text" 
                             class="form-control input-form text-start py-2 me-3 pe-0" 
                             id="inputName" 
                             placeholder="Введите имя"
@@ -48,7 +88,7 @@
                     <div class="col-md-6 ps-md-3 pe-md-4">
                         <label for="inputSurname" class="form-label label-text mt-4 header-text">Фамилия</label>
                         <input 
-                            required type="text" 
+                            type="text" 
                             class="form-control input-form text-start py-2 me-3 pe-0" 
                             id="inputSurname" 
                             placeholder="Введите фамилию"
@@ -59,7 +99,7 @@
                     <div class="col-md-6 pe-md-3 ps-md-4 mt-0">
                         <label for="inputSurname" class="form-label label-text mt-4 header-text">Отчество</label>
                         <input 
-                            required type="text" 
+                            type="text" 
                             class="form-control input-form text-start py-2 me-3 pe-0" 
                             id="inputMiddleName" 
                             placeholder="Введите отчество"
@@ -81,7 +121,7 @@
                     <div class="col-md-6 pe-md-3 ps-md-4 mt-0">
                         <label for="inputBirthYear" class="form-label label-text mt-4 header-text">Дата рождения</label>
                         <input 
-                            required type="date" 
+                            type="date" 
                             class="form-control input-form text-start py-2 me-3 pe-0 header-text" 
                             id="inputBirthYear"
                             name="inputBirthYear"
@@ -138,7 +178,27 @@
                 profilePhoto: '',
                 
             }
-        })
+        }),
+        methods: {
+            relocateToEditCatalog(){                     
+                this.$router.push("/editcatalog")
+            },
+            relocateToUserAdd(){
+                this.$router.push("/useradd")
+            },
+            relocateToAddBalnce(){
+                this.$router.push("/addbalnce")
+            },
+            relocateToAwardUser(){
+                this.$router.push("/awarduser")
+            },
+            relocateToAddNews(){
+                this.$router.push("/addnews")
+            },
+            relocateToAddEvent(){
+                this.$router.push("/addevent")
+            }
+        },
     }
 </script>
 

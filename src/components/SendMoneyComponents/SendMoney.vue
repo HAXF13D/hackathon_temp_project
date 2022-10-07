@@ -1,5 +1,5 @@
 <template>
-  <CustomHeader title="Рейтинг" class="pt-0 my-4" />
+  <CustomHeader title="Наградить пользователя" class="pt-0 my-4" />
   <div id="rating" class="container-fluid justify-content-center my-4">
     <div class="user-wallets mx-1 pb-1">
       <div class="row user-wallets mx-1">
@@ -62,8 +62,8 @@
 <script>
 
   import CustomHeader from '@/components/CustomHeader.vue';
-  import UserSearch from '@/components/RatingComponents/UserSearch.vue';
-  import UserCard from '@/components/RatingComponents/UserCard.vue';
+  import UserSearch from '@/components/SendMoneyComponents/UserSearch.vue';
+  import UserCard from '@/components/SendMoneyComponents/UserCard.vue';
 
   export default {
     name: 'rating',

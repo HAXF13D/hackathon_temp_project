@@ -10,6 +10,11 @@ import UserAddView from '../views/UserAddView.vue'
 import EmptyPageView from '../views/EmptyPageView.vue'
 import RatingView from '../views/RatingView.vue'
 import ProfileView from '../views/ProfileView.vue'
+import AddNewsView from '../views/AddNewsView.vue'
+import AddEventView from '../views/AddEventView.vue'
+import AwardUserView from '../views/AwardUserView.vue'
+import AddUserBalanceView from '../views/AddUserBalanceView.vue'
+import EditCatalogView from '../views/EditCatalogView.vue'
 
 const routes = [
   {
@@ -53,8 +58,28 @@ const routes = [
     component: RatingView
   },
   {
+    path: '/awarduser',
+    component: AwardUserView,
+  },
+  {
+    path: '/addbalnce',
+    component: AddUserBalanceView
+  },
+  {
     path: '/profile',
     component: ProfileView
+  },
+  {
+    path: '/addnews',
+    component: AddNewsView
+  },
+  {
+    path: '/addevent',
+    component: AddEventView
+  },
+  {
+    path: '/editcatalog',
+    component: EditCatalogView
   }
 ]
 

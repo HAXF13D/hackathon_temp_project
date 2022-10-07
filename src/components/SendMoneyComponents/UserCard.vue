@@ -4,7 +4,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content modal-user-color">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Информация о пользователе  {{user.lastName}} {{ user.firstName }} {{user.middleName}}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Информация о пользователе {{user.lastName}} {{ user.firstName }} {{user.middleName}}</h5>
                 </div>
                 <div class="modal-body">
                     <p class="default-text disabled" >Информация о пользователе: {{user.about}}</p>
@@ -12,7 +12,7 @@
                     <p class="default-text disabled text-break" >Адрес кошелька: {{user.walletAdress}}</p>
                 </div>
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-success default-text" data-bs-dismiss="modal" @click="sendMoney()">Отправить деньги</button>
+                    <button type="button" class="btn btn-success default-text" data-bs-dismiss="modal" @click="sendMoney()">Наградить пользователя</button>
                     <button type="button" class="btn btn-danger default-text" data-bs-dismiss="modal" @click="closeModal()">Закрыть</button>
                 </div>
             </div>
@@ -24,15 +24,52 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content modal-user-color">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Информация о пользователе  {{user.lastName}} {{ user.firstName }} {{user.middleName}}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Наградить пользователя {{user.lastName}} {{ user.firstName }} {{user.middleName}}</h5>
                 </div>
                 <div class="modal-body">
                     <p class="default-text disabled text-break" >Адрес кошелька: {{user.walletAdress}}</p>
                     <form>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Сумма:</label>
+                        <label for="inputSex" class="form-label label-text mt-4 d-flex header-text">Тип награды</label>
+                        <div @change="selectUserInput()" class="d-flex justify-content-start mt-3">
+                            <div class="form-check form-check-inline me-md-2">
+                                <input 
+                                    required class="form-check-input" 
+                                    type="radio" 
+                                    name="inlineRadioOptions" 
+                                    id="inputNFT" 
+                                    value="NFT"
+                                    v-model="AwardType"
+                                >
+                                <label class="form-check-label sex-checkbox header-text" for="inlineRadio1">NFT достижение</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input
+                                    checked
+                                    required class="form-check-input" 
+                                    type="radio" 
+                                    name="inlineRadioOptions" 
+                                    id="inputDigitalActive" 
+                                    value="DIGITAL"
+                                    v-model="AwardType"
+                                >
+                                <label class="form-check-label sex-checkbox header-text" for="inlineRadio2">Цифровые активы</label>
+                            </div>
+                        </div>
+
+                        <div v-if="isNft" class="mb-3 mt-4">
+                            <select class="form-select text-start" aria-label="Default select example">
+                                <option selected>Выберете достижение:</option>
+                                <option v-for="achievement in allAchievements"  value="{{ achievement.id }}">
+                                    {{achievement.header}}
+                                </option>
+
+                            </select>
+                        </div>
+                        <div v-else class="mb-3">
+                            <label for="message-text" class="col-form-label default-text disabled">Сумма:</label>
                             <input type="number" class="form-control text-start" id="message-text" v-model="amountToSend">
                         </div>
+
                     </form>
                 </div>
                 <div class="modal-footer justify-content-between">
@@ -73,6 +110,21 @@
         name: "userCard",
         data: () => ({
             isModalOpen: false,
+            isNft: false,
+            allAchievements: [
+                {
+                    id:"1",
+                    header: "Достижение 1"
+                },
+                {
+                    id:"2",
+                    header: "Достижение 2"
+                },
+                {
+                    id:"3",
+                    header: "Достижение 3"
+                },
+            ]
         }),
         props: ['user'],
         methods: {
@@ -113,6 +165,15 @@
                 sendMoneyModal.hide();
                 console.log(this.amountToSend);
                 this.isModalOpen = false;
+            },
+            selectUserInput(){
+                console.log(this.AwardType);
+                if (this.AwardType === "DIGITAL"){
+                    this.isNft = false;
+                }
+                else{
+                    this.isNft = true;
+                }
             }
         },
         components: {
