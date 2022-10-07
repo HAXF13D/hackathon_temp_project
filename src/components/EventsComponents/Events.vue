@@ -18,42 +18,28 @@
   
   import CustomHeader from '@/components/CustomHeader.vue';
   import ContentCard from '../ContentCard.vue';
+  import axios from 'axios';
   
   export default {
     name: 'NewsComp',
     data: () => ({
-      news_arr: [
-        {
-          id: "1",
-          header: 'Пример заголовка мероприятия', 
-          img: 'image_ex.png', 
-          descr: 'Это пример описания для мероприятия. Здесь будет распологаться какое-то мероприятие',
-          date_time: "12:10:2022-15:00",
-          award: "200D"
-        },
-        {
-          id: "2",
-          header: 'Пример заголовка мероприятия', 
-          img: '', 
-          descr: 'Это пример описания для мероприятия. Здесь будет распологаться какое-то мероприятие',
-          date_time: "12:10:2022-17:00",
-          award: "300D"
-        },
-        {
-          id: "3",
-          header: 'Пример заголовка мероприятия', 
-          img: 'image_ex.png', 
-          descr: 'Это пример описания для мероприятия. Здесь будет распологаться какое-то мероприятие',
-          date_time: "10:10:2022-15:00",
-          award: "UltraRareNFT"
-        }
-      ]
+      news_arr: [],
+      base_url: 'http://127.0.0.1:5000',
     }),
     components: {
       CustomHeader,
       ContentCard
   },
     methods:{
+    },
+  created:
+    async function (){
+      try{
+        await axios.get(this.base_url + '/api/get/events').then(response => (this.news_arr = response.data.resp));
+      }
+      catch(error){
+        console.log(error);
+      }
     }
   }
   </script>

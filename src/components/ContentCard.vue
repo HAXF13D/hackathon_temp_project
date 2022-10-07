@@ -24,14 +24,14 @@
                 <h2 class="default-text disabled">{{event.header}}</h2>
                 </div>
             </div>
-            <div class="row mt-3" v-if="event.img != ''">
+            <div class="row mt-3" v-if="event.imgage != ''">
                 <div class="col-12">
-                <img :src="require('@/assets/' + event.img)"/>
+                <img :src="require('@/assets/' + event.imgage)"/>
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-12 post-descr">
-                <p class="default-text disabled">{{event.descr}}</p>
+                <p class="default-text disabled">{{event.description}}</p>
                 </div>
             </div>
             <div v-if="event.award" class="row mt-3">

@@ -41,7 +41,7 @@
 
                 </div>
             </div>
-            
+
             <div class="col-lg-3 align-items-stretch profile-block-background">
                 <div class="row">
                     <div class="col-12 d-flex justify-content-center">
@@ -120,7 +120,7 @@
                     </div>
                     <div class="col-md-6 pe-md-3 ps-md-4 mt-0">
                         <label for="inputBirthYear" class="form-label label-text mt-4 header-text">Дата рождения</label>
-                        <input 
+                        <input
                             type="date" 
                             class="form-control input-form text-start py-2 me-3 pe-0 header-text" 
                             id="inputBirthYear"

@@ -46,36 +46,34 @@
 <script>
 
   import CustomHeader from '@/components/CustomHeader.vue';
-  import axios from 'axios'
+  import axios from 'axios';
 
   export default {
     name: 'SignInComp',
     data(){
       return{
+        baseUrl: 'http://127.0.0.1:5000',
         }
     },
     components: {
       CustomHeader
     },
     methods:{
+      autorization(data){
+        if (data !== undefined){
+          localStorage.setItem('registredStatus', data.resp.user_id);
+          this.$router.push('/news');
+        }
+      },
       async loginUser(){
-        const baseUrl = 'http://192.168.0.108:3000'
-        const params = {
-          'userLogin': this.userLogin,
-          'userPassword': this.userPassword,
-        };
         try {
-          let res = await Axios({
-            method: 'post',
-            url: `${baseUrl}/api/doSmth`,
-            data: params
-          });
-
-          let data = res.data;
-          return data;
+          const params = {
+            'login': this.userLogin,
+            'password': this.userPassword,
+          };
+          axios.post(this.baseUrl + '/api/login', params).then(response => (this.autorization(response.data)))
         } catch (error) {
           console.log(error.response);
-          return error.response;
         }
 
       }

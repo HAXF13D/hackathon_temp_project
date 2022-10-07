@@ -13,24 +13,31 @@
 </template>
 
 <script>
-
 import CustomHeader from '@/components/CustomHeader.vue';
 import ContentCard from '../ContentCard.vue';
+import axios from 'axios';
+
 
 export default {
   name: 'NewsComp',
   data: () => ({
-    news_arr: [
-      {header: 'Пример заголовка новости', img: 'image_ex.png', descr: 'Это пример описания для новости. Здесь будет распологаться какая-то новость'},
-      {header: 'Пример заголовка новости', img: '', descr: 'Это пример описания для новости. Здесь будет распологаться какая-то новость'},
-      {header: 'Пример заголовка новости', img: 'image_ex.png', descr: 'Это пример описания для новости. Здесь будет распологаться какая-то новость'}
-    ]
+    news_arr: [],
+    base_url: 'http://127.0.0.1:5000',
   }),
   components: {
     CustomHeader,
     ContentCard
 },
   methods:{
-  }
+  },
+  created:
+    async function (){
+      try{
+        await axios.get(this.base_url + '/api/get/news').then(response => (this.news_arr = response.data.resp));
+      }
+      catch(error){
+        console.log(error);
+      }
+    }
 }
 </script>
