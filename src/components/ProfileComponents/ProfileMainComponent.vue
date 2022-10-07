@@ -63,7 +63,13 @@
                         <p class="about-text text-left mb-0 px-1 text-break mb-3">{{user.about}}</p>
                     </div>
                     <div class="col-12 mt-2 px-md-4">
-                        <p class="about-header-text text-left mb-0 text-break">Текущий кошелёк:</p>
+                        <p class="about-header-text text-left mb-0 text-break">Адрес кошелька:</p>
+                    </div>
+                    <div class="col-12 mt-1 mb-3 px-md-4">
+                        <p class="user-wallet-text text-left mb-0 text-break">{{user.walletAdres}}</p>
+                    </div>
+                    <div class="col-12 mt-2 px-md-4">
+                        <p class="about-header-text text-left mb-0 text-break">Баланс:</p>
                     </div>
                     <div class="col-12 mt-1 mb-3 px-md-4">
                         <p class="user-wallet-text text-left mb-0 text-break">{{user.walletAdres}}</p>
