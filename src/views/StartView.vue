@@ -2,7 +2,7 @@
     <div class="news">
         <div v-if="small === false" >
             <NavBar :registredStatus="this.registredStatus"  :hashedStatus="this.hashedStatus"/>
-            <Start />
+            <Start/>
         </div>
         <div v-else>
             <Start/>

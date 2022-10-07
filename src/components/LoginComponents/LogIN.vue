@@ -62,7 +62,7 @@
       autorization(data){
         if (data !== undefined){
           localStorage.setItem('registredStatus', data.resp.user_id);
-          this.$router.push('/news')
+          this.$router.push('/news');
         }
       },
       async loginUser(){
