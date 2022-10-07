@@ -23,11 +23,11 @@ export default {
     name: 'Catalog',
     data: () => ({
         itemsArray: [
-            {title: "Наименование услуги/товара", image: "item.png", price: 255.5}, 
-            {title: "Наименование услуги/товара", image: "item.png", price: 255.5}, 
-            {title: "Наименование услуги/товара", image: "item.png", price: 255.5}
+            {id:"1", title: "Наименование услуги/товара", image: "item.png", price: 255.5}, 
+            {id:"2", title: "Наименование услуги/товара", image: "item.png", price: 255.5}, 
+            {id:"3", title: "Наименование услуги/товара", image: "item.png", price: 255.5}
         ]
-  }),
+    }),
     components: {
     CustomHeader,
     Filter,
