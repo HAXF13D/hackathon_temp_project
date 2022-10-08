@@ -167,9 +167,13 @@
                 </form>
             </div>
             <div class="d-lg-none mb-4"></div>
-            <div class="col-lg-8 ms-auto align-items-stretch profile-block-background">
-
-            </div>
+        </div>
+        <div class="row">
+            <nftCard 
+                v-for="nft in userNFTs"
+                v-bind:key="nft.id"
+                v-bind:nft="nft"
+            ></nftCard>
         </div>
         
     </div>
@@ -179,20 +183,21 @@
 <script>
     import CustomHeader from '@/components/CustomHeader.vue';
     import nftCard from '@/components/ProfileComponents/nftCard.vue';
+    import axios from 'axios';
 
     export default{
         name: 'ProfileMainComponent',
         components: {
             CustomHeader,
             nftCard
-    },
+        },
         data: () => ({
             user: {
                 firstName: 'Владимир',
                 lastName: 'Шальнев',
                 middleName: 'Сергеевич',
                 emailAdres: 'vovik0312@gmail.com',
-                walletAdres: '9HtLARfdrcnSzeipRUe2GQTRLBhe62SQkMF6FTJ6JZP',
+                walletAdres: '0x5820431b9B5625aaa8F453515b72FED24941750A',
                 phoneNumber: '891888805034',
                 isOnline: true,
                 birthDate: '03.12.2002',
@@ -200,16 +205,15 @@
                 sex: 'Male',
                 profilePhoto: '',
             },
-            userNFTs:{
-                nft_id: '125',
-            },
+            //userNFTs Получаем запросом на клиенте, по адрессу кошелька, полученному с сервера
             inputName: undefined,
             inputSurname: undefined,
             inputMiddleName: undefined,
             inputEmail: undefined,
             inputBirthYear: undefined,
             inputTelephoneNumber: undefined,
-            role: 'admin'
+            role: 'admin',
+            userNFTs: []
         }),
         methods: {
             relocateToEditCatalog(){                     
@@ -237,8 +241,27 @@
             },
             redirectToHistory(){
                 this.$router.push("/history");
-            }
+            },
+            writeNFTS(data){
+                let temp = [];
+                const balance = data.balance;
+                balance.forEach(function(item, i, balance) {
+                    //console.log(item.tokens, i, balance);
+                    temp = temp.concat(item.tokens);
+                });
+                this.userNFTs = temp;
+            },
         },
+        created:
+            async function(){
+                let url = `https://hackathon.lsp.team/hk/v1/wallets/${this.user.walletAdres}/nft/balance`
+                try{
+                    await axios.get(url).then(response => (this.writeNFTS(response.data)));
+                }
+                catch(error){
+                    console.log(error);
+                };
+            }
     }
 </script>
 
