@@ -65,6 +65,7 @@
                     keyboard: false,
 
                 });
+                //Тут будет покупка
                 myModal.hide();
                 this.isModalOpen = false;                
             },

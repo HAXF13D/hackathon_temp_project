@@ -14,7 +14,7 @@
                             id="inputName"
                             name="inputName"
                             placeholder="Заголовок новости"
-                            v-model="inputName"
+                            v-model="inputHeader"
                             
                         >
                     </div>
@@ -28,15 +28,15 @@
                             id="inputSurname" 
                             placeholder="Текст новости"
                             name="inputSurname"
-                            v-model="inputSurname"
+                            v-model="inputNewsText"
                         ></textarea>
                     </div>
                     <div class="mb-3 px-4 mb-0">
                         <label for="formFileSm" class="form-label label-text header-text">Фото для новости</label>
-                        <input class="form-control form-control-sm" id="formFileSm" type="file">
+                        <input class="form-control form-control-sm" id="formFileSm" type="file" @change="handleFileUpload()">
                     </div>
                     <div class="d-grid col-12 mx-auto px-4 pb-4">
-                        <button class="btn btn-primary header-text">Добавить новость</button>
+                        <button class="btn btn-primary header-text" @click="addNews()">Добавить новость</button>
                     </div>
                 </form>
             </div>
@@ -56,9 +56,18 @@
             CustomHeader
         },
         data: () => ({
+            inputHeader: undefined,
+            inputNewsText: undefined,
+
 
         }),
         methods: {
+            handleFileUpload(){
+                this.file = this.$refs.file.files[0];
+            },
+            addNews(){
+                console.log(this.file);
+            }
         }
   }
 </script>

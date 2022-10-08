@@ -140,6 +140,7 @@
         data: () => ({
             isModalOpen: false,
             isNft: false,
+            amountToSend: undefined,
             allNFTs: [
                 {
                     id: "-1",

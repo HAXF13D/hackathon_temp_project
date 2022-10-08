@@ -21,8 +21,8 @@
             <div class="col-lg-3 d-md-none d-lg-block"></div>
             <div class="col-lg-3 col-md-3 search p-0 m-0">
                 <div class="input-group">
-                    <input type="text" class="form-control search text-start py-1 selected-text" placeholder="Поиск" aria-describedby="search-btn">
-                    <button class="btn btn-outline-secondary search py-1 selected-text" type="button" id="search-btn"><i class="bi bi-search me-1 selected-text" style="font-size: 18px;"></i></button>
+                    <input @change="searchUser()"  type="text" class="form-control search text-start py-1 selected-text" placeholder="Поиск" aria-describedby="search-btn" v-model="searchParameter" >
+                    <button @click="searchUser()"  class="btn btn-outline-secondary search py-1 selected-text" type="button" id="search-btn"><i class="bi bi-search me-1 selected-text" style="font-size: 18px;"></i></button>
                 </div>
             </div>
         </div>
@@ -35,8 +35,8 @@
             <div class="col-4 d-block d-sm-none"></div>
             <div class="col-sm-5 col-6 search p-0 m-0">
                 <div class="input-group">
-                    <input type="text" class="form-control search text-start py-1 selected-text" placeholder="Поиск" aria-describedby="search-btn">
-                    <button class="btn btn-outline-secondary search py-1 selected-text" type="button" id="search-btn"><i class="bi bi-search me-1 selected-text" style="font-size: 18px;"></i></button>
+                    <input @change="searchUser()" type="text" class="form-control search text-start py-1 selected-text" placeholder="Поиск" aria-describedby="search-btn" v-model="searchParameter">
+                    <button @click="searchUser()" class="btn btn-outline-secondary search py-1 selected-text" type="button" id="search-btn"><i class="bi bi-search me-1 selected-text" style="font-size: 18px;"></i></button>
                 </div>
             </div>
             <transition name="bounce">
@@ -75,6 +75,7 @@
                 popularSort: "INCREASE",
                 priceSort: "NO",
                 newnessSort: "NO",
+                searchParameter: undefined,
             }
         },
         methods: {
@@ -122,6 +123,9 @@
             },
             openFilter(){
                 this.isFilterOpen = !this.isFilterOpen;
+            },
+            searchUser(){
+
             }
         },
     }

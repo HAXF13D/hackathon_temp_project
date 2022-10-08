@@ -5,7 +5,7 @@
         <div class="row mt-sm-5">
             <div class="col-xl-3"></div>
             <div class="col-xl-6 mt-5 user-add-border" id="main_div">
-                <form class="row g-3" @submit.prevent="checkForm">
+                <form class="row g-3" @submit.prevent="addUser">
                     <div class="col-md-6 pe-md-3 ps-md-4">
                         <label for="inputName" class="form-label label-text mt-4 header-text">Имя</label>
                         <input
@@ -90,7 +90,7 @@
                         >
                     </div>
                     <div class="d-grid col-12 mx-auto px-md-4 py-4">
-                        <button class="btn btn-primary header-text">Сгенерировать пароль</button>
+                        <button class="btn btn-primary header-text" @click="addUser()">Добавить пользователя</button>
                     </div>
                 </form>
             </div>
@@ -109,7 +109,12 @@
         name: 'useradd',
         data(){
             return {
-
+                inputName: undefined,
+                inputSurname: undefined,
+                inputBirthYear: undefined,
+                inlineSexOptions: undefined,
+                inputEmail: undefined,
+                inputTelephoneNumber: undefined,
             }
         },
         setup(){
@@ -127,6 +132,8 @@
                 console.log(this.inlineSexOptions);
                 console.log(this.inputEmail);
                 console.log(this.inputTelephoneNumber);
+
+                //Добавление пользователя
 
                 this.toast.info("Инициализируем процесс\nдобавления пользователя", {
                     position: "bottom-right",

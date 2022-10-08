@@ -53,6 +53,7 @@
                         keyboard: false,
                         focus: true
                     });
+                    //Тут будет удаление товара
                     myModal.hide();
                     this.isModalOpen = false;
                 }

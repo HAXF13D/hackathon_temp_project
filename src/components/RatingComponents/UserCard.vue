@@ -73,6 +73,7 @@
         name: "userCard",
         data: () => ({
             isModalOpen: false,
+            amountToSend: undefined,
         }),
         props: ['user'],
         methods: {
@@ -110,6 +111,7 @@
                 let sendMoneyModal = new bootstrap.Modal(document.getElementById(`sendMoney-${this.user.id}`), {
                     keyboard: false,
                 });
+                //Тут будет отправка денен
                 sendMoneyModal.hide();
                 console.log(this.amountToSend);
                 this.isModalOpen = false;

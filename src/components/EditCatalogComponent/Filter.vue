@@ -18,13 +18,13 @@
                     </div>
                     <div class="mb-3">
                         <label for="formFileSm" class="form-label label-text default-text disabled">Фото товара:</label>
-                        <input class="form-control form-control-sm" id="formFileSm" type="file">
+                        <input class="form-control form-control-sm" id="formFileSm" type="file" @change="handleFileUpload()">
                     </div>
                 </form>
             </div>
             <div class="modal-footer justify-content-end">
                 <button type="button" class="btn btn-danger default-text" data-bs-dismiss="modal" @click="closeModal()">Закрыть</button>
-                <button type="button" class="btn btn-success default-text" data-bs-dismiss="modal" @click="registerToEvent()">Добавить</button>
+                <button type="button" class="btn btn-success default-text" data-bs-dismiss="modal" @click="addItem()">Добавить</button>
             </div>
             </div>
         </div>
@@ -58,6 +58,7 @@
                 isModalOpen: false,
                 itemName: '',
                 itemPrice: '',
+                file: '',
             }
         },
         methods: {
@@ -79,6 +80,12 @@
                 myModal.hide();
                 this.isModalOpen = false;
                 
+            },
+            handleFileUpload(){
+                this.file = this.$refs.file.files[0];
+            },
+            addItem(){
+                console.log(this.file);
             },
 
         }

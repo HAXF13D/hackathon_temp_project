@@ -14,7 +14,7 @@
                             id="inputName"
                             name="inputName"
                             placeholder="Заголовок мероприятия"
-                            v-model="inputName"
+                            v-model="inputHeader"
                             
                         >
                     </div>
@@ -28,13 +28,13 @@
                             id="inputSurname" 
                             placeholder="Описание мероприятия"
                             name="inputSurname"
-                            v-model="inputSurname"
+                            v-model="inputDescription"
                         ></textarea>
                     </div>
 
                     <div class="px-4 mb-0 mt-3">
                         <label for="formFileSm" class="form-label label-text header-text">Фото для мероприятия</label>
-                        <input class="form-control form-control-sm" id="formFileSm" type="file">
+                        <input class="form-control form-control-sm" id="formFileSm" type="file" @change="handleFileUpload()">
                     </div>
 
                     <div class="col-12 px-4 mt-3">
@@ -44,7 +44,7 @@
                             class="form-control input-form text-start py-2 me-3 pe-0 header-text" 
                             id="inputBirthYear"
                             name="inputBirthYear"
-                            v-model="inputBirthYear"
+                            v-model="inputEventDate"
                         >
                     </div>
                     <div class="col-12 px-4 mt-0">
@@ -55,13 +55,13 @@
                             class="form-control input-form text-start py-2 me-3 pe-0" 
                             id="inputName"
                             name="inputName"
-                            v-model="inputName"
+                            v-model="inputAward"
                             
                         >
                     </div>
                     
                     <div class="d-grid col-12 mx-auto px-4 pb-4 mt-3">
-                        <button class="btn btn-primary header-text mt-3">Добавить мероприятия</button>
+                        <button class="btn btn-primary header-text mt-3" @click="addEvent()">Добавить мероприятия</button>
                     </div>
                 </form>
             </div>
@@ -81,9 +81,19 @@
             CustomHeader
         },
         data: () => ({
-
+            inputHeader: undefined,
+            inputDescription: undefined,
+            inputEventDate: undefined,
+            inputAward: undefined,
+            file: ''
         }),
         methods: {
+            handleFileUpload(){
+                this.file = this.$refs.file.files[0];
+            },
+            addEvent(){
+                console.log(this.file);
+            }
         }
   }
 </script>

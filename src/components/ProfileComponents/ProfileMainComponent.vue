@@ -196,7 +196,13 @@
                 sex: 'Male',
                 profilePhoto: '',
                 
-            }
+            },
+            inputName: undefined,
+            inputSurname: undefined,
+            inputMiddleName: undefined,
+            inputEmail: undefined,
+            inputBirthYear: undefined,
+            inputTelephoneNumber: undefined,
         }),
         methods: {
             relocateToEditCatalog(){                     

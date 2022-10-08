@@ -85,10 +85,11 @@
                 
             },
             registerToEvent(){
-                console.log(1);
+                
                 let myModal = new bootstrap.Modal(document.getElementById(this.event.id), {
                     keyboard: false,
                 });
+                //Тут будет запись на мероприятие
                 myModal.hide();
                 this.isModalOpen = false;
                 //this.toast.info("I'm an info toast!");
