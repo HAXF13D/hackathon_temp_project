@@ -24,9 +24,9 @@
                 <h2 class="default-text disabled">{{event.header}}</h2>
                 </div>
             </div>
-            <div class="row mt-3" v-if="event.imgage != ''">
+            <div class="row mt-3" v-if="event.image != ''">
                 <div class="col-12">
-                <img :src="require('@/assets/' + event.imgage)"/>
+                <img :src="event.image"/>
                 </div>
             </div>
             <div class="row mt-3">

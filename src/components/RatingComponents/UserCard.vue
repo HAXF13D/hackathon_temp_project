@@ -68,12 +68,14 @@
 </template>
 
 <script>
+    import axios from 'axios';
     
     export default {
         name: "userCard",
         data: () => ({
             isModalOpen: false,
             amountToSend: undefined,
+            baseUrl: 'http://127.0.0.1:5000',
         }),
         props: ['user'],
         methods: {
@@ -111,7 +113,17 @@
                 let sendMoneyModal = new bootstrap.Modal(document.getElementById(`sendMoney-${this.user.id}`), {
                     keyboard: false,
                 });
-                //Тут будет отправка денен
+                try{
+                    const params = {
+                        senderId: localStorage.getItem('registeredStatus'),
+                        recipientId: this.user.id,
+                        amoint: this.amountToSend
+                    };
+                    axios.post(baseUrl + '/api/', params).then(response => (console.log(response.data)));
+                }
+                catch(error){
+                    console.log(error);
+                };
                 sendMoneyModal.hide();
                 console.log(this.amountToSend);
                 this.isModalOpen = false;

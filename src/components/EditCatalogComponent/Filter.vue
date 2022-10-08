@@ -22,7 +22,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="formFileSm" class="form-label label-text default-text disabled">Фото товара:</label>
-                        <input class="form-control form-control-sm" id="formFileSm" type="file" @change="handleFileUpload()">
+                        <input class="form-control form-control-sm" id="formFileSm" type="file" @change="handleFileUpload()"/>
                     </div>
                 </form>
             </div>
@@ -55,6 +55,8 @@
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
         name:'search',
         data() {
@@ -65,6 +67,7 @@
                 file: '',
                 searchParameter: undefined,
                 itemAmount: undefined,
+                baseUrl: 'http://127.0.0.1:5000',
             }
         },
         methods: {
@@ -92,8 +95,17 @@
             },
             addItem(){
                 console.log(this.file);
+                this.putDataToServer();
             },
-
+            async putDataToServer(){
+                try{
+                    let params = {name: this.itemName, price: this.itemPrice, image: this.file, amount: this.itemAmount};
+                    await axios.post(this.baseUrl + '/api/add/item', params).then(response => (console.log(response.data)));
+                }
+                catch(error){
+                    console.log(error);
+                }
+            }
         }
     }
 </script>

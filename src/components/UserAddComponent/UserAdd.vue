@@ -104,6 +104,7 @@
 
     import CustomHeader from '@/components/CustomHeader.vue';
     import { useToast } from "vue-toastification";
+    import axios from 'axios';
 
     export default{
         name: 'useradd',
@@ -115,6 +116,7 @@
                 inlineSexOptions: undefined,
                 inputEmail: undefined,
                 inputTelephoneNumber: undefined,
+                baseUrl: 'http://127.0.0.1:5000',
             }
         },
         setup(){
@@ -126,14 +128,20 @@
         },
         methods:{
             async checkForm(event){
-                console.log(this.inputName);
-                console.log(this.inputSurname);
-                console.log(this.inputBirthYear);
-                console.log(this.inlineSexOptions);
-                console.log(this.inputEmail);
-                console.log(this.inputTelephoneNumber);
-
-                //Добавление пользователя
+                try{
+                    const params = {
+                        first_name: this.inputName,
+                        last_name: this.inputSurname,
+                        birth_date: this.inputBirthYear,
+                        sex: this.inlineSexOptions,
+                        email: this.inputEmail,
+                        phone_number: this.inputTelephoneNumber
+                    };
+                    axios.post(baseUrl + '/api/add/user', params).then(response => (console.log(response.data)));
+                }
+                catch(error){
+                    console.log(error);
+                };
 
                 this.toast.info("Инициализируем процесс\nдобавления пользователя", {
                     position: "bottom-right",

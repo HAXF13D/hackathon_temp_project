@@ -176,6 +176,7 @@
 </template>
 
 <script>
+    import axios from 'axios';
     
     export default {
         name: "userCard",
@@ -224,6 +225,7 @@
                     header: "достижение 3"
                 },
             ],
+            baseUrl: 'http://127.0.0.1:5000',
         }),
         props: ['user'],
         methods: {
@@ -264,19 +266,40 @@
                 let adNFTModal = new bootstrap.Modal(document.getElementById(`addnft-${this.user.id}`),{
                     keyboard: false,
                 });
-
                 let adachievementModal = new bootstrap.Modal(document.getElementById(`addachievement-${this.user.id}`),{
                     keyboard: false,
                 });
-
                 console.log(this.NFTtype);
                 if (this.NFTtype == -1 && this.AwardType === "NFT"){
                     sendMoneyModal.hide();
                     adNFTModal.show();
                 }
-                if (this.AchievementType == -1 && this.AwardType === "ACHIEVEMENT"){
+                else if (this.AwardType == "NFT"){
+                    //отправка NFT по шаблону
+                    sendMoneyModal.hide();
+                }
+                else if (this.AchievementType == -1 && this.AwardType === "ACHIEVEMENT"){
+                    //Создание новой ачивки
                     sendMoneyModal.hide();
                     adachievementModal.show();
+                }
+                else if(this.AwardType === "ACHIEVEMENT"){
+                     //отправка ачивки по шаблону
+                    sendMoneyModal.hide();
+                }
+                else{
+                    try{
+                        const params = {
+                            senderId: localStorage.getItem('registeredStatus'),
+                            recipientId: this.user.id,
+                            amoint: this.amountToSend
+                        };
+                        axios.post(baseUrl + '/api/', params).then(response => (console.log(response.data)));
+                    }
+                    catch(error){
+                        console.log(error);
+                    };
+                    sendMoneyModal.hide();
                 }
 
                 this.isModalOpen = false;
@@ -300,6 +323,18 @@
                 let adNFTModal = new bootstrap.Modal(document.getElementById(`addnft-${this.user.id}`),{
                     keyboard: false,
                 });
+
+                try{
+                    const params = {
+                        walletAdress: this.user.walletAdress,
+                        nftId: this.NFTtype 
+                    }
+                    axios.post(baseUrl + '/api/', params).then(response => (console.log(response.data)))
+                }
+                catch(error){
+                    console.log(error);
+                }
+
                 console.log(this.nftName);
                 adNFTModal.hide();
             },

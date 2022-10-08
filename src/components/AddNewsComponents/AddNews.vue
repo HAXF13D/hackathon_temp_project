@@ -49,6 +49,7 @@
 <script>
 
     import CustomHeader from '@/components/CustomHeader.vue';
+    import axios from 'axios';
 
     export default {
         name: 'addnews',
@@ -58,16 +59,31 @@
         data: () => ({
             inputHeader: undefined,
             inputNewsText: undefined,
-
-
+            file: undefined,
+            baseUrl: 'http://127.0.0.1:5000',
         }),
         methods: {
             handleFileUpload(){
+                console.log(this.$refs.file);
                 this.file = this.$refs.file.files[0];
             },
             addNews(){
                 console.log(this.file);
-            }
+                this.putDataNews();
+            },
+            putDataNews(){
+                try{
+                    const params = {
+                        header: this.inputHeader,
+                        description: this.inputNewsText,
+                        image: this.file,
+                    };
+                    axios.post(this.baseUrl + '/api/add/news', params).then(response => (console.log(response.data)));
+                }
+                catch(error){
+                    console.log(error);
+                };
+            },
         }
   }
 </script>
