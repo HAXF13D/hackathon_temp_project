@@ -85,7 +85,8 @@
             inputDescription: undefined,
             inputEventDate: undefined,
             inputAward: undefined,
-            file: ''
+            file: '',
+            baseUrl: 'http://127.0.0.1:5000',
         }),
         methods: {
             handleFileUpload(){

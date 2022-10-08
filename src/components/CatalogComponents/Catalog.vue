@@ -27,7 +27,8 @@ export default {
             {id:"1", title: "Наименование услуги/товара", image: "item.png", price: 255.5}, 
             {id:"2", title: "Наименование услуги/товара", image: "item.png", price: 255.5}, 
             {id:"3", title: "Наименование услуги/товара", image: "item.png", price: 255.5}
-        ]
+        ],
+        baseUrl: 'http://127.0.0.1:5000',
     }),
     components: {
     CustomHeader,

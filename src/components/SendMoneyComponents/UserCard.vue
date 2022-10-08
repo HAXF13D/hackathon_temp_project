@@ -32,12 +32,8 @@
                             <input required type="text" class="form-control text-start" id="message-text" v-model="nftName">
                         </div>
                         <div class="mb-3">
-                            <label for="message-text" class="col-form-label default-text disabled">Описание:</label>
-                            <input type="text" class="form-control text-start" id="message-text" v-model="nftDescription">
-                        </div>
-                        <div class="mb-3">
                             <label for="formFileSm" class="form-label label-text default-text disabled">Изображение:</label>
-                            <input required class="form-control form-control-sm" id="formFileSm" type="file">
+                            <input required class="form-control form-control-sm" id="formFileSm" type="file"  @change="handleFileUpload()">
                         </div>
                     </form>
                 </div>
@@ -142,6 +138,8 @@
             isModalOpen: false,
             isNft: false,
             amountToSend: undefined,
+            nftName: undefined,
+            NFTtype: undefined,
             allNFTs: [
                 {
                     id: "-1",
@@ -160,7 +158,7 @@
                     header: "NFT 3"
                 },
             ],
-            baseUrl: '',
+            baseUrl: 'http://127.0.0.1:5000',
         }),
         props: ['user'],
         methods: {
@@ -232,15 +230,23 @@
                 let adNFTModal = new bootstrap.Modal(document.getElementById(`addnft-${this.user.id}`),{
                     keyboard: false,
                 });
+
                 try{
                     const params = {
-                        walletAdress: this.user.walletAdress, 
+                        walletAdress: this.user.walletAdress,
+                        nftId: this.NFTtype 
                     }
                     axios.post(baseUrl + '/api/', params).then(response => (console.log(response.data)))
                 }
                 catch(error){
                     console.log(error);
                 }
+
+                console.log(this.nftName);
+                adNFTModal.hide();
+            },
+            handleFileUpload(){
+                this.file = this.$refs.file.files[0];
             },
             async checkForm(event){
                 this.toast.info("Инициализируем процесс\nдобавления пользователя", {

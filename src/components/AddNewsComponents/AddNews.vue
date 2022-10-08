@@ -60,7 +60,7 @@
             inputHeader: undefined,
             inputNewsText: undefined,
             file,
-            baseUrl: '',
+            baseUrl: 'http://127.0.0.1:5000',
         }),
         methods: {
             handleFileUpload(){
