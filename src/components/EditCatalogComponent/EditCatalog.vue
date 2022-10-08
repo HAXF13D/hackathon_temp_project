@@ -11,6 +11,7 @@
         </div>
         <div class=".d-block .d-sm-none" style="margin-bottom: 100px;"></div>
     </div>
+    <div class=".d-block .d-sm-none" style="margin-bottom: 100px;"></div>
 </template>
 
 <script>
@@ -22,9 +23,9 @@ export default {
     name: 'Catalog',
     data: () => ({
         itemsArray: [
-            {title: "Наименование услуги/товара", image: "item.png", price: 255.5}, 
-            {title: "Наименование услуги/товара", image: "item.png", price: 255.5}, 
-            {title: "Наименование услуги/товара", image: "item.png", price: 255.5}
+            {id:"1", title: "Наименование услуги/товара", image: "item.png", price: 255.5}, 
+            {id:"2", title: "Наименование услуги/товара", image: "item.png", price: 255.5}, 
+            {id:"3", title: "Наименование услуги/товара", image: "item.png", price: 255.5}
         ]
   }),
     components: {

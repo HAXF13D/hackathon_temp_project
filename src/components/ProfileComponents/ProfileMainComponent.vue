@@ -2,45 +2,47 @@
     <CustomHeader title="Профиль" class="pt-0 my-4"/>
     <div id="profile" class="container-fluid my-4">
         <div class="row mx-1">
+            <!-- Админ -->
+            <div class="col-12 profile-block-background mb-3 py-2">
+                <div class="row justify-content-between">
+                    <div class="col-md-3 col-12 d-grid ps-md-4">
+                        <button @click="relocateToUserAdd()" class="btn btn-primary header-text">Добавить пользователя</button>   
+                    </div>
+                    <div class="mt-3 d-md-none"></div>
+                    <div class="col-md-4 col-12 d-grid pe-md-4">
+                        <button @click="relocateToAddBalnce()" class="btn btn-primary header-text">Пополнить баланс пользователя</button>   
+                    </div>
+                    <div class="mt-3 d-md-none"></div>
+                    <div class="col-md-3 col-12 d-grid pe-md-4">
+                        <button @click="relocateToEditCatalog()" class="btn btn-primary header-text">Редактировать каталог</button>  
+                    </div>
+                </div>
+            </div>
 
+            <!-- Руководитель -->
+            <div class="col-12 profile-block-background mb-3 py-2">
+                <div class="row">
+                    <div class="d-md-none"></div>
+                    <div class="col-md-12 col-12 d-grid px-md-4">
+                        <button @click="relocateToAwardUser()" class="btn btn-primary header-text">Наградить пользователя</button>   
+                    </div>
+                </div>
+            </div>
+
+            <!-- Редактор -->
             <div class="col-12 profile-block-background mb-3 py-2">
                 <div class="row">
                     <div class="col-md-5 col-12 d-grid ps-md-4">
-                        <button @click="relocateToUserAdd()" class="btn btn-primary header-text">Добавить нового пользователя</button>   
+                        <button @click="relocateToAddNews()" class="btn btn-primary header-text">Добавить новость</button>  
                     </div>
                     <div class="mt-3 d-md-none"></div>
                     <div class="col-2"></div>
                     <div class="col-md-5 col-12 d-grid pe-md-4">
-                        <button @click="relocateToAddBalnce()" class="btn btn-primary header-text">Пополнить баланс пользователя</button>   
+                        <button @click="relocateToAddEvent()" class="btn btn-primary header-text">Добавить мероприятие</button> 
                     </div>
                 </div>
             </div>
 
-            <div class="col-12 profile-block-background mb-3 py-2">
-
-                <div class="row">
-                    <div class="col-lg-3 col-md-5 col-12 d-grid ps-lg-4 mb-0 ps-md-4">
-                        <button @click="relocateToAddNews()" class="btn btn-primary header-text">Добавить новость</button>   
-                    </div>
-                    <div class="mt-3 d-md-none"></div>
-                    <div class="col-md-2 d-lg-none" ></div>
-                    <div class="col-lg-3 col-md-5 col-12 d-grid pe-md-4">
-                        <button @click="relocateToAddEvent()" class="btn btn-primary header-text">Добавить мероприятие</button>
-                    </div>
-
-                    <div class="mt-3 d-lg-none"></div>
-
-                    <div class="col-lg-3 col-md-5 col-12 d-grid mb-0 ps-md-4">
-                        <button @click="relocateToEditCatalog()" class="btn btn-primary header-text">Редактировать каталог</button>   
-                    </div>
-                    <div class="mt-3 d-md-none"></div>
-                    <div class="col-md-2 d-lg-none" ></div>
-                    <div class="col-lg-3 col-md-5 col-12 d-grid pe-md-4">
-                        <button @click="relocateToAwardUser()" class="btn btn-primary header-text">Наградить пользователя</button>   
-                    </div>
-
-                </div>
-            </div>
 
             <div class="col-lg-3 align-items-stretch profile-block-background">
                 <div class="row">
