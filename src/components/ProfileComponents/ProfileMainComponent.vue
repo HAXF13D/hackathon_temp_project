@@ -150,11 +150,8 @@
                     </div>
                     <div class="d-md-none pt-2"></div>
                     <div class="d-none d-lg-block col-md-6"></div>
-                    <div class="d-grid col-lg-3 col-md-6 col-12 mx-auto pe-md-3 ps-md-4 py-md-4">
-                        <button class="btn btn-primary header-text">Привязать кошелёк</button>
-                    </div>
-                    <div class="d-grid col-lg-3 col-md-6 col-12 mx-auto pe-md-4 ps-md-3 py-md-4 pb-4">
-                        <button class="btn btn-primary header-text">Сохранить</button>
+                    <div class="d-grid col-md-6 col-12 mx-auto pe-md-4 ps-md-3 py-md-4 pb-4">
+                        <button class="btn btn-primary header-text" @click="checkForm()">Сохранить</button>
                     </div>
                     <div class="col-lg-12 d-none d-lg-block"></div>
                     <div class="col-lg-12 d-none d-lg-block"></div>
