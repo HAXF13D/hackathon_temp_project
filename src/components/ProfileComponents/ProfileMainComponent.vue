@@ -3,7 +3,7 @@
     <div id="profile" class="container-fluid my-4">
         <div class="row mx-1">
             <!-- Админ -->
-            <div class="col-12 profile-block-background mb-3 py-2">
+            <div v-show="role === 'admin' " class="col-12 profile-block-background mb-3 py-2">
                 <div class="row justify-content-between">
                     <div class="col-md-3 col-12 d-grid ps-md-4">
                         <button @click="relocateToUserAdd()" class="btn btn-primary header-text">Добавить пользователя</button>   
@@ -20,7 +20,7 @@
             </div>
 
             <!-- Руководитель -->
-            <div class="col-12 profile-block-background mb-3 py-2">
+            <div v-show="role === 'supervisor' " class="col-12 profile-block-background mb-3 py-2">
                 <div class="row">
                     <div class="d-md-none"></div>
                     <div class="col-md-12 col-12 d-grid px-md-4">
@@ -30,7 +30,7 @@
             </div>
 
             <!-- Редактор -->
-            <div class="col-12 profile-block-background mb-3 py-2">
+            <div v-show="role === 'editor' " class="col-12 profile-block-background mb-3 py-2">
                 <div class="row">
                     <div class="col-md-5 col-12 d-grid ps-md-4">
                         <button @click="relocateToAddNews()" class="btn btn-primary header-text">Добавить новость</button>  
@@ -150,11 +150,8 @@
                     </div>
                     <div class="d-md-none pt-2"></div>
                     <div class="d-none d-lg-block col-md-6"></div>
-                    <div class="d-grid col-lg-3 col-md-6 col-12 mx-auto pe-md-3 ps-md-4 py-md-4">
-                        <button class="btn btn-primary header-text">Привязать кошелёк</button>
-                    </div>
-                    <div class="d-grid col-lg-3 col-md-6 col-12 mx-auto pe-md-4 ps-md-3 py-md-4 pb-4">
-                        <button class="btn btn-primary header-text">Сохранить</button>
+                    <div class="d-grid col-md-6 col-12 mx-auto pe-md-4 ps-md-3 py-md-4 pb-4">
+                        <button class="btn btn-primary header-text" @click="checkForm()">Сохранить</button>
                     </div>
                     <div class="col-lg-12 d-none d-lg-block"></div>
                     <div class="col-lg-12 d-none d-lg-block"></div>
@@ -203,6 +200,7 @@
             inputEmail: undefined,
             inputBirthYear: undefined,
             inputTelephoneNumber: undefined,
+            role: 'user'
         }),
         methods: {
             relocateToEditCatalog(){                     
