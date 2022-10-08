@@ -166,18 +166,25 @@
                     </div>
                 </form>
             </div>
+            <div class="d-lg-none mb-4"></div>
+            <div class="col-lg-8 ms-auto align-items-stretch profile-block-background">
+
+            </div>
         </div>
+        
     </div>
     <div class=".d-block .d-sm-none" style="margin-bottom: 100px;"></div>
 </template>
 
 <script>
     import CustomHeader from '@/components/CustomHeader.vue';
+    import nftCard from '@/components/ProfileComponents/nftCard.vue';
 
     export default{
         name: 'ProfileMainComponent',
         components: {
-    CustomHeader,
+            CustomHeader,
+            nftCard
     },
         data: () => ({
             user: {
@@ -192,7 +199,9 @@
                 about: 'Я делаю этот гребанный сайт и я заебался нахуй сука, помогите мне пожалуйста',
                 sex: 'Male',
                 profilePhoto: '',
-                
+            },
+            userNFTs:{
+                nft_id: '125',
             },
             inputName: undefined,
             inputSurname: undefined,
@@ -200,7 +209,7 @@
             inputEmail: undefined,
             inputBirthYear: undefined,
             inputTelephoneNumber: undefined,
-            role: 'user'
+            role: 'admin'
         }),
         methods: {
             relocateToEditCatalog(){                     

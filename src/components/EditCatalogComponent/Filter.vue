@@ -17,6 +17,10 @@
                         <input type="number" class="form-control text-start" id="message-text" v-model="itemPrice">
                     </div>
                     <div class="mb-3">
+                        <label for="message-text" class="col-form-label default-text disabled">Количество:</label>
+                        <input type="number" class="form-control text-start" id="message-text" v-model="itemAmount">
+                    </div>
+                    <div class="mb-3">
                         <label for="formFileSm" class="form-label label-text default-text disabled">Фото товара:</label>
                         <input class="form-control form-control-sm" id="formFileSm" type="file" @change="handleFileUpload()"/>
                     </div>
@@ -43,8 +47,8 @@
         <div class="d-lg-none col-md-2" ></div>
         <div class="col-lg-3 col-md-5 col-12 search p-0 m-0">
             <div class="input-group">
-                <input v-model="searchParameter" type="text" class="form-control search text-start py-1 selected-text" placeholder="Поиск" aria-describedby="search-btn">
-                <button @click="searchUser()" class="btn btn-outline-secondary search py-1 selected-text" type="button" id="search-btn"><i class="bi bi-search me-1 selected-text" style="font-size: 18px;"></i></button>
+                <input @change="searchUser()" v-model="searchParameter" type="text" class="form-control search text-start py-1 selected-text" placeholder="Поиск" aria-describedby="search-btn">
+                <button class="btn btn-outline-secondary search py-1 selected-text" type="button" id="search-btn"><i class="bi bi-search me-1 selected-text" style="font-size: 18px;"></i></button>
             </div>
         </div>
     </div>
@@ -60,6 +64,7 @@
                 itemPrice: '',
                 file: '',
                 searchParameter: undefined,
+                itemAmount: undefined,
             }
         },
         methods: {
