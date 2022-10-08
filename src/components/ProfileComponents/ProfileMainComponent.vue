@@ -74,6 +74,7 @@
                         <p class="about-header-text text-left mb-0 text-break">Баланс:</p>
                     </div>
                     <div class="col-12 mt-1 mb-3 px-md-4">
+                        <!-- Тут надо вывести баланс -->
                         <p class="user-wallet-text text-left mb-0 text-break">{{user.walletAdres}}</p>
                     </div>
                 </div>
@@ -201,7 +202,7 @@
                 phoneNumber: '891888805034',
                 isOnline: true,
                 birthDate: '03.12.2002',
-                about: 'Я делаю этот гребанный сайт и я заебался нахуй сука, помогите мне пожалуйста',
+                about: 'Я фронтенд разработчик и верстальщик',
                 sex: 'Male',
                 profilePhoto: '',
             },
@@ -240,6 +241,7 @@
                 this.$router.push("/");
             },
             redirectToHistory(){
+                localStorage.setItem('public_key', this.user.walletAdres);
                 this.$router.push("/history");
             },
             writeNFTS(data){

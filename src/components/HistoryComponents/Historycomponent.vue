@@ -2,12 +2,13 @@
     <CustomHeader title="История транзакций" class="pt-0 my-4"/>
     <div id="history" class="container-fluid justify-content-center my-4">
         <table class="table table-hover table-background my-3">
+            
           <thead>
             <tr>
             <th
                 scope="col-1" 
                 class="pt-3 ps-3">
-                    <p class="mb-0 rating-text user-name-text">ID</p>
+                    <p class="mb-0 rating-text user-name-text">ID {{wallet_addres}}</p>
               </th>
               <th
                 scope="col-2" 
@@ -45,6 +46,7 @@
 <script>
     import CustomHeader from '@/components/CustomHeader.vue';
     import TransactionCard from '@/components/HistoryComponents/TransactionCard.vue';
+    import axios from 'axios';
 
     export default{
         name: 'ProfileMainComponent',
@@ -53,47 +55,43 @@
             TransactionCard
         },
         data: () => ({
-            history: [
-            {
-                "blockNumber": 1,
-                "timeStamp": 0,
-                "contractAddress": "string",
-                "from": "0x5820431b9B5625aaa8F453515b72FED24941750A",
-                "to": "0x15Cc4abzz27647ec9fE70D892E55586074263dF0",
-                "value": 125,
-                "tokenName": "Wrapped Matic",
-                "tokenSymbol": "DRUB",
-                "gasUsed": 12026,
-                "confirmations": 4910439
-            },
-            {
-                "blockNumber": 2,
-                "timeStamp": 0,
-                "contractAddress": "string",
-                "from": "0x5820431b9B5625aaa8F453515b72FED24941750A",
-                "to": "0x15Cc4abzz27647ec9fE70D892E55586074263dF0",
-                "value": 500,
-                "tokenName": "Wrapped Matic",
-                "tokenSymbol": "DRUB",
-                "gasUsed": 120026,
-                "confirmations": 4932439
-            },
-            {
-                "blockNumber": 3,
-                "timeStamp": 0,
-                "contractAddress": "string",
-                "from": "0x15Cc4abzz27647ec9fE70D892E55586074263dF0",
-                "to": "0x5820431b9B5625aaa8F453515b72FED24941750A",
-                "value": 200,
-                "tokenName": "Matic",
-                "tokenSymbol": "MATIC",
-                "gasUsed": 126,
-                "confirmations": 4920456
-            }
-        ]
+            public_key: '',
+            history: []
         }),
         methods: {
+            writeHistory(data){
+                this.history = data.history;
+            },
         },
+        beforeUnmount(){
+            localStorage.setItem('public_key', '');
+        },
+        created:
+            async function(){
+                const public_key = localStorage.getItem('public_key');
+                //
+                console.log(public_key);
+                let url = `https://hackathon.lsp.team/hk/v1/wallets/0x5820431b9B5625aaa8F453515b72FED24941750A/history`;
+
+                console.log(url);
+
+                try{
+
+                    await axios({
+                        method: 'post',
+                        url: url,
+                        data: {
+                            page: 0,
+                            offset: 100,
+                            sort: 'asc'
+                        }
+                    }).then(response => (this.writeHistory(response.data)));
+                }
+                catch(error){
+                    console.log(error);
+                };
+            }
+        
     }
 
 </script>

@@ -84,7 +84,9 @@ const routes = [
   },
   {
     path: '/history',
-    component: HistoryView
+    name: 'history',
+    component: HistoryView,
+    props: true
   }
 ]
 
