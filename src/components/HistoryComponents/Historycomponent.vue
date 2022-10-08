@@ -46,7 +46,6 @@
 <script>
     import CustomHeader from '@/components/CustomHeader.vue';
     import TransactionCard from '@/components/HistoryComponents/TransactionCard.vue';
-import { tsMappedType } from '@babel/types';
     import axios from 'axios';
 
     export default{
