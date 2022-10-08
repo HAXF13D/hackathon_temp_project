@@ -11,9 +11,9 @@
                     <p class="default-text disabled" >Баланс: {{user.moneyAmount}} D</p>
                     <p class="default-text disabled text-break" >Адрес кошелька: {{user.walletAdress}}</p>
                 </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-success default-text" data-bs-dismiss="modal" @click="sendMoney()">Пополнить баланс</button>
-                    <button type="button" class="btn btn-danger default-text" data-bs-dismiss="modal" @click="closeModal()">Закрыть</button>
+                <div class="modal-footer justify-content-end">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" @click="closeModal()">Закрыть</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" @click="sendMoney()">Пополнить баланс</button>
                 </div>
             </div>
         </div>
@@ -35,9 +35,9 @@
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-success default-text" data-bs-dismiss="modal" @click="sendMoneyFinal()">Отправить</button>
+                <div class="modal-footer justify-content-end">
                     <button type="button" class="btn btn-danger default-text" data-bs-dismiss="modal" @click="closeModal()">Закрыть</button>
+                    <button type="button" class="btn btn-success default-text" data-bs-dismiss="modal" @click="sendMoneyFinal()">Отправить</button>
                 </div>
             </div>
         </div>
@@ -130,10 +130,26 @@
         font-weight: 400;
     }
     .btn-danger {
-        background-color: #dc3545;
+        background-color: #ffffff;
+        border-color: #00aaff;
+        color: black;
     }
     .btn-success {
-        background-color: #4caf50;
+        background-color: #00aaff;
+        border-color: #00aaff;
+        color: black;
+    }
+    .btn-success:hover {
+        background-color: #00aaff;
+        border-color: #00aaff;
+        box-shadow: 0px 0px 15px #00aaff;
+        color: black;
+    }
+    .btn-danger:hover {
+        background-color: #ffffff;
+        border-color: #00aaff;
+        box-shadow: 0px 0px 15px #00aaff;
+        color: black;
     }
 </style>
 

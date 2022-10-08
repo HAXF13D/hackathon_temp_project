@@ -9,7 +9,7 @@
                     <p class="card-text col-6 text-end mb-0 item-price default-text disabled">{{ items.price }}D</p>
                 </div>
                 <div class="row pt-0">
-                    <a class="btn btn-danger col-12 buy-button-text default-text">Удалить</a>
+                    <a class="btn btn-success col-12 buy-button-text default-text">Удалить</a>
                 </div>
             </div>
         </div>
@@ -40,7 +40,26 @@
         font-weight: 600;
     }
     .btn-danger {
-        background-color: #dc3545;
+        background-color: #ffffff;
+        border-color: #00aaff;
+        color: black;
+    }
+    .btn-success {
+        background-color: #00aaff;
+        border-color: #00aaff;
+        color: black;
+    }
+    .btn-success:hover {
+        background-color: #00aaff;
+        border-color: #00aaff;
+        box-shadow: 0px 0px 15px #00aaff;
+        color: black;
+    }
+    .btn-danger:hover {
+        background-color: #ffffff;
+        border-color: #00aaff;
+        box-shadow: 0px 0px 15px #00aaff;
+        color: black;
     }
 </style>
 

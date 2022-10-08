@@ -26,9 +26,9 @@
                     <p class="default-text disabled" >Цена: {{items.price}} D</p>
                     <p class="default-text disabled text-break" >Текущий баланс: </p>
                 </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-success default-text" data-bs-dismiss="modal" @click="closeAndBuy()">Купить</button>
+                <div class="modal-footer justify-content-end">
                     <button type="button" class="btn btn-danger default-text" data-bs-dismiss="modal" @click="closeModal()">Закрыть</button>
+                    <button type="button" class="btn btn-success default-text" data-bs-dismiss="modal" @click="closeAndBuy()">Купить</button>
                 </div>
             </div>
         </div>
@@ -90,10 +90,26 @@
         font-weight: 600;
     }
     .btn-danger {
-        background-color: #dc3545;
+        background-color: #ffffff;
+        border-color: #00aaff;
+        color: black;
     }
     .btn-success {
-        background-color: #4caf50;
+        background-color: #00aaff;
+        border-color: #00aaff;
+        color: black;
+    }
+    .btn-success:hover {
+        background-color: #00aaff;
+        border-color: #00aaff;
+        box-shadow: 0px 0px 15px #00aaff;
+        color: black;
+    }
+    .btn-danger:hover {
+        background-color: #ffffff;
+        border-color: #00aaff;
+        box-shadow: 0px 0px 15px #00aaff;
+        color: black;
     }
 </style>
 

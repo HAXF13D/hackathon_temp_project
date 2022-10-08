@@ -22,9 +22,9 @@
                     </div>
                 </form>
             </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-success default-text" data-bs-dismiss="modal" @click="registerToEvent()">Добавить</button>
+            <div class="modal-footer justify-content-end">
                 <button type="button" class="btn btn-danger default-text" data-bs-dismiss="modal" @click="closeModal()">Закрыть</button>
+                <button type="button" class="btn btn-success default-text" data-bs-dismiss="modal" @click="registerToEvent()">Добавить</button>
             </div>
             </div>
         </div>
@@ -33,14 +33,15 @@
 
 
     <div class="border row my-1 py-2 px-3">
-        <div class="col-lg-3 col-md-6 col-12 my-auto p-0 m-0">
+        <div class="col-lg-3 col-md-5 col-12 my-auto p-0 m-0">
             <div class="d-flex flex-sm-row flex-column text-left">
-                    <a @click="showAddModal()" class="btn btn-success col-12 buy-button-text default-text">Добавить</a>
+                    <a @click="showAddModal()" class="btn btn-danger col-12 buy-button-text default-text">Добавить</a>
             </div>
         </div>
         <div class="col-lg-6 d-md-none d-lg-block"></div>
         <div class="d-md-none mt-3" ></div>
-        <div class="col-lg-3 col-md-6 col-12 search p-0 m-0">
+        <div class="d-lg-none col-md-2" ></div>
+        <div class="col-lg-3 col-md-5 col-12 search p-0 m-0">
             <div class="input-group">
                 <input type="text" class="form-control search text-start py-1 selected-text" placeholder="Поиск" aria-describedby="search-btn">
                 <button class="btn btn-outline-secondary search py-1 selected-text" type="button" id="search-btn"><i class="bi bi-search me-1 selected-text" style="font-size: 18px;"></i></button>
@@ -54,10 +55,6 @@
         name:'search',
         data() {
             return {
-                isFilterOpen: "NO",
-                popularSort: "INCRESE",
-                priceSort: "NO",
-                newnessSort: "NO",
                 isModalOpen: false,
             }
         },
@@ -95,11 +92,27 @@
     .filter {
         font-size: 14px;
     }
-    .btn-success {
-        background-color: #4caf50;
-    }
     .btn-danger {
-        background-color: #dc3545;
+        background-color: #ffffff;
+        border-color: #00aaff;
+        color: black;
+    }
+    .btn-success {
+        background-color: #00aaff;
+        border-color: #00aaff;
+        color: black;
+    }
+    .btn-success:hover {
+        background-color: #00aaff;
+        border-color: #00aaff;
+        box-shadow: 0px 0px 15px #00aaff;
+        color: black;
+    }
+    .btn-danger:hover {
+        background-color: #ffffff;
+        border-color: #00aaff;
+        box-shadow: 0px 0px 15px #00aaff;
+        color: black;
     }
 </style>
 
