@@ -5,16 +5,16 @@
                 <div class="d-flex flex-sm-row flex-column text-left">
                     <p class="filter mb-0 ms-sm-0 me-sm-3 text-nowrap default-text disabled">Сортировать по:</p>
 
-                    <p v-if="popularSort === 'INCRESE' " class="filter mb-0 choose-text default-text sort-choosed" @click="sortPopular()">Популярности <i class="bi bi-sort-up ps-1"></i></p>
-                    <p v-else-if="popularSort === 'DECRESE' " class="filter mb-0 choose-text default-text sort-choosed" @click="sortPopular()">Популярности <i class="bi bi-sort-down ps-1"></i></p>
+                    <p v-if="popularSort === 'INCREASE' " class="filter mb-0 choose-text default-text sort-choosed" @click="sortPopular()">Популярности <i class="bi bi-sort-up ps-1"></i></p>
+                    <p v-else-if="popularSort === 'DECREASE' " class="filter mb-0 choose-text default-text sort-choosed" @click="sortPopular()">Популярности <i class="bi bi-sort-down ps-1"></i></p>
                     <p v-else class="filter mb-0 choose-text default-text" @click="sortPopular()">Популярности</p>
 
-                    <p v-if="priceSort === 'INCRESE' " class="filter mb-0 mx-sm-4 choose-text default-text sort-choosed" @click="sortPrice()">Цене <i class="bi bi-sort-up ps-1"></i></p>
-                    <p v-else-if="priceSort  === 'DECRESE' " class="filter mb-0 mx-sm-4 choose-text default-text sort-choosed" @click="sortPrice()">Цене <i class="bi bi-sort-down ps-1"></i></p>
+                    <p v-if="priceSort === 'INCREASE' " class="filter mb-0 mx-sm-4 choose-text default-text sort-choosed" @click="sortPrice()">Цене <i class="bi bi-sort-up ps-1"></i></p>
+                    <p v-else-if="priceSort  === 'DECREASE' " class="filter mb-0 mx-sm-4 choose-text default-text sort-choosed" @click="sortPrice()">Цене <i class="bi bi-sort-down ps-1"></i></p>
                     <p v-else class="filter mb-0 mx-sm-4 choose-text default-text" @click="sortPrice()">Цене</p>
 
-                    <p v-if="newnessSort === 'INCRESE' " class="filter mb-0 me-2 choose-text default-text sort-choosed" @click="sortNewness()">Новизне <i class="bi bi-sort-up ps-1"></i></p>
-                    <p v-else-if="newnessSort  === 'DECRESE' " class="filter mb-0 me-2 choose-text default-text sort-choosed" @click="sortNewness()">Новизне <i class="bi bi-sort-down ps-1"></i></p>
+                    <p v-if="newnessSort === 'INCREASE' " class="filter mb-0 me-2 choose-text default-text sort-choosed" @click="sortNewness()">Новизне <i class="bi bi-sort-up ps-1"></i></p>
+                    <p v-else-if="newnessSort  === 'DECREASE' " class="filter mb-0 me-2 choose-text default-text sort-choosed" @click="sortNewness()">Новизне <i class="bi bi-sort-down ps-1"></i></p>
                     <p v-else class="filter mb-0 me-2 choose-text default-text" @click="sortNewness()">Новизне</p>
                 </div>
             </div>
@@ -44,18 +44,18 @@
                     <div class="row default-text ps-2">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <p v-if="popularSort === 'INCRESE' " class="default-text mb-1 choose-text default-text sort-choosed" @click="sortPopular()">Популярности <i class="bi bi-sort-up ps-1"></i></p >
-                                <p v-else-if="popularSort === 'DECRESE' " class="default-text mb-1 choose-text default-text sort-choosed" @click="sortPopular()">Популярности <i class="bi bi-sort-down ps-1"></i></p >
+                                <p v-if="popularSort === 'INCREASE' " class="default-text mb-1 choose-text default-text sort-choosed" @click="sortPopular()">Популярности <i class="bi bi-sort-up ps-1"></i></p >
+                                <p v-else-if="popularSort === 'DECREASE' " class="default-text mb-1 choose-text default-text sort-choosed" @click="sortPopular()">Популярности <i class="bi bi-sort-down ps-1"></i></p >
                                 <p v-else class="default-text mb-1 choose-text default-text" @click="sortPopular()">Популярности</p >
                             </li>
                             <li class="nav-item">
-                                <p v-if="priceSort === 'INCRESE' " class="default-text mb-1 choose-text default-text sort-choosed" @click="sortPrice()">Цене <i class="bi bi-sort-up ps-1"></i></p >
-                                <p v-else-if="priceSort === 'DECRESE' " class="default-text mb-1 choose-text default-text sort-choosed" @click="sortPrice()">Цене <i class="bi bi-sort-down ps-1"></i></p >
+                                <p v-if="priceSort === 'INCREASE' " class="default-text mb-1 choose-text default-text sort-choosed" @click="sortPrice()">Цене <i class="bi bi-sort-up ps-1"></i></p >
+                                <p v-else-if="priceSort === 'DECREASE' " class="default-text mb-1 choose-text default-text sort-choosed" @click="sortPrice()">Цене <i class="bi bi-sort-down ps-1"></i></p >
                                 <p v-else class="default-text mb-1 choose-text default-text" @click="sortPrice()">Цене</p >
                             </li>
                             <li class="nav-item">
-                                <p v-if="newnessSort === 'INCRESE' " class="default-text mb-1 choose-text default-text sort-choosed" @click="sortNewness()">Новизне <i class="bi bi-sort-up ps-1"></i></p >
-                                <p v-else-if="newnessSort === 'DECRESE' " class="default-text mb-1 choose-text default-text sort-choosed" @click="sortNewness()">Новизне <i class="bi bi-sort-down ps-1"></i></p >
+                                <p v-if="newnessSort === 'INCREASE' " class="default-text mb-1 choose-text default-text sort-choosed" @click="sortNewness()">Новизне <i class="bi bi-sort-up ps-1"></i></p >
+                                <p v-else-if="newnessSort === 'DECREASE' " class="default-text mb-1 choose-text default-text sort-choosed" @click="sortNewness()">Новизне <i class="bi bi-sort-down ps-1"></i></p >
                                 <p v-else class="default-text mb-1 choose-text default-text" @click="sortNewness()">Новизне</p >
                             </li>
                         </ul>
@@ -72,49 +72,49 @@
         data() {
             return {
                 isFilterOpen: "NO",
-                popularSort: "INCRESE",
+                popularSort: "INCREASE",
                 priceSort: "NO",
                 newnessSort: "NO",
             }
         },
         methods: {
             sortPopular(){
-                if (this.popularSort === "INCRESE") {
-                    this.popularSort = "DECRESE";
+                if (this.popularSort === "INCREASE") {
+                    this.popularSort = "DECREASE";
                 }
-                else if (this.popularSort === "DECRESE") {
-                    this.popularSort = "INCRESE";
+                else if (this.popularSort === "DECREASE") {
+                    this.popularSort = "INCREASE";
                 }
                 else{
-                    this.popularSort = "DECRESE";
+                    this.popularSort = "DECREASE";
                     this.newnessSort = "NO";
                     this.priceSort = "NO";
                 }
                 this.$emit('getData', {popularSort: this.popularSort, priceSort: this.priceSort, newnessSort: this.newnessSort, amount: false})
             },
             sortPrice(){
-                if (this.priceSort === "INCRESE") {
-                    this.priceSort = "DECRESE";
+                if (this.priceSort === "INCREASE") {
+                    this.priceSort = "DECREASE";
                 }
-                else if (this.priceSort === "DECRESE") {
-                    this.priceSort = "INCRESE";
+                else if (this.priceSort === "DECREASE") {
+                    this.priceSort = "INCREASE";
                 }
                 else{
-                    this.priceSort = "DECRESE";
+                    this.priceSort = "DECREASE";
                     this.newnessSort = "NO";
                     this.popularSort = "NO";
                 }
                 this.$emit('getData', {popularSort: this.popularSort, priceSort: this.priceSort, newnessSort: this.newnessSort, amount: false})
             },
             sortNewness(){
-                if (this.newnessSort === "INCRESE") {
-                    this.newnessSort = "DECRESE";
+                if (this.newnessSort === "INCREASE") {
+                    this.newnessSort = "DECREASE";
                 }
-                else if (this.newnessSort === "DECRESE") {
-                    this.newnessSort = "INCRESE";
+                else if (this.newnessSort === "DECREASE") {
+                    this.newnessSort = "INCREASE";
                 }
                 else{
-                    this.newnessSort = "DECRESE";
+                    this.newnessSort = "DECREASE";
                     this.popularSort = "NO";
                     this.priceSort = "NO";
                 }

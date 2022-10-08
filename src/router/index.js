@@ -15,6 +15,7 @@ import AddEventView from '../views/AddEventView.vue'
 import AwardUserView from '../views/AwardUserView.vue'
 import AddUserBalanceView from '../views/AddUserBalanceView.vue'
 import EditCatalogView from '../views/EditCatalogView.vue'
+import HistoryView from '../views/HistoryView.vue'
 
 const routes = [
   {
@@ -80,6 +81,10 @@ const routes = [
   {
     path: '/editcatalog',
     component: EditCatalogView
+  },
+  {
+    path: '/history',
+    component: HistoryView
   }
 ]
 

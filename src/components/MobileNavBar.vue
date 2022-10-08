@@ -84,7 +84,7 @@
     open: false,
     day_mode: true
   }),
-  props: ['registredStatus', 'hashedStatus'],
+  props: ['registredStatus', 'token'],
   mounted(){
     let activeTheme = localStorage.getItem('day_mode');
     if(activeTheme === null || activeTheme === 'true') {

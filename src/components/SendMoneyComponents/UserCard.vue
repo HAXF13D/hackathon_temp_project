@@ -11,14 +11,43 @@
                     <p class="default-text disabled" >Баланс: {{user.moneyAmount}} D</p>
                     <p class="default-text disabled text-break" >Адрес кошелька: {{user.walletAdress}}</p>
                 </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-success default-text" data-bs-dismiss="modal" @click="sendMoney()">Наградить пользователя</button>
+                <div class="modal-footer justify-content-end">
                     <button type="button" class="btn btn-danger default-text" data-bs-dismiss="modal" @click="closeModal()">Закрыть</button>
+                    <button type="button" class="btn btn-success default-text" data-bs-dismiss="modal" @click="sendMoney()">Наградить пользователя</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="modal fade" :id="`addnft-${user.id}`" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-user-color">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Создание нового NFT</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label default-text disabled">Название:</label>
+                            <input required type="text" class="form-control text-start" id="message-text" v-model="nftName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label default-text disabled">Описание:</label>
+                            <input type="text" class="form-control text-start" id="message-text" v-model="nftDescription">
+                        </div>
+                        <div class="mb-3">
+                            <label for="formFileSm" class="form-label label-text default-text disabled">Изображение:</label>
+                            <input required class="form-control form-control-sm" id="formFileSm" type="file">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-end">
+                    <button type="button" class="btn btn-danger default-text" data-bs-dismiss="modal" @click="closeModal()">Закрыть</button>
+                    <button type="button" class="btn btn-success default-text" data-bs-dismiss="modal" @click="createAndSendNFT()">Добавить</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade" :id="`sendMoney-${user.id}`" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -40,7 +69,7 @@
                                     value="NFT"
                                     v-model="AwardType"
                                 >
-                                <label class="form-check-label sex-checkbox header-text" for="inlineRadio1">NFT достижение</label>
+                                <label class="form-check-label sex-checkbox header-text" for="inlineRadio1">NFT</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input
@@ -57,10 +86,10 @@
                         </div>
 
                         <div v-if="isNft" class="mb-3 mt-4">
-                            <select class="form-select text-start" aria-label="Default select example">
-                                <option selected>Выберете достижение:</option>
-                                <option v-for="achievement in allAchievements"  value="{{ achievement.id }}">
-                                    {{achievement.header}}
+                            <select v-model="NFTtype" class="form-select text-start" aria-label="Default select example">
+                                <option selected >Выберете NFT:</option>
+                                <option v-for="nft in allNFTs"  :key="nft.header" :value="`${nft.id}`">
+                                    {{nft.header}}
                                 </option>
 
                             </select>
@@ -72,9 +101,9 @@
 
                     </form>
                 </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-success default-text" data-bs-dismiss="modal" @click="sendMoneyFinal()">Отправить</button>
+                <div class="modal-footer justify-content-end">
                     <button type="button" class="btn btn-danger default-text" data-bs-dismiss="modal" @click="closeModal()">Закрыть</button>
+                    <button type="button" class="btn btn-success default-text" data-bs-dismiss="modal" @click="sendMoneyFinal()">Отправить</button>
                 </div>
             </div>
         </div>
@@ -111,18 +140,22 @@
         data: () => ({
             isModalOpen: false,
             isNft: false,
-            allAchievements: [
+            allNFTs: [
+                {
+                    id: "-1",
+                    header: "Создать новую NFT"
+                },
                 {
                     id:"1",
-                    header: "Достижение 1"
+                    header: "NFT 1"
                 },
                 {
                     id:"2",
-                    header: "Достижение 2"
+                    header: "NFT 2"
                 },
                 {
                     id:"3",
-                    header: "Достижение 3"
+                    header: "NFT 3"
                 },
             ]
         }),
@@ -162,8 +195,15 @@
                 let sendMoneyModal = new bootstrap.Modal(document.getElementById(`sendMoney-${this.user.id}`), {
                     keyboard: false,
                 });
-                sendMoneyModal.hide();
-                console.log(this.amountToSend);
+                let adNFTModal = new bootstrap.Modal(document.getElementById(`addnft-${this.user.id}`),{
+                    keyboard: false,
+                });
+                console.log(this.NFTtype);
+                if (this.NFTtype == -1){
+                    sendMoneyModal.hide();
+                    adNFTModal.show();
+                }
+
                 this.isModalOpen = false;
             },
             selectUserInput(){
@@ -174,6 +214,43 @@
                 else{
                     this.isNft = true;
                 }
+            },
+            createAndSendNFT(){
+                let adNFTModal = new bootstrap.Modal(document.getElementById(`addnft-${this.user.id}`),{
+                    keyboard: false,
+                });
+                console.log(this.nftName);
+                console.log(this.nftDescription);
+            },
+            async checkForm(event){
+                this.toast.info("Инициализируем процесс\nдобавления пользователя", {
+                    position: "bottom-right",
+                    timeout: 3000,
+                    closeOnClick: true,
+                    pauseOnFocusLoss: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    draggablePercent: 0.6,
+                    showCloseButtonOnHover: true,
+                    hideProgressBar: true,
+                    closeButton: "button",
+                    icon: true,
+                    rtl: false
+                });
+                this.toast.success("Пользователь добавлен!", {
+                    position: "bottom-right",
+                    timeout: 3000,
+                    closeOnClick: true,
+                    pauseOnFocusLoss: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    draggablePercent: 0.6,
+                    showCloseButtonOnHover: true,
+                    hideProgressBar: true,
+                    closeButton: "button",
+                    icon: true,
+                    rtl: false
+                });
             }
         },
         components: {
@@ -191,10 +268,26 @@
         font-weight: 400;
     }
     .btn-danger {
-        background-color: #dc3545;
+        background-color: #ffffff;
+        border-color: #00aaff;
+        color: black;
     }
     .btn-success {
-        background-color: #4caf50;
+        background-color: #00aaff;
+        border-color: #00aaff;
+        color: black;
+    }
+    .btn-success:hover {
+        background-color: #00aaff;
+        border-color: #00aaff;
+        box-shadow: 0px 0px 15px #00aaff;
+        color: black;
+    }
+    .btn-danger:hover {
+        background-color: #ffffff;
+        border-color: #00aaff;
+        box-shadow: 0px 0px 15px #00aaff;
+        color: black;
     }
 </style>
 

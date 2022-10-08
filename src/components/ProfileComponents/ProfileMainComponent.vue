@@ -2,45 +2,47 @@
     <CustomHeader title="Профиль" class="pt-0 my-4"/>
     <div id="profile" class="container-fluid my-4">
         <div class="row mx-1">
+            <!-- Админ -->
+            <div class="col-12 profile-block-background mb-3 py-2">
+                <div class="row justify-content-between">
+                    <div class="col-md-3 col-12 d-grid ps-md-4">
+                        <button @click="relocateToUserAdd()" class="btn btn-primary header-text">Добавить пользователя</button>   
+                    </div>
+                    <div class="mt-3 d-md-none"></div>
+                    <div class="col-md-4 col-12 d-grid pe-md-4">
+                        <button @click="relocateToAddBalnce()" class="btn btn-primary header-text">Пополнить баланс пользователя</button>   
+                    </div>
+                    <div class="mt-3 d-md-none"></div>
+                    <div class="col-md-3 col-12 d-grid pe-md-4">
+                        <button @click="relocateToEditCatalog()" class="btn btn-primary header-text">Редактировать каталог</button>  
+                    </div>
+                </div>
+            </div>
 
+            <!-- Руководитель -->
+            <div class="col-12 profile-block-background mb-3 py-2">
+                <div class="row">
+                    <div class="d-md-none"></div>
+                    <div class="col-md-12 col-12 d-grid px-md-4">
+                        <button @click="relocateToAwardUser()" class="btn btn-primary header-text">Наградить пользователя</button>   
+                    </div>
+                </div>
+            </div>
+
+            <!-- Редактор -->
             <div class="col-12 profile-block-background mb-3 py-2">
                 <div class="row">
                     <div class="col-md-5 col-12 d-grid ps-md-4">
-                        <button @click="relocateToUserAdd()" class="btn btn-primary header-text">Добавить нового пользователя</button>   
+                        <button @click="relocateToAddNews()" class="btn btn-primary header-text">Добавить новость</button>  
                     </div>
                     <div class="mt-3 d-md-none"></div>
                     <div class="col-2"></div>
                     <div class="col-md-5 col-12 d-grid pe-md-4">
-                        <button @click="relocateToAddBalnce()" class="btn btn-primary header-text">Пополнить баланс пользователя</button>   
+                        <button @click="relocateToAddEvent()" class="btn btn-primary header-text">Добавить мероприятие</button> 
                     </div>
                 </div>
             </div>
 
-            <div class="col-12 profile-block-background mb-3 py-2">
-
-                <div class="row">
-                    <div class="col-lg-3 col-md-5 col-12 d-grid ps-lg-4 mb-0 ps-md-4">
-                        <button @click="relocateToAddNews()" class="btn btn-primary header-text">Добавить новость</button>   
-                    </div>
-                    <div class="mt-3 d-md-none"></div>
-                    <div class="col-md-2 d-lg-none" ></div>
-                    <div class="col-lg-3 col-md-5 col-12 d-grid pe-md-4">
-                        <button @click="relocateToAddEvent()" class="btn btn-primary header-text">Добавить мероприятие</button>
-                    </div>
-
-                    <div class="mt-3 d-lg-none"></div>
-
-                    <div class="col-lg-3 col-md-5 col-12 d-grid mb-0 ps-md-4">
-                        <button @click="relocateToEditCatalog()" class="btn btn-primary header-text">Редактировать каталог</button>   
-                    </div>
-                    <div class="mt-3 d-md-none"></div>
-                    <div class="col-md-2 d-lg-none" ></div>
-                    <div class="col-lg-3 col-md-5 col-12 d-grid pe-md-4">
-                        <button @click="relocateToAwardUser()" class="btn btn-primary header-text">Наградить пользователя</button>   
-                    </div>
-
-                </div>
-            </div>
 
             <div class="col-lg-3 align-items-stretch profile-block-background">
                 <div class="row">
@@ -63,7 +65,13 @@
                         <p class="about-text text-left mb-0 px-1 text-break mb-3">{{user.about}}</p>
                     </div>
                     <div class="col-12 mt-2 px-md-4">
-                        <p class="about-header-text text-left mb-0 text-break">Текущий кошелёк:</p>
+                        <p class="about-header-text text-left mb-0 text-break">Адрес кошелька:</p>
+                    </div>
+                    <div class="col-12 mt-1 mb-3 px-md-4">
+                        <a @click="redirectToHistory()" class="user-wallet-text text-left mb-0 text-break link-info">{{user.walletAdres}}</a>
+                    </div>
+                    <div class="col-12 mt-2 px-md-4">
+                        <p class="about-header-text text-left mb-0 text-break">Баланс:</p>
                     </div>
                     <div class="col-12 mt-1 mb-3 px-md-4">
                         <p class="user-wallet-text text-left mb-0 text-break">{{user.walletAdres}}</p>
@@ -148,6 +156,17 @@
                     <div class="d-grid col-lg-3 col-md-6 col-12 mx-auto pe-md-4 ps-md-3 py-md-4 pb-4">
                         <button class="btn btn-primary header-text">Сохранить</button>
                     </div>
+                    <div class="col-lg-12 d-none d-lg-block"></div>
+                    <div class="col-lg-12 d-none d-lg-block"></div>
+                    <div class="col-lg-12 d-none d-lg-block"></div>
+                    <div class="col-lg-12 d-none d-lg-block"></div>
+                    <div class="col-lg-12 d-none d-lg-block"></div>
+                    <div class="col-lg-12 d-none d-lg-block"></div>
+                    <div class="col-lg-12 d-none d-lg-block"></div>
+                    <div class="col-lg-6 d-none d-lg-block"></div>
+                    <div class="col-lg-6 d-grid align-self-end mb-4">
+                        <button @click="logout()" class="btn btn-info header-text">Выйти</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -181,22 +200,30 @@
         }),
         methods: {
             relocateToEditCatalog(){                     
-                this.$router.push("/editcatalog")
+                this.$router.push("/editcatalog");
             },
             relocateToUserAdd(){
-                this.$router.push("/useradd")
+                this.$router.push("/useradd");
             },
             relocateToAddBalnce(){
-                this.$router.push("/addbalnce")
+                this.$router.push("/addbalnce");
             },
             relocateToAwardUser(){
-                this.$router.push("/awarduser")
+                this.$router.push("/awarduser");
             },
             relocateToAddNews(){
-                this.$router.push("/addnews")
+                this.$router.push("/addnews");
             },
             relocateToAddEvent(){
-                this.$router.push("/addevent")
+                this.$router.push("/addevent");
+            },
+            logout(){
+                localStorage.setItem('registredStatus', 'false');
+                localStorage.setItem('token', '');
+                this.$router.push("/");
+            },
+            redirectToHistory(){
+                this.$router.push("/history");
             }
         },
     }
@@ -246,6 +273,19 @@
     .user-wallet-text{
         font-size: 14px;
         font-weight: 400;
+    }
+    .btn-info{
+        background-color: #db3646;
+        border-color: #db3646;
+    }
+    .btn-info:focus{
+        background-color: #db3646;
+        border-color: #db3646;
+        box-shadow: none;
+    }
+    .btn-info:hover{
+        background-color: #db3646;
+        border-color: #db3646;
     }
   </style>
 

@@ -10,13 +10,13 @@
           <thead>
             <tr>
               <th 
-                v-if="userNameSort === 'INCRESE' " 
+                v-if="userNameSort === 'INCREASE' " 
                 scope="col" 
                 class="ps-3 pb-1" 
                 @click="sortUserName()"><p class="mb-0 rating-text sort-choosed">Пользователь<i class="bi bi-sort-up ps-1"></i></p>
               </th>
               <th 
-                v-else-if="userNameSort === 'DECRESE' " 
+                v-else-if="userNameSort === 'DECREASE' " 
                 scope="col" 
                 class="ps-3 disabled header-text pb-1 rating-text sort-choosed" 
                 @click="sortUserName()"><p class="mb-0 rating-text sort-choosed">Пользователь<i class="bi bi-sort-down ps-1"></i></p>
@@ -28,13 +28,13 @@
               </th>
 
               <th 
-                v-if="userBalanceSort === 'INCRESE' " 
+                v-if="userBalanceSort === 'INCREASE' " 
                 scope="col" 
                 class="pe-3 disabled header-text pb-1 rating-text sort-choosed text-end" 
                 @click="sortBalance()"><p class="mb-0 rating-text sort-choosed">Баланс<i class="bi bi-sort-up ps-1"></i></p>
               </th>
               <th 
-                v-else-if="userBalanceSort === 'DECRESE' " 
+                v-else-if="userBalanceSort === 'DECREASE' " 
                 scope="col" 
                 class="pe-3 disabled header-text pb-1 rating-text sort-choosed text-end" 
                 @click="sortBalance()"><p class="mb-0 rating-text sort-choosed">Баланс<i class="bi bi-sort-down ps-1"></i></p>
@@ -112,26 +112,26 @@
     },
     methods: {
       sortBalance(){
-        if (this.userBalanceSort === "INCRESE") {
-            this.userBalanceSort = "DECRESE";
+        if (this.userBalanceSort === "INCREASE") {
+            this.userBalanceSort = "DECREASE";
         }
-        else if (this.userBalanceSort === "DECRESE") {
-            this.userBalanceSort = "INCRESE";
+        else if (this.userBalanceSort === "DECREASE") {
+            this.userBalanceSort = "INCREASE";
         }
         else{
-            this.userBalanceSort = "DECRESE";
+            this.userBalanceSort = "DECREASE";
             this.userNameSort = "NO";
         }
       },
       sortUserName(){
-        if (this.userNameSort === "INCRESE") {
-            this.userNameSort = "DECRESE";
+        if (this.userNameSort === "INCREASE") {
+            this.userNameSort = "DECREASE";
         }
-        else if (this.userNameSort === "DECRESE") {
-            this.userNameSort = "INCRESE";
+        else if (this.userNameSort === "DECREASE") {
+            this.userNameSort = "INCREASE";
         }
         else{
-            this.userNameSort = "DECRESE";
+            this.userNameSort = "DECREASE";
             this.userBalanceSort = "NO";
         }
       },
