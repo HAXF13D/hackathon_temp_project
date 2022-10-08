@@ -24,9 +24,9 @@ export default {
     name: 'Catalog',
     data: () => ({
         itemsArray: [
-            {id:"1", title: "Наименование услуги/товара", image: "item.png", price: 255.5}, 
-            {id:"2", title: "Наименование услуги/товара", image: "item.png", price: 255.5}, 
-            {id:"3", title: "Наименование услуги/товара", image: "item.png", price: 255.5}
+            {id:"1", name: "Наименование услуги/товара", image: "item.png", price: 255.5}, 
+            {id:"2", name: "Наименование услуги/товара", image: "item.png", price: 255.5}, 
+            {id:"3", name: "Наименование услуги/товара", image: "item.png", price: 255.5}
         ],
         baseUrl: 'http://127.0.0.1:5000',
     }),
@@ -37,9 +37,32 @@ export default {
 },
     methods: {
         getDataFromServer(params){
-                axios.get(this.baseUrl + '/api/get/catalog', params).then(response(this.itemsArray = response.data.resp));
+            try{    
+                axios.get(this.baseUrl + '/api/filter', params).then(response(this.itemsArray = response.data.resp));
+            }
+            catch(error){
+                console.log(error);
+            };
             },
-    }
+    },
+    created:
+        function(){
+            try{
+                const params = {
+                    popularSort: 'INCREASE',
+                    priceSort: 'NO',
+                    newnessSort: 'NO',
+                    Amount: false
+                };
+                axios.get(this.baseUrl + '/api/filter',
+                params,
+                {headers: {'Content-Type': 'application/json'}
+                }).then(response(this.itemsArray = response.data.resp));
+            }
+            catch(error){
+                console.log(error);
+            };
+        }
 }
 </script>
 

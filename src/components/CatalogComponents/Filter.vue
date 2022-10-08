@@ -91,7 +91,7 @@
                     this.newnessSort = "NO";
                     this.priceSort = "NO";
                 }
-                this.$emit('getData', {popularSort: this.popularSort, priceSort: this.priceSort, newnessSort: this.newnessSort, amount: false})
+                this.$emit('getData', {popularSort: this.popularSort, priceSort: this.priceSort, newnessSort: this.newnessSort, Amount: false})
             },
             sortPrice(){
                 if (this.priceSort === "INCREASE") {
@@ -105,7 +105,7 @@
                     this.newnessSort = "NO";
                     this.popularSort = "NO";
                 }
-                this.$emit('getData', {popularSort: this.popularSort, priceSort: this.priceSort, newnessSort: this.newnessSort, amount: false})
+                this.$emit('getData', {popularSort: this.popularSort, priceSort: this.priceSort, newnessSort: this.newnessSort, Amount: false})
             },
             sortNewness(){
                 if (this.newnessSort === "INCREASE") {
@@ -119,7 +119,7 @@
                     this.popularSort = "NO";
                     this.priceSort = "NO";
                 }
-                this.$emit('getData', {popularSort: this.popularSort, priceSort: this.priceSort, newnessSort: this.newnessSort, amount: false})
+                this.$emit('getData', {popularSort: this.popularSort, priceSort: this.priceSort, newnessSort: this.newnessSort, Amount: false})
             },
             openFilter(){
                 this.isFilterOpen = !this.isFilterOpen;

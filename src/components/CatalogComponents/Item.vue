@@ -3,7 +3,7 @@
         <div class="card test">
             <img :src="require('@/assets/' + items.image)" class="card-img-top px-5 pt-3" alt="...">
             <div class="card-body px-5 py-3">
-                <h5 class="card-title pt-0 pb-3 mb-0 item-name default-text disabled">{{ items.title }}</h5>
+                <h5 class="card-title pt-0 pb-3 mb-0 item-name default-text disabled">{{ items.name }}</h5>
                 <div class="row pb-3">
                     <p class="card-text col-6 text-start mb-0 item-price default-text disabled">Цена</p>
                     <p class="card-text col-6 text-end mb-0 item-price default-text disabled">{{ items.price }}D</p>
@@ -22,7 +22,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Информация о товаре</h5>
                 </div>
                 <div class="modal-body">
-                    <p class="default-text disabled" >Информация о товаре: {{items.title}}</p>
+                    <p class="default-text disabled" >Информация о товаре: {{items.name}}</p>
                     <p class="default-text disabled" >Цена: {{items.price}} D</p>
                     <p class="default-text disabled text-break" >Текущий баланс: </p>
                 </div>

@@ -62,8 +62,8 @@
                     });
 
                     try{
-                        const params = {itemId: this.items.id};
-                        axios.post(this.baseUrl + '/api/', params).then(response => (console.log(response.data)));
+                        const params = {item_id: this.items.id};
+                        axios.post(this.baseUrl + '/api/delete/item', params).then(response => (console.log(response.data)));
                     }
                     catch(error){
                         console.log(error);

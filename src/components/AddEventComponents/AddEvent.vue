@@ -34,7 +34,7 @@
 
                     <div class="px-4 mb-0 mt-3">
                         <label for="formFileSm" class="form-label label-text header-text">Фото для мероприятия</label>
-                        <input class="form-control form-control-sm" id="formFileSm" type="file" @change="handleFileUpload()">
+                        <input class="form-control form-control-sm" id="formFileSm" type="file" ref="eventImage" @change="handleFileUpload()">
                     </div>
 
                     <div class="col-12 px-4 mt-3">
@@ -72,7 +72,7 @@
 </template>
 
 <script>
-
+    import axios from 'axios';
     import CustomHeader from '@/components/CustomHeader.vue';
 
     export default {
@@ -84,28 +84,40 @@
             inputHeader: undefined,
             inputDescription: undefined,
             inputEventDate: undefined,
+            inputDescription: undefined,
             inputAward: undefined,
             file: '',
             baseUrl: 'http://127.0.0.1:5000',
         }),
         methods: {
             handleFileUpload(){
-                this.file = this.$refs.file.files[0];
+                this.file = this.$refs.eventImage.files[0];
+                
+            },
+            async simpleCallback(){
+
+            },
+            blobToData(file){
+                return new Promise((resolve) => {
+                    const reader = new FileReader()
+                    reader.onloadend = () => resolve(reader.result)
+                    reader.readAsDataURL(file)
+                })
             },
             addEvent(){
-                console.log(this.file);
                 this.putDataEvent();
             },
-            putDataEvent(){
+            async putDataEvent(){
                 try{
+                    const resData = await this.blobToData(this.file);
                     const params = {
-                        inputHeader: this.inputHeader,
-                        inputNewsText: this.inputNewsText,
-                        inputEventDate: this.inputEventDate,
-                        inputAward: this.inputAward,
-                        file: this.file
+                        header: this.inputHeader,
+                        description: this.inputDescription,
+                        event_date: this.inputEventDate,
+                        award: this.inputAward,
+                        image: resData
                     };
-                    axios.post(baseUrl + '/api/', params).then(response => (console.log(response.data)));
+                    axios.post(this.baseUrl + '/api/add/event', params).then(response => (console.log(response.data)));
                 }
                 catch(error){
                     console.log(error);

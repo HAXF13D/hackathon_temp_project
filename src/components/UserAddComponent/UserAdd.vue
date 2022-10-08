@@ -130,14 +130,14 @@
             async checkForm(event){
                 try{
                     const params = {
-                        inputName: this.inputName,
-                        inputSurname: this.inputSurname,
-                        inputBirthYear: this.inputBirthYear,
+                        first_name: this.inputName,
+                        last_name: this.inputSurname,
+                        birth_date: this.inputBirthYear,
                         sex: this.inlineSexOptions,
-                        inputEmail: this.inputEmail,
-                        phoneNumber: this.inputTelephoneNumber
+                        email: this.inputEmail,
+                        phone_number: this.inputTelephoneNumber
                     };
-                    axios.post(baseUrl + '/api/', params).then(response => (console.log(response.data)));
+                    axios.post(baseUrl + '/api/add/user', params).then(response => (console.log(response.data)));
                 }
                 catch(error){
                     console.log(error);

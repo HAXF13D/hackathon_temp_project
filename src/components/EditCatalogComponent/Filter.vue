@@ -99,8 +99,8 @@
             },
             async putDataToServer(){
                 try{
-                    let params = {itemName: this.itemName, itemPrice: this.itemPrice, file: this.file, itemAmount: this.itemAmount};
-                    await axios.post(this.baseUrl + '/api/', params).then(response => (console.log(response.data)));
+                    let params = {name: this.itemName, price: this.itemPrice, image: this.file, amount: this.itemAmount};
+                    await axios.post(this.baseUrl + '/api/add/item', params).then(response => (console.log(response.data)));
                 }
                 catch(error){
                     console.log(error);
