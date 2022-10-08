@@ -74,7 +74,7 @@
                 isFilterOpen: "NO",
                 popularSort: "INCREASE",
                 priceSort: "NO",
-                newnessSort: "NO"
+                newnessSort: "NO",
             }
         },
         methods: {
@@ -90,6 +90,7 @@
                     this.newnessSort = "NO";
                     this.priceSort = "NO";
                 }
+                this.$emit('getData', {popularSort: this.popularSort, priceSort: this.priceSort, newnessSort: this.newnessSort, amount: false})
             },
             sortPrice(){
                 if (this.priceSort === "INCREASE") {
@@ -103,6 +104,7 @@
                     this.newnessSort = "NO";
                     this.popularSort = "NO";
                 }
+                this.$emit('getData', {popularSort: this.popularSort, priceSort: this.priceSort, newnessSort: this.newnessSort, amount: false})
             },
             sortNewness(){
                 if (this.newnessSort === "INCREASE") {
@@ -116,11 +118,12 @@
                     this.popularSort = "NO";
                     this.priceSort = "NO";
                 }
+                this.$emit('getData', {popularSort: this.popularSort, priceSort: this.priceSort, newnessSort: this.newnessSort, amount: false})
             },
             openFilter(){
                 this.isFilterOpen = !this.isFilterOpen;
             }
-        }
+        },
     }
 </script>
 

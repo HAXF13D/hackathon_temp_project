@@ -56,6 +56,8 @@
         data() {
             return {
                 isModalOpen: false,
+                itemName: '',
+                itemPrice: '',
             }
         },
         methods: {

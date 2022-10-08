@@ -88,7 +88,7 @@
                         <div v-if="isNft" class="mb-3 mt-4">
                             <select v-model="NFTtype" class="form-select text-start" aria-label="Default select example">
                                 <option selected >Выберете NFT:</option>
-                                <option v-for="nft in allNFTs"  :value="`${nft.id}`">
+                                <option v-for="nft in allNFTs"  :key="nft.header" :value="`${nft.id}`">
                                     {{nft.header}}
                                 </option>
 

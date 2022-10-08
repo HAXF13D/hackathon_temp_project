@@ -104,6 +104,8 @@
       ],
       userNameSort: "NO",
       userBalanceSort: "INCREASE",
+      baseUrl: 'http://127.0.0.1:5000'
+
     }),
     components: {
       CustomHeader,
@@ -122,6 +124,7 @@
             this.userBalanceSort = "DECREASE";
             this.userNameSort = "NO";
         }
+        this.getDataFromServer();
       },
       sortUserName(){
         if (this.userNameSort === "INCREASE") {
@@ -134,8 +137,25 @@
             this.userNameSort = "DECREASE";
             this.userBalanceSort = "NO";
         }
+        this.getDataFromServer();
       },
-    }
+      getDataFromServer(){
+        try{
+          let params = {
+            userBalanceSort: this.userBalanceSort,
+            userNameSort: this.userNameSort
+          };
+          axios.get(this.baseUrl + '', params).then(response => (this.usersArray = response.data.resp));
+        }
+        catch(error){
+          console.log(error);
+        }
+      }
+    },
+    createdfunction:
+      function(){
+        this.getDataFromServer();
+      }
   }
 </script>
 
