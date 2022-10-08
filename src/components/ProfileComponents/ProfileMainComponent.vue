@@ -213,7 +213,7 @@
             inputEmail: undefined,
             inputBirthYear: undefined,
             inputTelephoneNumber: undefined,
-            role: 'supervisor',
+            role: 'editor',
             userNFTs: []
         }),
         methods: {
