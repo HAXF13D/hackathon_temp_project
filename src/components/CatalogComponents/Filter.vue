@@ -104,6 +104,7 @@
                     this.newnessSort = "NO";
                     this.popularSort = "NO";
                 }
+                this.$emit('getData', {popularSort: this.popularSort, priceSort: this.priceSort, newnessSort: this.newnessSort, amount: false})
             },
             sortNewness(){
                 if (this.newnessSort === "INCRESE") {
@@ -117,6 +118,7 @@
                     this.popularSort = "NO";
                     this.priceSort = "NO";
                 }
+                this.$emit('getData', {popularSort: this.popularSort, priceSort: this.priceSort, newnessSort: this.newnessSort, amount: false})
             },
             openFilter(){
                 this.isFilterOpen = !this.isFilterOpen;
