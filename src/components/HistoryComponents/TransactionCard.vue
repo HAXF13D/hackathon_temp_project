@@ -1,6 +1,6 @@
 <template>
 
-    <div class="modal fade" :id="transaction.blockNumber" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" :id="transaction.hash" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content modal-user-color">
                 <div class="modal-header">
@@ -13,8 +13,8 @@
                     <p class="user-name-text text-break" >Получатель: {{transaction.to}}</p>
                     <!-- Тут нужно сделать функцию, котоаря будет перед открытием модаля получать информацию
                     о пользователе по его кошельку -->
-                    <p class="user-name-text" >Количество: {{transaction.value}}</p>
-                    <p class="text-break user-name-text" >Токен: {{transaction.tokenSymbol}}</p>
+                    <p class="user-name-text text-break" >Количество: {{transaction.value}}</p>
+                    <p class="text-break user-name-text text-break" >Токен: {{transaction.tokenSymbol}}</p>
                 </div>
                 <div class="modal-footer justify-content-end py-3">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal" @click="closeModal()">Закрыть</button>                 
@@ -54,7 +54,7 @@
         methods: {
             showUserInfo(){
                 if (!this.isModalOpen) {
-                    let myModal = new bootstrap.Modal(document.getElementById(this.transaction.blockNumber), {
+                    let myModal = new bootstrap.Modal(document.getElementById(this.transaction.hash), {
                         keyboard: false,
                         focus: true
                     });
@@ -64,7 +64,7 @@
             },
             closeModal(){
                 if (this.isModalOpen) {
-                    let myModal = new bootstrap.Modal(document.getElementById(this.transaction.blockNumber), {
+                    let myModal = new bootstrap.Modal(document.getElementById(this.transaction.hash), {
                         keyboard: false,
                         focus: true
                     });

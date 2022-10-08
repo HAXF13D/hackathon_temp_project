@@ -6,27 +6,27 @@
           <thead>
             <tr>
             <th
-                scope="col-1" 
+                scope="col" 
                 class="pt-3 ps-3">
-                    <p class="mb-0 rating-text user-name-text">ID {{wallet_addres}}</p>
+                    <p class="mb-0 rating-text user-name-text">ID</p>
               </th>
               <th
-                scope="col-2" 
+                scope="col" 
                 class="pt-2">
                     <p class="mb-0 rating-text user-name-text">От кого</p>
               </th>
               <th
-                scope="col-2" 
+                scope="col" 
                 class="pt-2">
                     <p class="mb-0 rating-text user-name-text">Кому</p>
               </th>
               <th
-                scope="col-2" 
-                class="pt-2">
+                scope="col" 
+                class="pt-1">
                     <p class="mb-0 rating-text user-name-text">Количество</p>
               </th>
               <th
-                scope="col-2" 
+                scope="col" 
                 class="pt-2 pe-3">
                     <p class="mb-0 rating-text user-name-text">Токен</p>
               </th>
@@ -46,6 +46,7 @@
 <script>
     import CustomHeader from '@/components/CustomHeader.vue';
     import TransactionCard from '@/components/HistoryComponents/TransactionCard.vue';
+import { tsMappedType } from '@babel/types';
     import axios from 'axios';
 
     export default{
@@ -60,18 +61,24 @@
         }),
         methods: {
             writeHistory(data){
+                let history = data.history;
+                history.forEach(element => {
+                    let temp = element.to;
+                    element.to = `${temp.substr(0, 5)}...${temp.substr(temp.length - 5)}`
+                    temp = element.from;
+                    element.from = `${temp.substr(0, 5)}...${temp.substr(temp.length - 5)}`
+                    console.log(element.value);
+                    element.value = element.value === undefined ? element.value : String(element.value);
+                });
                 this.history = data.history;
             },
-        },
-        beforeUnmount(){
-            localStorage.setItem('public_key', '');
         },
         created:
             async function(){
                 const public_key = localStorage.getItem('public_key');
                 //
                 console.log(public_key);
-                let url = `https://hackathon.lsp.team/hk/v1/wallets/0x5820431b9B5625aaa8F453515b72FED24941750A/history`;
+                let url = `https://hackathon.lsp.team/hk/v1/wallets/${public_key}/history`;
 
                 console.log(url);
 
@@ -83,7 +90,7 @@
                         data: {
                             page: 0,
                             offset: 100,
-                            sort: 'asc'
+                            sort: 'desc'
                         }
                     }).then(response => (this.writeHistory(response.data)));
                 }
