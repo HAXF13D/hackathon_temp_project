@@ -17,6 +17,10 @@
                         <input type="number" class="form-control text-start" id="message-text" v-model="itemPrice">
                     </div>
                     <div class="mb-3">
+                        <label for="message-text" class="col-form-label default-text disabled">Количество:</label>
+                        <input type="number" class="form-control text-start" id="message-text" v-model="itemAmount">
+                    </div>
+                    <div class="mb-3">
                         <label for="formFileSm" class="form-label label-text default-text disabled">Фото товара:</label>
                         <input class="form-control form-control-sm" id="formFileSm" type="file" @change="handleFileUpload()">
                     </div>
@@ -60,6 +64,7 @@
                 itemPrice: '',
                 file: '',
                 searchParameter: undefined,
+                itemAmount: undefined,
             }
         },
         methods: {
