@@ -192,7 +192,9 @@
                 about: 'Я делаю этот гребанный сайт и я заебался нахуй сука, помогите мне пожалуйста',
                 sex: 'Male',
                 profilePhoto: '',
-                
+            },
+            userNFTs:{
+
             },
             inputName: undefined,
             inputSurname: undefined,

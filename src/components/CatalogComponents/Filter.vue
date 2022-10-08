@@ -22,7 +22,7 @@
             <div class="col-lg-3 col-md-3 search p-0 m-0">
                 <div class="input-group">
                     <input @change="searchUser()"  type="text" class="form-control search text-start py-1 selected-text" placeholder="Поиск" aria-describedby="search-btn" v-model="searchParameter" >
-                    <button @click="searchUser()"  class="btn btn-outline-secondary search py-1 selected-text" type="button" id="search-btn"><i class="bi bi-search me-1 selected-text" style="font-size: 18px;"></i></button>
+                    <button class="btn btn-outline-secondary search py-1 selected-text" type="button" id="search-btn"><i class="bi bi-search me-1 selected-text" style="font-size: 18px;"></i></button>
                 </div>
             </div>
         </div>
