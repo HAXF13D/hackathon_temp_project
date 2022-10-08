@@ -2,16 +2,16 @@
   <!-- +++ Духно Михаил misha.duhno@mail.ru +++ -->
   <div class="container-xl container-fluid pt-0 my-4">
     <!-- +++ Шальнев Владимир vovik0312@gmail.com +++ -->
-    <CustomHeader title="Мои достижения"/>
+    <CustomHeader v-show="userAchievmentsExist" title="Мои достижения"/>
     <!-- ---Шальнев Владимир--- -->
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" :class="{'mb-5': userAchievmentsExist}">
       <div class="col-12 col-sm-10 col-xl-12 col-xxl-10">
         <div class="row gy-3 gx-2">
           <div class="col-12 col-md-6 col-xl-4" v-for="user_achiev in user_achiev_list" v-bind:key="user_achiev">
             <div id="achiev" class="test">
               <div class="row">
                 <div class="col-3 my-auto achiev-image">
-                  <img :src="require('@/assets/' + user_achiev.img)" class="p-1"/>
+                  <img :src="user_achiev.img" class="p-1"/>
                 </div>
                 <div class="col-8 default-text disabled pt-2">
                   <h5 class="mb-1">{{user_achiev.name}}</h5>
@@ -24,22 +24,22 @@
       </div>
     </div>
     <!-- +++ Шальнев Владимир vovik0312@gmail.com +++ -->
-    <div class="mt-5">
+    <div>
       <CustomHeader title="Все достижения"/>
     </div>
     <!-- ---Шальнев Владимир--- -->
     <div class="row justify-content-center">
       <div class="col-12 col-sm-10 col-xl-12 col-xxl-10">
         <div class="row gy-3 gx-2">
-          <div class="col-12 col-md-6 col-xl-4" v-for="achiev in achiev_list" v-bind:key="achiev">
+          <div class="col-12 col-md-6 col-xl-4" v-for="achiev in achiev_list" v-bind:key="achiev.name">
             <div id="achiev" class="test">
               <div class="row">
                 <div class="col-3 my-auto achiev-image">
-                  <img :src="require('@/assets/' + achiev.img)" class="p-1"/>
+                  <img :src="achiev.image" class="p-1"/>
                 </div>
                 <div class="col-8 default-text disabled pt-2">
                   <h5 class="mb-1">{{achiev.name}}</h5>
-                  <p class="mb-2">{{achiev.descr}}</p>
+                  <p class="mb-2">{{achiev.descriprion}}</p>
                 </div>
               </div>
             </div>
@@ -55,30 +55,40 @@
 <script>
 
 import CustomHeader from '@/components/CustomHeader.vue';
+import axios from 'axios';
 
 export default {
   name: 'AchievementsComp',
   data(){
     return{
-      user_achiev_list: [{img: "vtb_logo_icon.png", name: "Имя достижения", descr: "Здесь будет написано описание за что получено достижение"},{img: "vtb_logo_icon.png", name: "Имя достижения", descr: "Здесь будет написано описание за что получено достижение"},{img: "vtb_logo_icon.png", name: "Имя достижения", descr: "Здесь будет написано описание за что получено достижение"},{img: "vtb_logo_icon.png", name: "Имя достижения", descr: "Здесь будет написано описание за что получено достижение"},{img: "vtb_logo_icon.png", name: "Имя достижения", descr: "Здесь будет написано описание за что получено достижение"},{img: "vtb_logo_icon.png", name: "Имя достижения", descr: "Здесь будет написано описание за что получено достижение"},{img: "vtb_logo_icon.png", name: "Имя достижения", descr: "Здесь будет написано описание за что получено достижение"}],
-      achiev_list: [{img: "vtb_logo_icon.png", name: "Имя достижения", descr: "Здесь будет написано описание за что получено достижение так что как-то так"},{img: "vtb_logo_icon.png", name: "Имя достижения", descr: "Здесь будет написано описание за что получено достижение"},{img: "vtb_logo_icon.png", name: "Имя достижения", descr: "Здесь будет написано описание за что получено достижение"},{img: "vtb_logo_icon.png", name: "Имя достижения", descr: "Здесь будет написано описание за что получено достижение"},{img: "vtb_logo_icon.png", name: "Имя достижения", descr: "Здесь будет написано описание за что получено достижение"},{img: "vtb_logo_icon.png", name: "Имя достижения", descr: "Здесь будет написано описание за что получено достижение"},{img: "vtb_logo_icon.png", name: "Имя достижения", descr: "Здесь будет написано описание за что получено достижение"}],
+      user_achiev_list: [],
+      achiev_list: [],
+      userAchievmentsExist: false,
+      baseUrl: 'http://127.0.0.1:5000',
     }
   },
   components: {
     CustomHeader
   },
   methods:{
-    makeListAchiev(data){
-      this.achiev_list = data["list"];
-    },
-    makeListUserAchiev(data){
-      this.user_achiev_list = data["list"];
+    writeUserAchievments(data){
+      this.user_achiev_list = data['users_achievments'];
+      if (this.user_achiev_list > 0){
+        this.userAchievmentsExist = true;
+      };
+      this.achiev_list = data['all_achievments'];
     },
   },
-  created(){
-    //axios.get("http://192.168.0.108:8080/api/get_achievements").then(response => (this.makeListAchiev(response.data)));
-    //axios.get("http://192.168.0.108:8080/api/get_user_achiev").then(response => (this.makeListUserAchiev(response.data)));
-  }
+  created:
+    async function(){
+      try{
+        let params = {userId: localStorage.getItem('registredStatus')};
+        await axios.post(this.baseUrl + '/api/get/achievments/user', params).then(response => (this.writeUserAchievments(response.data)));
+      }
+      catch(error){
+        console.log(error);
+      };
+    }
 
 }
 </script>

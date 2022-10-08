@@ -161,8 +161,8 @@
     export default{
         name: 'ProfileMainComponent',
         components: {
-            CustomHeader
-        },
+    CustomHeader,
+    },
         data: () => ({
             user: {
                 firstName: 'Владимир',

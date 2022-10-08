@@ -19,7 +19,11 @@
 <script>
     export default {
         name: "item-list",
-        props: ['items']
+        props: ['items'],
+        created:
+            function(){
+                console.log(this.items.id);
+            }
     }
 </script>
 

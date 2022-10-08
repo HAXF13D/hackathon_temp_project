@@ -2,7 +2,7 @@
     <CustomHeader title="Каталог" class="pt-0 my-4" />
     <div id="filter" class="container-fluid justify-content-center">
 
-        <Filter/>
+        <Filter v-on:getData="getDataFromServer()"/>
         <div class="row">
             <Item 
                 v-for="items in itemsArray"
@@ -18,15 +18,17 @@
 import CustomHeader from '@/components/CustomHeader.vue';
 import Filter from './Filter.vue';
 import Item from './Item.vue';
+import axios from 'axios';
 
 export default {
     name: 'Catalog',
     data: () => ({
         itemsArray: [
-            {title: "Наименование услуги/товара", image: "item.png", price: 255.5}, 
-            {title: "Наименование услуги/товара", image: "item.png", price: 255.5}, 
-            {title: "Наименование услуги/товара", image: "item.png", price: 255.5}
-        ]
+            {title: "Наименование услуги/товара", image: "item.png", price: 255.5, id: 'id'}, 
+            {title: "Наименование услуги/товара", image: "item.png", price: 255.5, id: 'id'}, 
+            {title: "Наименование услуги/товара", image: "item.png", price: 255.5, id: 'id'}
+        ],
+        baseUrl: 'http://127.0.0.1:5000',
   }),
     components: {
     CustomHeader,
@@ -34,6 +36,9 @@ export default {
     Item
 },
     methods: {
+        getDataFromServer(params){
+                axios.get(this.baseUrl + '/api/get/catalog', params).then(response(this.itemsArray = response.data.resp));
+            },
     }
 }
 </script>

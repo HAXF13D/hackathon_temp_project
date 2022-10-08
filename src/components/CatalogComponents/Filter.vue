@@ -74,7 +74,7 @@
                 isFilterOpen: "NO",
                 popularSort: "INCRESE",
                 priceSort: "NO",
-                newnessSort: "NO"
+                newnessSort: "NO",
             }
         },
         methods: {
@@ -90,6 +90,7 @@
                     this.newnessSort = "NO";
                     this.priceSort = "NO";
                 }
+                this.$emit('getData', {popularSort: this.popularSort, priceSort: this.priceSort, newnessSort: this.newnessSort, amount: false})
             },
             sortPrice(){
                 if (this.priceSort === "INCRESE") {
@@ -120,7 +121,7 @@
             openFilter(){
                 this.isFilterOpen = !this.isFilterOpen;
             }
-        }
+        },
     }
 </script>
 

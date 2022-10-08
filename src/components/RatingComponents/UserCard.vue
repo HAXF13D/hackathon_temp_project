@@ -132,12 +132,9 @@
     .btn-danger {
         background-color: #dc3545;
     }
-<<<<<<< HEAD
     .btn-success {
         background-color: #4caf50;
     }
-=======
->>>>>>> Misha
 </style>
 
 <style>
