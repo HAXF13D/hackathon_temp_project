@@ -32,12 +32,8 @@
                             <input required type="text" class="form-control text-start" id="message-text" v-model="nftName">
                         </div>
                         <div class="mb-3">
-                            <label for="message-text" class="col-form-label default-text disabled">Описание:</label>
-                            <input type="text" class="form-control text-start" id="message-text" v-model="nftDescription">
-                        </div>
-                        <div class="mb-3">
                             <label for="formFileSm" class="form-label label-text default-text disabled">Изображение:</label>
-                            <input required class="form-control form-control-sm" id="formFileSm" type="file">
+                            <input required class="form-control form-control-sm" id="formFileSm" type="file"  @change="handleFileUpload()">
                         </div>
                     </form>
                 </div>
@@ -141,6 +137,8 @@
             isModalOpen: false,
             isNft: false,
             amountToSend: undefined,
+            nftName: undefined,
+            NFTtype: undefined,
             allNFTs: [
                 {
                     id: "-1",
@@ -221,7 +219,10 @@
                     keyboard: false,
                 });
                 console.log(this.nftName);
-                console.log(this.nftDescription);
+                adNFTModal.hide();
+            },
+            handleFileUpload(){
+                this.file = this.$refs.file.files[0];
             },
             async checkForm(event){
                 this.toast.info("Инициализируем процесс\nдобавления пользователя", {
