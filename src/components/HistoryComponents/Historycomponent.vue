@@ -61,15 +61,19 @@
         methods: {
             writeHistory(data){
                 let history = data.history;
+                let i = 1;
                 history.forEach(element => {
+                    element.id = i;
                     let temp = element.to;
                     element.to = `${temp.substr(0, 5)}...${temp.substr(temp.length - 5)}`
                     temp = element.from;
                     element.from = `${temp.substr(0, 5)}...${temp.substr(temp.length - 5)}`
                     console.log(element.value);
                     element.value = element.value === undefined ? element.value : String(element.value);
+                    i++;
                 });
                 this.history = data.history;
+                console.log(this.history);
             },
         },
         created:

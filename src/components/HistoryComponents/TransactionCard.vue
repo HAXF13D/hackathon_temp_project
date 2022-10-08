@@ -1,6 +1,6 @@
 <template>
 
-    <div class="modal fade" :id="transaction.hash" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" :id="transaction.id" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content modal-user-color">
                 <div class="modal-header">
@@ -54,7 +54,7 @@
         methods: {
             showUserInfo(){
                 if (!this.isModalOpen) {
-                    let myModal = new bootstrap.Modal(document.getElementById(this.transaction.hash), {
+                    let myModal = new bootstrap.Modal(document.getElementById(this.transaction.id), {
                         keyboard: false,
                         focus: true
                     });
@@ -64,7 +64,7 @@
             },
             closeModal(){
                 if (this.isModalOpen) {
-                    let myModal = new bootstrap.Modal(document.getElementById(this.transaction.hash), {
+                    let myModal = new bootstrap.Modal(document.getElementById(this.transaction.id), {
                         keyboard: false,
                         focus: true
                     });

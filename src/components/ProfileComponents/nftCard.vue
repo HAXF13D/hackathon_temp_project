@@ -8,7 +8,7 @@
                 </div>
                 <div class="col-2"></div>
                 <div class="col-7 align-self-start mt-3">
-                    <h5 class="card-title item-name default-text disabled text-start">Это мой нфт токен</h5>
+                    <h5 class="card-title item-name default-text disabled text-start">Это мой NFT токен</h5>
                 </div>
             </div>            
             <div class="card-body px-4">                
