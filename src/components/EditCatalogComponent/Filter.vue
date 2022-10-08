@@ -18,7 +18,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="formFileSm" class="form-label label-text default-text disabled">Фото товара:</label>
-                        <input class="form-control form-control-sm" id="formFileSm" type="file" @change="handleFileUpload()">
+                        <input class="form-control form-control-sm" id="formFileSm" type="file" @change="handleFileUpload()"/>
                     </div>
                 </form>
             </div>
