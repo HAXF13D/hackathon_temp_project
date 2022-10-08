@@ -43,8 +43,8 @@
         <div class="d-lg-none col-md-2" ></div>
         <div class="col-lg-3 col-md-5 col-12 search p-0 m-0">
             <div class="input-group">
-                <input type="text" class="form-control search text-start py-1 selected-text" placeholder="Поиск" aria-describedby="search-btn">
-                <button class="btn btn-outline-secondary search py-1 selected-text" type="button" id="search-btn"><i class="bi bi-search me-1 selected-text" style="font-size: 18px;"></i></button>
+                <input @change="searchUser()" v-model="searchParameter" type="text" class="form-control search text-start py-1 selected-text" placeholder="Поиск" aria-describedby="search-btn">
+                <button @click="searchUser()" class="btn btn-outline-secondary search py-1 selected-text" type="button" id="search-btn"><i class="bi bi-search me-1 selected-text" style="font-size: 18px;"></i></button>
             </div>
         </div>
     </div>
@@ -59,6 +59,7 @@
                 itemName: '',
                 itemPrice: '',
                 file: '',
+                searchParameter: undefined,
             }
         },
         methods: {
