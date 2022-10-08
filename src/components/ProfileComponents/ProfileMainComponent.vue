@@ -66,7 +66,7 @@
                         <p class="about-header-text text-left mb-0 text-break">Адрес кошелька:</p>
                     </div>
                     <div class="col-12 mt-1 mb-3 px-md-4">
-                        <p class="user-wallet-text text-left mb-0 text-break">{{user.walletAdres}}</p>
+                        <a @click="redirectToHistory()" class="user-wallet-text text-left mb-0 text-break link-info">{{user.walletAdres}}</a>
                     </div>
                     <div class="col-12 mt-2 px-md-4">
                         <p class="about-header-text text-left mb-0 text-break">Баланс:</p>
@@ -154,6 +154,17 @@
                     <div class="d-grid col-lg-3 col-md-6 col-12 mx-auto pe-md-4 ps-md-3 py-md-4 pb-4">
                         <button class="btn btn-primary header-text">Сохранить</button>
                     </div>
+                    <div class="col-lg-12 d-none d-lg-block"></div>
+                    <div class="col-lg-12 d-none d-lg-block"></div>
+                    <div class="col-lg-12 d-none d-lg-block"></div>
+                    <div class="col-lg-12 d-none d-lg-block"></div>
+                    <div class="col-lg-12 d-none d-lg-block"></div>
+                    <div class="col-lg-12 d-none d-lg-block"></div>
+                    <div class="col-lg-12 d-none d-lg-block"></div>
+                    <div class="col-lg-6 d-none d-lg-block"></div>
+                    <div class="col-lg-6 d-grid align-self-end mb-4">
+                        <button @click="logout()" class="btn btn-info header-text">Выйти</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -187,22 +198,30 @@
         }),
         methods: {
             relocateToEditCatalog(){                     
-                this.$router.push("/editcatalog")
+                this.$router.push("/editcatalog");
             },
             relocateToUserAdd(){
-                this.$router.push("/useradd")
+                this.$router.push("/useradd");
             },
             relocateToAddBalnce(){
-                this.$router.push("/addbalnce")
+                this.$router.push("/addbalnce");
             },
             relocateToAwardUser(){
-                this.$router.push("/awarduser")
+                this.$router.push("/awarduser");
             },
             relocateToAddNews(){
-                this.$router.push("/addnews")
+                this.$router.push("/addnews");
             },
             relocateToAddEvent(){
-                this.$router.push("/addevent")
+                this.$router.push("/addevent");
+            },
+            logout(){
+                localStorage.setItem('registredStatus', 'false');
+                localStorage.setItem('token', '');
+                this.$router.push("/");
+            },
+            redirectToHistory(){
+                this.$router.push("/history");
             }
         },
     }
@@ -252,6 +271,19 @@
     .user-wallet-text{
         font-size: 14px;
         font-weight: 400;
+    }
+    .btn-info{
+        background-color: #db3646;
+        border-color: #db3646;
+    }
+    .btn-info:focus{
+        background-color: #db3646;
+        border-color: #db3646;
+        box-shadow: none;
+    }
+    .btn-info:hover{
+        background-color: #db3646;
+        border-color: #db3646;
     }
   </style>
 
