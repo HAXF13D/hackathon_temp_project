@@ -199,6 +199,7 @@
                 about: 'Я делаю этот гребанный сайт и я заебался нахуй сука, помогите мне пожалуйста',
                 sex: 'Male',
                 profilePhoto: '',
+                role: 'admin',
             },
             userNFTs:{
                 nft_id: '125',
@@ -209,7 +210,7 @@
             inputEmail: undefined,
             inputBirthYear: undefined,
             inputTelephoneNumber: undefined,
-            role: 'admin'
+            baseUrl: '',
         }),
         methods: {
             relocateToEditCatalog(){                     
@@ -237,8 +238,34 @@
             },
             redirectToHistory(){
                 this.$router.push("/history");
-            }
+            },
+            putDataUser(){
+                try{
+                    const params = {
+                        inputName: this.inputName,
+                        inputSurname: this.inputSurname,
+                        inputMiddleName: this.inputMiddleName,
+                        inputEmail: this.inputEmail,
+                        inputBirthYear: this.inputBirthYear,
+                        inputTelephoneNumber: this.inputTelephoneNumber
+                    };
+                    axios.post(this.baseUrl + '/api/', params).then(response => (console.log(response.data)));
+                }
+                catch(error){
+                    console.log(error);
+                }
+            },
         },
+        created:
+            function(){
+                try{
+                    let params = {user_id: localStorage.getItem('registeredStatus')};
+                    axios.get(this.baseUrl + '/api/', params).then(response => (this.user = response.data.resp));
+                }
+                catch(error){
+                    console.log(error);
+                }
+            }
     }
 </script>
 

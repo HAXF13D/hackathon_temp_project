@@ -55,6 +55,8 @@
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
         name:'search',
         data() {
@@ -65,6 +67,7 @@
                 file: '',
                 searchParameter: undefined,
                 itemAmount: undefined,
+                baseUrl: 'http://127.0.0.1:5000',
             }
         },
         methods: {
@@ -92,9 +95,16 @@
             },
             addItem(){
                 console.log(this.file);
+                this.putDataToServer();
             },
-            getDataFromServer(){
-                this.$emit({itemName: this.itemName, itemPrice: this.itemPrice, file: this.file, })
+            async putDataToServer(){
+                try{
+                    let params = {itemName: this.itemName, itemPrice: this.itemPrice, file: this.file, itemAmount: this.itemAmount};
+                    await axios.post(this.baseUrl + '/api/', params).then(response => (console.log(response.data)));
+                }
+                catch(error){
+                    console.log(error);
+                }
             }
         }
     }

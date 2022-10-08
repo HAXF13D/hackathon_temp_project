@@ -33,8 +33,15 @@
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
         name: "item-list",
+        data(){
+            return{
+                baseUrl: 'http://127.0.0.1:5000',
+            }
+        },
         props: ['items'],
         methods:{
             openDeleteWindow(){
@@ -53,7 +60,15 @@
                         keyboard: false,
                         focus: true
                     });
-                    //Тут будет удаление товара
+
+                    try{
+                        const params = {itemId: this.items.id};
+                        axios.post(this.baseUrl + '/api/', params).then(response => (console.log(response.data)));
+                    }
+                    catch(error){
+                        console.log(error);
+                    };
+
                     myModal.hide();
                     this.isModalOpen = false;
                 }

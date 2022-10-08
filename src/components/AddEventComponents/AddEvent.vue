@@ -93,7 +93,23 @@
             },
             addEvent(){
                 console.log(this.file);
-            }
+                this.putDataEvent();
+            },
+            putDataEvent(){
+                try{
+                    const params = {
+                        inputHeader: this.inputHeader,
+                        inputNewsText: this.inputNewsText,
+                        inputEventDate: this.inputEventDate,
+                        inputAward: this.inputAward,
+                        file: this.file
+                    };
+                    axios.post(baseUrl + '/api/', params).then(response => (console.log(response.data)));
+                }
+                catch(error){
+                    console.log(error);
+                };
+            },
         }
   }
 </script>

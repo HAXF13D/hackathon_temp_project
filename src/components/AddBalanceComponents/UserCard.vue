@@ -111,7 +111,17 @@
                 let sendMoneyModal = new bootstrap.Modal(document.getElementById(`sendMoney-${this.user.id}`), {
                     keyboard: false,
                 });
-                // Отправить деньги тут
+                try{
+                    const params = {
+                        senderId: localStorage.getItem('registeredStatus'),
+                        recipientId: this.user.id,
+                        amoint: this.amountToSend
+                    };
+                    axios.post(baseUrl + '/api/', params).then(response => (console.log(response.data)));
+                }
+                catch(error){
+                    console.log(error);
+                };
                 sendMoneyModal.hide();
                 console.log(this.amountToSend);
                 this.isModalOpen = false;

@@ -134,6 +134,7 @@
 </template>
 
 <script>
+    import axios from 'axios';
     
     export default {
         name: "userCard",
@@ -158,7 +159,8 @@
                     id:"3",
                     header: "NFT 3"
                 },
-            ]
+            ],
+            baseUrl: '',
         }),
         props: ['user'],
         methods: {
@@ -199,7 +201,17 @@
                 let adNFTModal = new bootstrap.Modal(document.getElementById(`addnft-${this.user.id}`),{
                     keyboard: false,
                 });
-                console.log(this.NFTtype);
+                try{
+                    const params = {
+                        senderId: localStorage.getItem('registeredStatus'),
+                        recipientId: this.user.id,
+                        amoint: this.amountToSend
+                    };
+                    axios.post(baseUrl + '/api/', params).then(response => (console.log(response.data)));
+                }
+                catch(error){
+                    console.log(error);
+                };
                 if (this.NFTtype == -1){
                     sendMoneyModal.hide();
                     adNFTModal.show();
@@ -220,8 +232,15 @@
                 let adNFTModal = new bootstrap.Modal(document.getElementById(`addnft-${this.user.id}`),{
                     keyboard: false,
                 });
-                console.log(this.nftName);
-                console.log(this.nftDescription);
+                try{
+                    const params = {
+                        walletAdress: this.user.walletAdress, 
+                    }
+                    axios.post(baseUrl + '/api/', params).then(response => (console.log(response.data)))
+                }
+                catch(error){
+                    console.log(error);
+                }
             },
             async checkForm(event){
                 this.toast.info("Инициализируем процесс\nдобавления пользователя", {
