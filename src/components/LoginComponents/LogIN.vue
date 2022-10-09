@@ -62,8 +62,10 @@
     },
     methods:{
       autorization(data){
+        console.log(data);
         if (data !== undefined){
           localStorage.setItem('registredStatus', data.resp.user_id);
+          localStorage.setItem('token', data.resp.hash);
           this.$router.push('/news');
         }
       },
@@ -75,7 +77,6 @@
           };
           axios.post(this.baseUrl + '/api/login', params).then(response => (this.autorization(response.data)))
         } catch (error) {
-          console.log(error.response);
         }
 
       }

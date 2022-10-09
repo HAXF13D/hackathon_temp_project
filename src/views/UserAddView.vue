@@ -39,14 +39,10 @@
       hashedStatus: null
     }),
     created() {
+      this.validateUser();
       window.addEventListener('resize', this.onResize);
       this.onResize();
-
       let Status = localStorage.getItem('registredStatus');
-      this.hashedStatus = localStorage.getItem('token');
-
-      // Добавить проеврку по токену, с испольщованием статуса
-
       if(Status === "false" || Status === null){
           this.registredStatus = 'false';
       }
@@ -60,8 +56,26 @@
     methods: {
       onResize() {
           this.small = window.innerWidth < 576;
+      },
+      checkValid(data){
+        if (data.is_valid === false) {
+          this.$router.push('/login');
+        }     
+      },
+      async validateUser(){
+        try{
+          let params = {
+            user_id: localStorage.getItem('registredStatus'),
+            token: localStorage.getItem('token'),
+          };
+          await axios.post(this.baseUrl + '/api/validation', params).then(response => (this.checkValid(response.data)));
+          console.log(this.usersArray)
+        }
+        catch(error){
+          console.log(error);
+        }
       }
-    }
+    },
   }
   </script>
   

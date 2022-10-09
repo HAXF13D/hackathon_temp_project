@@ -7,12 +7,12 @@
       </div>
       <div v-else>
         <div v-if="small === false" >
-          <NavBar :registredStatus="this.registredStatus" />
+          <NavBar :registredStatus="this.registredStatus" :hashedStatus="this.registredStatus"/>
           <Achievements/>
         </div>
         <div v-else>
           <Achievements/>
-          <MobileNavBar :registredStatus="this.registredStatus" />
+          <MobileNavBar :registredStatus="this.registredStatus" :hashedStatus="this.registredStatus"/>
         </div>
       </div>
       
@@ -25,6 +25,8 @@
   import MobileNavBar from '../components/MobileNavBar.vue'
   import Achievements from '@/components/AchievmentsComponents/Achievements.vue';
   import PageNotFoundComponent from '@/components/PageNotFoundComponent.vue';
+  import axios from 'axios';
+import router from '@/router';
   
   export default {
     name: 'achievementView',
@@ -36,9 +38,11 @@
     },
     data: () => ({
       small: true,
-      registredStatus: null
+      registredStatus: null,
+      baseUrl: 'http://127.0.0.1:5000',
     }),
     created() {
+      this.validateUser();
       window.addEventListener('resize', this.onResize);
       this.onResize();
       let Status = localStorage.getItem('registredStatus');
@@ -55,8 +59,26 @@
     methods: {
       onResize() {
           this.small = window.innerWidth < 576;
+      },
+      checkValid(data){
+        if (data.is_valid === false) {
+          this.$router.push('/login');
+        }     
+      },
+      async validateUser(){
+        try{
+          let params = {
+            user_id: localStorage.getItem('registredStatus'),
+            token: localStorage.getItem('token'),
+          };
+          await axios.post(this.baseUrl + '/api/validation', params).then(response => (this.checkValid(response.data)));
+          console.log(this.usersArray)
+        }
+        catch(error){
+          console.log(error);
+        }
       }
-    }
+    }, 
   }
   </script>
   <!-- ---Шальнев Владимир--- -->

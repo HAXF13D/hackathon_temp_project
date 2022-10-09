@@ -1,7 +1,7 @@
 <!-- +++ Шальнев Владимир vovik0312@gmail.com +++ -->
 <template>
       <div class="Login">
-        <div v-if="registredStatus === 'false'">
+        <div v-if="valid === false">
           <div v-if="small === false" >
               <NavBar :registredStatus="this.registredStatus" :hashedStatus="this.hashedStatus"/>
               <LogIN />
@@ -36,9 +36,11 @@ export default {
   data: () => ({
     small: true,
     registredStatus: null,
-      hashedStatus: null
+      hashedStatus: null,
+      valid: false
   }),
   created() {
+    this.validateUser();
     window.addEventListener('resize', this.onResize);
     this.onResize();
 
@@ -58,7 +60,28 @@ export default {
   methods: {
     onResize() {
         this.small = window.innerWidth < 576;
-    }
+    },
+    checkValid(data){
+        if (data.is_valid === false) {
+          this.valid = false;
+        }
+        else{
+          this.valid = true;;
+        }
+      },
+      async validateUser(){
+        try{
+          let params = {
+            user_id: localStorage.getItem('registredStatus'),
+            token: localStorage.getItem('token'),
+          };
+          await axios.post(this.baseUrl + '/api/validation', params).then(response => (this.checkValid(response.data)));
+          console.log(this.usersArray)
+        }
+        catch(error){
+          console.log(error);
+        }
+      }
   }
 }
 </script>
