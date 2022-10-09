@@ -56,6 +56,7 @@
 
 <script>
     import axios from 'axios';
+    import { useToast } from "vue-toastification";
 
     export default {
         name:'search',
@@ -69,6 +70,10 @@
                 itemAmount: undefined,
                 baseUrl: 'http://127.0.0.1:5000',
             }
+        },
+        setup(){
+            const toast = useToast();
+            return { toast }
         },
         methods: {
             showAddModal(){
@@ -99,8 +104,22 @@
             },
             async putDataToServer(){
                 try{
-                    let params = {name: this.itemName, price: this.itemPrice, image: this.file, amount: this.itemAmount};
+                    let params = {name: this.itemName, price: this.itemPrice, image: 'data', amount: this.itemAmount};
                     await axios.post(this.baseUrl + '/api/add/item', params).then(response => (console.log(response.data)));
+                    this.toast.success("Товар добавлен!", {
+                        position: "bottom-right",
+                        timeout: 3000,
+                        closeOnClick: true,
+                        pauseOnFocusLoss: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        draggablePercent: 0.6,
+                        showCloseButtonOnHover: true,
+                        hideProgressBar: true,
+                        closeButton: "button",
+                        icon: true,
+                        rtl: false
+                    });
                 }
                 catch(error){
                     console.log(error);

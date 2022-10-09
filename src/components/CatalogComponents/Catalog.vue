@@ -37,27 +37,37 @@ export default {
 },
     methods: {
         getDataFromServer(params){
-            try{    
+            try{
                 axios.get(this.baseUrl + '/api/filter', params).then(response(this.itemsArray = response.data.resp));
             }
             catch(error){
                 console.log(error);
             };
-            },
+        },
+        handleresponse(data){
+            console.log(data);
+            this.itemsArray = data.resp;
+        }
     },
     created:
-        function(){
+        async function(){
             try{
                 const params = {
                     popularSort: 'INCREASE',
                     priceSort: 'NO',
                     newnessSort: 'NO',
-                    Amount: false
+                    Amount: 'false'
                 };
-                axios.get(this.baseUrl + '/api/filter',
+                axios.post(this.baseUrl + '/api/filter',
                 params,
                 {headers: {'Content-Type': 'application/json'}
-                }).then(response(this.itemsArray = response.data.resp));
+                }).then(response => (this.handleresponse(response.data)));
+            }
+            catch(error){
+                console.log(error);
+            };
+            try{
+
             }
             catch(error){
                 console.log(error);

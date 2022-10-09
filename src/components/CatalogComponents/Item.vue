@@ -1,7 +1,7 @@
 <template>
     <div class="col-lg-4 col-sm-6 col-12 mt-4 px-2">
         <div class="card test">
-            <img :src="require('@/assets/' + items.image)" class="card-img-top px-5 pt-3" alt="...">
+            <img src="https://via.placeholder.com/250x250" class="card-img-top px-5 pt-3" alt="...">
             <div class="card-body px-5 py-3">
                 <h5 class="card-title pt-0 pb-3 mb-0 item-name default-text disabled">{{ items.name }}</h5>
                 <div class="row pb-3">
@@ -24,7 +24,6 @@
                 <div class="modal-body">
                     <p class="default-text disabled" >Информация о товаре: {{items.name}}</p>
                     <p class="default-text disabled" >Цена: {{items.price}} D</p>
-                    <p class="default-text disabled text-break" >Текущий баланс: </p>
                 </div>
                 <div class="modal-footer justify-content-end">
                     <button type="button" class="btn btn-danger default-text" data-bs-dismiss="modal" @click="closeModal()">Закрыть</button>
