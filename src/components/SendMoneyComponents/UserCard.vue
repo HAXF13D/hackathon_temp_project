@@ -197,6 +197,7 @@
             fileNFTImage: undefined,
             fileachievementImage: undefined,
             achievementDescription: undefined,
+            achivment_id: undefined,
             allNFTs: [
                 {
                     id: "-1",
@@ -219,19 +220,7 @@
                 {
                     id: "-1",
                     header: "Создать новое достижение"
-                },
-                {
-                    id:"1",
-                    header: "достижение 1"
-                },
-                {
-                    id:"2",
-                    header: "достижение 2"
-                },
-                {
-                    id:"3",
-                    header: "достижение 3"
-                },
+                }
             ],
             baseUrl: 'http://127.0.0.1:5000',
         }),
@@ -244,6 +233,23 @@
             sendToast(response){
                 console.log(response.data.transactionHash);
                 this.toast.success(`Деньги отправлены!\n${response.data.transactionHash}`, {
+                    position: "bottom-right",
+                    timeout: 3000,
+                    closeOnClick: true,
+                    pauseOnFocusLoss: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    draggablePercent: 0.6,
+                    showCloseButtonOnHover: true,
+                    hideProgressBar: true,
+                    closeButton: "button",
+                    icon: true,
+                    rtl: false
+                });
+            },
+            sendAchievmentToast(response){
+                console.log(response.data.transactionHash);
+                this.toast.success(`Достижение выдано!`, {
                     position: "bottom-right",
                     timeout: 3000,
                     closeOnClick: true,
@@ -308,12 +314,16 @@
                     sendMoneyModal.hide();
                 }
                 else if (this.AchievementType == -1 && this.AwardType === "ACHIEVEMENT"){
-                    //Создание новой ачивки
                     sendMoneyModal.hide();
                     adachievementModal.show();
                 }
                 else if(this.AwardType === "ACHIEVEMENT"){
-                     //отправка ачивки по шаблону
+                    const params = {
+                        user_id: this.user.id,
+                        achievement_id: this.AchievementType,
+                    };
+                    let baseUrl = 'http://127.0.0.1:5000';
+                    await axios.post(baseUrl + '/api/reward/user', params).then(response => this.sendAchievmentToast(response));
                     sendMoneyModal.hide();
                 }
                 else{
@@ -378,42 +388,57 @@
                     this.isAchievement = true;
                 }
             },
-            createAndSendNFT(){
+            async createAndSendNFT(){
                 let adNFTModal = new bootstrap.Modal(document.getElementById(`addnft-${this.user.id}`),{
                     keyboard: false,
                 });
 
-                try{
-                    const params = {
-                        walletAdress: this.user.walletAdress,
-                        nftId: this.NFTtype 
-                    }
-                    axios.post(baseUrl + '/api/', params).then(response => (console.log(response.data)))
-                }
-                catch(error){
-                    console.log(error);
-                }
 
                 console.log(this.nftName);
                 adNFTModal.hide();
             },
-            createAndSendaAhievement(){
+            async createAndSendaAhievement(){
                 let adachievementModal = new bootstrap.Modal(document.getElementById(`addachievement-${this.user.id}`),{
                     keyboard: false,
                 });
+                let baseUrl = 'http://127.0.0.1:5000';
                 console.log(this.achievementName);
                 console.log(this.fileachievementImage);
-                try{
-                    const params = {
-                        header: this.achievementName,
-                        image: this.fileachievementImage,
-                        description: this.achievementDescription
+                console.log(1);                    
+                    try{
+                        const params1 = {
+                            header: this.achievementName,
+                            description: this.achievementDescription,
+                            image: 'text'
+                        };
+                        console.log(params1);
+                        baseUrl = 'http://127.0.0.1:5000';
+                        let achivment_id = ''
+                        await axios.post(baseUrl + '/api/add/achievement', params1).then(response => (this.achivment_id = response.data.achievement_id));
+                    }
+                    catch(error){
+                        console.log(error);
+                        this.toast.error("Произошла ошибка!", {
+                            position: "bottom-right",
+                            timeout: 3000,
+                            closeOnClick: true,
+                            pauseOnFocusLoss: false,
+                            pauseOnHover: true,
+                            draggable: true,
+                            draggablePercent: 0.6,
+                            showCloseButtonOnHover: true,
+                            hideProgressBar: true,
+                            closeButton: "button",
+                            icon: true,
+                            rtl: false
+                        });
                     };
-                    axios.post(this.baseUrl + '/api/add/achievement', params).then(response => (console.log(response.data)));
-                }
-                catch(error){
-                    console.log(error);
-                };
+                    const params2 = {
+                        user_id: this.user.id,
+                        achievement_id: this.achivment_id,
+                    };
+                    baseUrl = 'http://127.0.0.1:5000';
+                    await axios.post(baseUrl + '/api/reward/user', params2).then(response => this.sendAchievmentToast(response));
                 adachievementModal.hide();
             },
             handleFileUpload(){
@@ -421,8 +446,26 @@
                 this.fileachievementImage = this.$refs.nftImage.files[0];
             },
             async checkForm(){
+            },
+            async getDataFromServer(){
+            try{
+                let params = {
+                    userId: localStorage.getItem("registredStatus"),
+                };
+                let data = []
+                await axios.post(this.baseUrl + '/api/get/achievments/user', params).then(response => (data = response.data.resp.all_achievments));
+                data === undefined ? this.allAchievements = this.allAchievements : this.allAchievements = this.allAchievements.concat(data);
+                console.log(data);
+                }
+                catch(error){
+                console.log(error);
             }
+        }
         },
+        created:
+            async function(){
+                this.getDataFromServer();
+            },
         components: {
         },
     }

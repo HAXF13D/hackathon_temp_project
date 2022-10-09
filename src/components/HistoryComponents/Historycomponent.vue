@@ -80,7 +80,7 @@
             async function(){
                 const public_key = localStorage.getItem('public_key');
                 //
-                console.log(public_key);
+                console.log(public_key, "228");
                 let url = `https://hackathon.lsp.team/hk/v1/wallets/${public_key}/history`;
 
                 console.log(url);

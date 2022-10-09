@@ -25,6 +25,7 @@
   import MobileNavBar from '../components/MobileNavBar.vue'
   import AddEvent from '@/components/AddEventComponents/AddEvent.vue';
   import PageNotFoundComponent from '@/components/PageNotFoundComponent.vue';
+  import axios from 'axios';
   
   export default {
     name: 'achievementView',
@@ -36,7 +37,8 @@
     },
     data: () => ({
       small: true,
-      registredStatus: null
+      registredStatus: null,
+      baseUrl: 'http://127.0.0.1:5000',
     }),
     created() {
       this.validateUser();

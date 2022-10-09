@@ -136,7 +136,7 @@
                         email: this.inputEmail,
                         phone_number: this.inputTelephoneNumber
                     };
-                    axios.post(baseUrl + '/api/add/user', params).then(response => (console.log(response.data)));
+                    axios.post(this.baseUrl + '/api/add/user', params).then(response => (console.log(response.data)));
                 }
                 catch(error){
                     console.log(error);

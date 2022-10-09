@@ -24,6 +24,7 @@ import NavBar from '@/components/NavBar.vue'
 import MobileNavBar from '../components/MobileNavBar.vue'
 import LogIN from '@/components/LoginComponents/LogIN.vue';
 import PageNotFoundComponent from '@/components/PageNotFoundComponent.vue';
+import axios from 'axios';
 
 export default {
   name: 'SignInView',
@@ -37,10 +38,10 @@ export default {
     small: true,
     registredStatus: null,
       hashedStatus: null,
-      valid: false
+      valid: false,
+      baseUrl: 'http://127.0.0.1:5000',
   }),
   created() {
-    this.validateUser();
     window.addEventListener('resize', this.onResize);
     this.onResize();
 
@@ -61,27 +62,6 @@ export default {
     onResize() {
         this.small = window.innerWidth < 576;
     },
-    checkValid(data){
-        if (data.is_valid === false) {
-          this.valid = false;
-        }
-        else{
-          this.valid = true;;
-        }
-      },
-      async validateUser(){
-        try{
-          let params = {
-            user_id: localStorage.getItem('registredStatus'),
-            token: localStorage.getItem('token'),
-          };
-          await axios.post(this.baseUrl + '/api/validation', params).then(response => (this.checkValid(response.data)));
-          console.log(this.usersArray)
-        }
-        catch(error){
-          console.log(error);
-        }
-      }
   }
 }
 </script>

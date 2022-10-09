@@ -33,7 +33,7 @@
                     </div>
                     <div class="mb-3 px-4 mb-0">
                         <label for="formFileSm" class="form-label label-text header-text">Фото для новости</label>
-                        <input class="form-control form-control-sm" id="formFileSm" type="file" @change="handleFileUpload()">
+                        <input class="form-control form-control-sm" id="formFileSm" type="file" ref="newsImage" @change="handleFileUpload()">
                     </div>
                     <div class="d-grid col-12 mx-auto px-4 pb-4">
                         <button class="btn btn-primary header-text" @click="addNews()">Добавить новость</button>
@@ -50,6 +50,7 @@
 
     import CustomHeader from '@/components/CustomHeader.vue';
     import axios from 'axios';
+    import { useToast } from "vue-toastification";
 
     export default {
         name: 'addnews',
@@ -62,10 +63,13 @@
             file: undefined,
             baseUrl: 'http://127.0.0.1:5000',
         }),
+        setup(){
+            const toast = useToast();
+            return { toast }
+        },
         methods: {
             handleFileUpload(){
-                console.log(this.$refs.file);
-                this.file = this.$refs.file.files[0];
+                this.file = this.$refs.newsImage.files[0];
             },
             addNews(){
                 console.log(this.file);
@@ -76,9 +80,24 @@
                     const params = {
                         header: this.inputHeader,
                         description: this.inputNewsText,
-                        image: this.file,
+                        image: this.file === undefined ? '' : "text",
                     };
                     axios.post(this.baseUrl + '/api/add/news', params).then(response => (console.log(response.data)));
+                    this.toast.success(`Мероприятие добавлено!`, {
+                        position: "bottom-right",
+                        timeout: 3000,
+                        closeOnClick: true,
+                        pauseOnFocusLoss: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        draggablePercent: 0.6,
+                        showCloseButtonOnHover: true,
+                        hideProgressBar: true,
+                        closeButton: "button",
+                        icon: true,
+                        rtl: false
+                    });
+                    
                 }
                 catch(error){
                     console.log(error);

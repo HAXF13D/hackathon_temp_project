@@ -3,7 +3,7 @@
     <div id="profile" class="container-fluid my-4">
         <div class="row mx-1">
             <!-- Админ -->
-            <div v-show="user.role === 'admin' " class="col-12 profile-block-background mb-3 py-2">
+            <div v-show="user.user_role === 'admin' " class="col-12 profile-block-background mb-3 py-2">
                 <div class="row justify-content-between">
                     <div class="col-md-3 col-12 d-grid ps-md-4">
                         <button @click="relocateToUserAdd()" class="btn btn-primary header-text">Добавить пользователя</button>   
@@ -20,7 +20,7 @@
             </div>
 
             <!-- Руководитель -->
-            <div v-show="user.role === 'supervisor' " class="col-12 profile-block-background mb-3 py-2">
+            <div v-show="user.user_role === 'supervisor' " class="col-12 profile-block-background mb-3 py-2">
                 <div class="row">
                     <div class="d-md-none"></div>
                     <div class="col-md-12 col-12 d-grid px-md-4">
@@ -30,7 +30,7 @@
             </div>
 
             <!-- Редактор -->
-            <div v-show="user.role === 'editor' " class="col-12 profile-block-background mb-3 py-2">
+            <div v-show="user.user_role === 'editor' " class="col-12 profile-block-background mb-3 py-2">
                 <div class="row">
                     <div class="col-md-5 col-12 d-grid ps-md-4">
                         <button @click="relocateToAddNews()" class="btn btn-primary header-text">Добавить новость</button>  
@@ -50,15 +50,15 @@
                         <img src="https://via.placeholder.com/150" alt="" class="profile-picture mx-auto mt-3" />
                     </div>
                     <div class="col-12 d-flex justify-content-center mt-1">
-                        <p class="user-name-text text-left mb-0">{{user.lastName}} {{user.firstName}}</p>
+                        <p class="user-name-text text-left mb-0">{{user.last_name}} {{user.first_name}}</p>
                     </div>
-                    <div  v-if="user.middleName != '' " class="col-12 d-flex justify-content-center">
-                        <p class="user-name-text text-left mb-0 text-break">{{user.middleName}}</p>
+                    <div  v-if="user.middle_name != '' " class="col-12 d-flex justify-content-center">
+                        <p class="user-name-text text-left mb-0 text-break">{{user.middle_name}}</p>
                     </div>
                     <div class="col-12 mt-1 mb-2">
-                        <p class="user-emal-text text-center mb-0 text-break">{{user.emailAdres}}</p>
+                        <p class="user-emal-text text-center mb-0 text-break">{{user.email}}</p>
                     </div>
-                    <div class="col-12 mt-2 px-md-4">
+                    <div v-if="user.about != ''" class="col-12 mt-2 px-md-4">
                         <p class="about-header-text text-left mb-0 px-1 text-break">Обо мне:</p>
                     </div>
                     <div class="col-12 mt-1 px-md-4">
@@ -68,14 +68,14 @@
                         <p class="about-header-text text-left mb-0 text-break">Адрес кошелька:</p>
                     </div>
                     <div class="col-12 mt-1 mb-3 px-md-4">
-                        <a @click="redirectToHistory()" class="user-wallet-text text-left mb-0 text-break link-info">{{user.walletAdres}}</a>
+                        <a @click="redirectToHistory()" class="user-wallet-text text-left mb-0 text-break link-info">{{user.wallet_addres}}</a>
                     </div>
                     <div class="col-12 mt-2 px-md-4">
                         <p class="about-header-text text-left mb-0 text-break">Баланс:</p>
                     </div>
                     <div class="col-12 mt-1 mb-3 px-md-4">
                         <!-- Тут надо вывести баланс -->
-                        <p class="user-wallet-text text-left mb-0 text-break">{{user.walletAdres}}</p>
+                        <p class="user-wallet-text text-left mb-0 text-break">{{user.coinsAmount}}D</p>
                     </div>
                 </div>
             </div>
@@ -193,20 +193,7 @@
             nftCard
         },
         data: () => ({
-            user: {
-                firstName: 'Владимир',
-                lastName: 'Шальнев',
-                middleName: 'Сергеевич',
-                emailAdres: 'vovik0312@gmail.com',
-                walletAdres: '0x5820431b9B5625aaa8F453515b72FED24941750A',
-                phoneNumber: '891888805034',
-                isOnline: true,
-                birthDate: '03.12.2002',
-                about: 'Я фронтенд разработчик и верстальщик',
-                sex: 'Male',
-                profilePhoto: '',
-                role: 'admin', // supervisor
-            },
+            user: [],
             //userNFTs Получаем запросом на клиенте, по адрессу кошелька, полученному с сервера
             inputName: undefined,
             inputSurname: undefined,
@@ -242,7 +229,7 @@
                 this.$router.push("/");
             },
             redirectToHistory(){
-                localStorage.setItem('public_key', this.user.walletAdres);
+                localStorage.setItem('public_key', this.user.wallet_addres);
                 this.$router.push("/history");
             },
             putDataUser(){
@@ -277,12 +264,13 @@
                 try{
                     
                     let params = {"user_id": user_id};
-                    await axios.get(this.baseUrl + '/api/user/info', params).then(response => (this.user = response.data.resp));
+                    await axios.post(this.baseUrl + '/api/user/info', params).then(response => (this.user = response.data.resp[0]));
+                    console.log(this.user);
                 }
                 catch(error){
                     console.log(error);
                 }
-                let url = `https://hackathon.lsp.team/hk/v1/wallets/${this.user.walletAdres}/nft/balance`
+                let url = `https://hackathon.lsp.team/hk/v1/wallets/${this.user.wallet_addres}/nft/balance`
                 try{
                     await axios.get(url).then(response => (this.writeNFTS(response.data)));
                 }

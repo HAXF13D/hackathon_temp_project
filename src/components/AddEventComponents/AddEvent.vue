@@ -74,11 +74,16 @@
 <script>
     import axios from 'axios';
     import CustomHeader from '@/components/CustomHeader.vue';
+    import { useToast } from "vue-toastification";
 
     export default {
         name: 'addnews',
         components: {
             CustomHeader
+        },
+        setup(){
+            const toast = useToast();
+            return { toast }
         },
         data: () => ({
             inputHeader: undefined,
@@ -86,38 +91,40 @@
             inputEventDate: undefined,
             inputDescription: undefined,
             inputAward: undefined,
-            file: '',
+            file: undefined,
             baseUrl: 'http://127.0.0.1:5000',
         }),
         methods: {
             handleFileUpload(){
-                this.file = this.$refs.eventImage.files[0];
-                
-            },
-            async simpleCallback(){
-
-            },
-            blobToData(file){
-                return new Promise((resolve) => {
-                    const reader = new FileReader()
-                    reader.onloadend = () => resolve(reader.result)
-                    reader.readAsDataURL(file)
-                })
+                this.file = this.$refs.eventImage.files[0];                
             },
             addEvent(){
                 this.putDataEvent();
             },
             async putDataEvent(){
                 try{
-                    const resData = await this.blobToData(this.file);
                     const params = {
                         header: this.inputHeader,
                         description: this.inputDescription,
                         event_date: this.inputEventDate,
                         award: this.inputAward,
-                        image: resData
+                        image: this.file === undefined ? '' : "text",
                     };
                     axios.post(this.baseUrl + '/api/add/event', params).then(response => (console.log(response.data)));
+                    this.toast.success(`Мероприятие добавлено!`, {
+                    position: "bottom-right",
+                    timeout: 3000,
+                    closeOnClick: true,
+                    pauseOnFocusLoss: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    draggablePercent: 0.6,
+                    showCloseButtonOnHover: true,
+                    hideProgressBar: true,
+                    closeButton: "button",
+                    icon: true,
+                    rtl: false
+                });
                 }
                 catch(error){
                     console.log(error);

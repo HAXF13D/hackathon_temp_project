@@ -75,6 +75,7 @@
             'login': this.userLogin,
             'password': this.userPassword,
           };
+          console.log(params);
           axios.post(this.baseUrl + '/api/login', params).then(response => (this.autorization(response.data)))
         } catch (error) {
         }

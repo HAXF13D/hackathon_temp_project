@@ -24,9 +24,9 @@
                 <h2 class="default-text disabled">{{event.header}}</h2>
                 </div>
             </div>
-            <div class="row mt-3" v-if="event.image != ''">
+            <div class="row mt-3" v-if="event.image == 'text'">
                 <div class="col-12">
-                <img :src="event.image"/>
+                <img src="https://via.placeholder.com/920x425"/>
                 </div>
             </div>
             <div class="row mt-3">

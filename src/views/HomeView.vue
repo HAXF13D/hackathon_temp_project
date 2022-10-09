@@ -24,6 +24,7 @@ import NavBar from '@/components/NavBar.vue'
 import MobileNavBar from '../components/MobileNavBar.vue'
 import News from '@/components/NewsComponents/News.vue';
 import PageNotFoundComponent from '@/components/PageNotFoundComponent.vue';
+import axios from 'axios';
 
 export default {
   name: 'SWapView',
@@ -36,7 +37,8 @@ export default {
   data: () => ({
     small: true,
     registredStatus: null,
-      hashedStatus: null
+      hashedStatus: null,
+      baseUrl: 'http://127.0.0.1:5000',
   }),
   created() {
       this.validateUser();
