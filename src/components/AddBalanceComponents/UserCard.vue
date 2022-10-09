@@ -68,12 +68,14 @@
 </template>
 
 <script>
+    import axios from 'axios';
     
     export default {
         name: "userCard",
         data: () => ({
             isModalOpen: false,
             amountToSend: undefined,
+            basedUrl: 'http://127.0.0.1:5000'
         }),
         props: ['user'],
         methods: {
@@ -117,7 +119,7 @@
                         recipientId: this.user.id,
                         amoint: this.amountToSend
                     };
-                    axios.post(baseUrl + '/api/', params).then(response => (console.log(response.data)));
+                    axios.post(this.baseUrl + '/api/', params).then(response => (console.log(response.data)));
                 }
                 catch(error){
                     console.log(error);

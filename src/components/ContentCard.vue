@@ -49,7 +49,7 @@
 </template>
 
 <script>
-
+    import axios from 'axios';
     import { useToast } from "vue-toastification";
 
     export default {
@@ -60,6 +60,7 @@
         },
         data: () => ({
             isModalOpen: false,
+            baseUrl: 'http://127.0.0.1:5000',
         }),
         props: ['event'],
         methods: {
@@ -89,7 +90,16 @@
                 let myModal = new bootstrap.Modal(document.getElementById(this.event.id), {
                     keyboard: false,
                 });
-                //Тут будет запись на мероприятие
+                try{
+                    const params ={
+                        user_id: localStorage.getItem('registredStatus'),
+                        event_id: this.event.id
+                    };
+                    axios.post(this.baseUrl + '/api/sign/event', params).then(response => (console.log(response.data)));
+                }
+                catch(error){
+                    console.log(error);
+                };
                 myModal.hide();
                 this.isModalOpen = false;
                 //this.toast.info("I'm an info toast!");

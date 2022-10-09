@@ -84,13 +84,12 @@
                             class="form-control input-form text-start py-2 me-3 pe-0" 
                             id="inputTelephoneNumber"
                             name="inputTelephoneNumber" 
-                            pattern="^\8\d{10}$" 
                             placeholder="81234567890"
                             v-model="inputTelephoneNumber"
                         >
                     </div>
                     <div class="d-grid col-12 mx-auto px-md-4 py-4">
-                        <button class="btn btn-primary header-text" @click="addUser()">Добавить пользователя</button>
+                        <button class="btn btn-primary header-text" @click="checkForm()">Добавить пользователя</button>
                     </div>
                 </form>
             </div>
@@ -137,7 +136,7 @@
                         email: this.inputEmail,
                         phone_number: this.inputTelephoneNumber
                     };
-                    axios.post(baseUrl + '/api/add/user', params).then(response => (console.log(response.data)));
+                    axios.post(this.baseUrl + '/api/add/user', params).then(response => (console.log(response.data)));
                 }
                 catch(error){
                     console.log(error);

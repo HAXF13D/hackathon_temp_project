@@ -1,6 +1,6 @@
 <template>
     <CustomHeader title="Редактировать каталог" class="pt-0 my-4" />
-    <div id="filter" class="container-fluid justify-content-center">
+    <div v-on:reloadPageReact="reloadPage" id="filter" class="container-fluid justify-content-center">
         <Filter/>
         <div class="row">
             <Item 
@@ -18,6 +18,7 @@
 import CustomHeader from '@/components/CustomHeader.vue';
 import Filter from './Filter.vue';
 import Item from './Item.vue';
+import axios from 'axios';
 
 export default {
     name: 'Catalog',
@@ -26,7 +27,8 @@ export default {
             {id:"1", title: "Наименование услуги/товара", image: "item.png", price: 255.5}, 
             {id:"2", title: "Наименование услуги/товара", image: "item.png", price: 255.5}, 
             {id:"3", title: "Наименование услуги/товара", image: "item.png", price: 255.5}
-        ]
+        ],
+        baseUrl: 'http://127.0.0.1:5000',
   }),
     components: {
     CustomHeader,
@@ -34,7 +36,36 @@ export default {
     Item
 },
     methods: {
-    }
+        reloadPage(){
+            try{
+                const params = {
+                    popularSort: 'INCREASE',
+                    priceSort: 'NO',
+                    newnessSort: 'NO',
+                    Amount: false
+                };
+                axios.post(this.baseUrl + '/api/filter', params).then(response => (this.itemsArray = response.data.resp));
+            }
+            catch(error){
+                console.log(error);
+            };
+        }
+    },
+    created:
+        function(){
+            try{
+                const params = {
+                    popularSort: 'INCREASE',
+                    priceSort: 'NO',
+                    newnessSort: 'NO',
+                    Amount: false
+                };
+                axios.post(this.baseUrl + '/api/filter', params).then(response => (this.itemsArray = response.data.resp));
+            }
+            catch(error){
+                console.log(error);
+            };
+        }
 }
 </script>
 

@@ -205,7 +205,7 @@
                         recipientId: this.user.id,
                         amoint: this.amountToSend
                     };
-                    axios.post(baseUrl + '/api/', params).then(response => (console.log(response.data)));
+                    axios.post(this.baseUrl + '/api/', params).then(response => (console.log(response.data)));
                 }
                 catch(error){
                     console.log(error);
@@ -236,7 +236,7 @@
                         walletAdress: this.user.walletAdress,
                         nftId: this.NFTtype 
                     }
-                    axios.post(baseUrl + '/api/', params).then(response => (console.log(response.data)))
+                    axios.post(this.baseUrl + '/api/', params).then(response => (console.log(response.data)))
                 }
                 catch(error){
                     console.log(error);

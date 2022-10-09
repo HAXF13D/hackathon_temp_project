@@ -80,7 +80,7 @@
             </div>
             <div class="d-lg-none mb-4"></div>
             <div class="col-lg-8 ms-auto align-items-stretch profile-block-background">
-                <form class="row g-3" @submit.prevent="checkForm">
+                <form class="row g-3">
                     <div class="col-md-6 pe-md-3 ps-md-4">
                         <label for="inputName" class="form-label label-text mt-4 header-text">Имя</label>
                         <input
@@ -142,8 +142,7 @@
                             type="tel" 
                             class="form-control input-form text-start py-2 me-3 pe-0" 
                             id="inputTelephoneNumber"
-                            name="inputTelephoneNumber" 
-                            pattern="^\8\d{10}$" 
+                            name="inputTelephoneNumber"
                             placeholder="81234567890"
                             v-model="inputTelephoneNumber"
                         >
@@ -151,7 +150,7 @@
                     <div class="d-md-none pt-2"></div>
                     <div class="d-none d-lg-block col-md-6"></div>
                     <div class="d-grid col-md-6 col-12 mx-auto pe-md-4 ps-md-3 py-md-4 pb-4">
-                        <button class="btn btn-primary header-text" @click="checkForm()">Сохранить</button>
+                        <button class="btn btn-primary header-text" @click="putDataUser()">Сохранить</button>
                     </div>
                     <div class="col-lg-12 d-none d-lg-block"></div>
                     <div class="col-lg-12 d-none d-lg-block"></div>
@@ -209,7 +208,7 @@
             //userNFTs Получаем запросом на клиенте, по адрессу кошелька, полученному с сервера
             inputName: undefined,
             inputSurname: undefined,
-            inputMiddleName: undefined,
+            inputMiddleName: null,
             inputEmail: undefined,
             inputBirthYear: undefined,
             inputTelephoneNumber: undefined,
@@ -243,17 +242,18 @@
             redirectToHistory(){
                 this.$router.push("/history");
             },
-            putDataUser(){
+            async putDataUser(){
                 try{
                     const params = {
-                        inputName: this.inputName,
-                        inputSurname: this.inputSurname,
-                        inputMiddleName: this.inputMiddleName,
-                        inputEmail: this.inputEmail,
-                        inputBirthYear: this.inputBirthYear,
-                        inputTelephoneNumber: this.inputTelephoneNumber
+                        user_id: localStorage.getItem('registredStatus'),
+                        first_name: this.inputName,
+                        last_name: this.inputSurname,
+                        middle_name: this.inputMiddleName,
+                        email: this.inputEmail,
+                        birth_date: this.inputBirthYear,
+                        phone_number: this.inputTelephoneNumber
                     };
-                    axios.post(this.baseUrl + '/api/', params).then(response => (console.log(response.data)));
+                    await axios.post(this.baseUrl + '/api/update/user', params).then(response => (console.log(response.data)));
                 }
                 catch(error){
                     console.log(error);
@@ -272,12 +272,14 @@
         created:
             async function(){
                 try{
-                    let params = {user_id: localStorage.getItem('registeredStatus')};
-                    await axios.get(this.baseUrl + '/api/user/info', params).then(response => (this.user = response.data.resp));
+                    let params = {user_id: localStorage.getItem('registredStatus')};
+                    console.log(params)
+                    await axios.post(this.baseUrl + '/api/user/info', params).then(response => (this.user = response.data.resp[0]));
                 }
                 catch(error){
                     console.log(error);
-                }
+                };
+                console.log(this.user);
                 let url = `https://hackathon.lsp.team/hk/v1/wallets/${this.user.walletAdres}/nft/balance`
                 try{
                     await axios.get(url).then(response => (this.writeNFTS(response.data)));

@@ -33,7 +33,7 @@
                     </div>
                     <div class="mb-3 px-4 mb-0">
                         <label for="formFileSm" class="form-label label-text header-text">Фото для новости</label>
-                        <input class="form-control form-control-sm" id="formFileSm" type="file" @change="handleFileUpload()">
+                        <input class="form-control form-control-sm" id="formFileSm" type="file" ref="newsImage" @change="handleFileUpload()">
                     </div>
                     <div class="d-grid col-12 mx-auto px-4 pb-4">
                         <button class="btn btn-primary header-text" @click="addNews()">Добавить новость</button>
@@ -64,8 +64,7 @@
         }),
         methods: {
             handleFileUpload(){
-                console.log(this.$refs.file);
-                this.file = this.$refs.file.files[0];
+                this.file = this.$refs.newsImage.files[0];
             },
             addNews(){
                 console.log(this.file);

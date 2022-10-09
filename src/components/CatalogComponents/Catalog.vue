@@ -38,7 +38,7 @@ export default {
     methods: {
         getDataFromServer(params){
             try{    
-                axios.get(this.baseUrl + '/api/filter', params).then(response(this.itemsArray = response.data.resp));
+                axios.post(this.baseUrl + '/api/filter', params).then(response => (this.itemsArray = response.data.resp));
             }
             catch(error){
                 console.log(error);
@@ -54,10 +54,7 @@ export default {
                     newnessSort: 'NO',
                     Amount: false
                 };
-                axios.get(this.baseUrl + '/api/filter',
-                params,
-                {headers: {'Content-Type': 'application/json'}
-                }).then(response(this.itemsArray = response.data.resp));
+                axios.post(this.baseUrl + '/api/filter', params).then(response => (this.itemsArray = response.data.resp));
             }
             catch(error){
                 console.log(error);

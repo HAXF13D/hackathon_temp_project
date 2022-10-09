@@ -94,30 +94,20 @@
                 this.file = this.$refs.eventImage.files[0];
                 
             },
-            async simpleCallback(){
-
-            },
-            blobToData(file){
-                return new Promise((resolve) => {
-                    const reader = new FileReader()
-                    reader.onloadend = () => resolve(reader.result)
-                    reader.readAsDataURL(file)
-                })
-            },
             addEvent(){
                 this.putDataEvent();
             },
             async putDataEvent(){
                 try{
-                    const resData = await this.blobToData(this.file);
                     const params = {
                         header: this.inputHeader,
                         description: this.inputDescription,
                         event_date: this.inputEventDate,
                         award: this.inputAward,
-                        image: resData
+                        image: this.file
                     };
-                    axios.post(this.baseUrl + '/api/add/event', params).then(response => (console.log(response.data)));
+                    const headers = {'Content-type': 'multipart/mixed'};
+                    axios.post(this.baseUrl + '/api/add/event', params, {headers: headers}).then(response => (console.log(response.data)));
                 }
                 catch(error){
                     console.log(error);
