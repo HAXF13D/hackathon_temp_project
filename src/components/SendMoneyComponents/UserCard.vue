@@ -32,8 +32,8 @@
                             <input required type="text" class="form-control text-start" id="message-text" v-model="nftName">
                         </div>
                         <div class="mb-3">
-                            <label for="formFileSm" class="form-label label-text default-text disabled">Изображение:</label>
-                            <input required class="form-control form-control-sm" id="formFileSm" type="file"  @change="handleFileUpload()">
+                            <label for="formFileSm" class="form-label label-text default-text disabled" >Изображение:</label>
+                            <input required class="form-control form-control-sm" id="formFileSm" type="file"  @change="handleFileUpload()" ref="nftImage">
                         </div>
                     </form>
                 </div>
@@ -58,8 +58,12 @@
                             <input required type="text" class="form-control text-start" id="message-text" v-model="achievementName">
                         </div>
                         <div class="mb-3">
+                            <label for="message-text" class="col-form-label default-text disabled">Описание:</label>
+                            <input required type="text" class="form-control text-start" id="message-text" v-model="achievementDescription">
+                        </div>
+                        <div class="mb-3">
                             <label for="formFileSm" class="form-label label-text default-text disabled">Изображение:</label>
-                            <input required class="form-control form-control-sm" id="formFileSm" type="file"  @change="handleFileUpload()">
+                            <input required class="form-control form-control-sm" id="formFileSm" type="file"  @change="handleFileUpload()"  ref="achievementImage">
                         </div>
                     </form>
                 </div>
@@ -189,6 +193,9 @@
             NFTtype: undefined,
             AchievementType: undefined,
             achievementName: undefined,
+            fileNFTImage: undefined,
+            fileachievementImage: undefined,
+            achievementDescription: undefined,
             allNFTs: [
                 {
                     id: "-1",
@@ -343,40 +350,25 @@
                     keyboard: false,
                 });
                 console.log(this.achievementName);
+                console.log(this.fileachievementImage);
+                try{
+                    const params = {
+                        header: this.achievementName,
+                        image: this.fileachievementImage,
+                        description: this.achievementDescription
+                    };
+                    axios.post(this.baseUrl + '/api/add/achievement', params).then(response => (console.log(response.data)));
+                }
+                catch(error){
+                    console.log(error);
+                };
                 adachievementModal.hide();
             },
             handleFileUpload(){
-                this.file = this.$refs.file.files[0];
+                this.fileNFTImage = this.$refs.achievementImage.files[0];
+                this.fileachievementImage = this.$refs.nftImage.files[0];
             },
             async checkForm(){
-                this.toast.info("Инициализируем процесс\nдобавления пользователя", {
-                    position: "bottom-right",
-                    timeout: 3000,
-                    closeOnClick: true,
-                    pauseOnFocusLoss: false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    draggablePercent: 0.6,
-                    showCloseButtonOnHover: true,
-                    hideProgressBar: true,
-                    closeButton: "button",
-                    icon: true,
-                    rtl: false
-                });
-                this.toast.success("Пользователь добавлен!", {
-                    position: "bottom-right",
-                    timeout: 3000,
-                    closeOnClick: true,
-                    pauseOnFocusLoss: false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    draggablePercent: 0.6,
-                    showCloseButtonOnHover: true,
-                    hideProgressBar: true,
-                    closeButton: "button",
-                    icon: true,
-                    rtl: false
-                });
             }
         },
         components: {
