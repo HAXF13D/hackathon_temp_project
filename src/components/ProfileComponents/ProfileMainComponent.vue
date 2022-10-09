@@ -277,6 +277,17 @@
                 catch(error){
                     console.log(error);
                 };
+                try{
+                    let baseUrl = 'http://127.0.0.1:5000';
+                    let data = []
+                    await axios.get(baseUrl + '/api/get/nfts').then(response => (data = response.data.resp));
+                    console.log(data);
+                    this.userNFTs = data;
+                
+                }
+                    catch(error){
+                    console.log(error);
+                };
                 
             }
     }

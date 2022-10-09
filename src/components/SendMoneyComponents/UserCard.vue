@@ -203,18 +203,6 @@
                     id: "-1",
                     header: "Создать новую NFT"
                 },
-                {
-                    id:"1",
-                    header: "NFT 1"
-                },
-                {
-                    id:"2",
-                    header: "NFT 2"
-                },
-                {
-                    id:"3",
-                    header: "NFT 3"
-                },
             ],
             allAchievements: [
                 {
@@ -250,6 +238,23 @@
             sendAchievmentToast(response){
                 console.log(response.data.transactionHash);
                 this.toast.success(`Достижение выдано!`, {
+                    position: "bottom-right",
+                    timeout: 3000,
+                    closeOnClick: true,
+                    pauseOnFocusLoss: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    draggablePercent: 0.6,
+                    showCloseButtonOnHover: true,
+                    hideProgressBar: true,
+                    closeButton: "button",
+                    icon: true,
+                    rtl: false
+                });
+            },
+            sendNFTToast(response){
+                console.log(response.data.transactionHash);
+                this.toast.success(`NFT выдана!`, {
                     position: "bottom-right",
                     timeout: 3000,
                     closeOnClick: true,
@@ -306,11 +311,22 @@
                 });
                 console.log(this.NFTtype);
                 if (this.NFTtype == -1 && this.AwardType === "NFT"){
+
+
+
                     sendMoneyModal.hide();
                     adNFTModal.show();
                 }
                 else if (this.AwardType == "NFT"){
-                    //отправка NFT по шаблону
+
+                    try{
+                        const params = {
+                            user_id: this.user.id,
+                            nft_id: this.NFTtype,
+                        };
+                        let baseUrl = 'http://127.0.0.1:5000';
+                        await axios.post(baseUrl + '/api/generate/nft', params).then(response => this.sendNFTToast(response));
+                    }catch(error){}
                     sendMoneyModal.hide();
                 }
                 else if (this.AchievementType == -1 && this.AwardType === "ACHIEVEMENT"){
@@ -393,6 +409,41 @@
                     keyboard: false,
                 });
 
+                let baseUrl = 'http://127.0.0.1:5000';                   
+                    try{
+                        const params1 = {
+                            header: this.nftName,
+                            description: 'biliberda',
+                        };
+                        console.log(params1);
+                        baseUrl = 'http://127.0.0.1:5000';
+                        await axios.post(baseUrl + '/api/create/nft', params1).then(response => (this.NFTtype = response.data.achievement_id));
+                    }
+                    catch(error){
+                        console.log(error);
+                        this.toast.error("Произошла ошибка!", {
+                            position: "bottom-right",
+                            timeout: 3000,
+                            closeOnClick: true,
+                            pauseOnFocusLoss: false,
+                            pauseOnHover: true,
+                            draggable: true,
+                            draggablePercent: 0.6,
+                            showCloseButtonOnHover: true,
+                            hideProgressBar: true,
+                            closeButton: "button",
+                            icon: true,
+                            rtl: false
+                        });
+                    };
+                    try{
+                        const params = {
+                            user_id: this.user.id,
+                            nft_id: this.NFTtype,
+                        };
+                        let baseUrl = 'http://127.0.0.1:5000';
+                        await axios.post(baseUrl + '/api/generate/nft', params).then(response => this.sendNFTToast(response));
+                    }catch(error){}
 
                 console.log(this.nftName);
                 adNFTModal.hide();
@@ -449,6 +500,7 @@
             },
             async getDataFromServer(){
             try{
+                let baseUrl = 'http://127.0.0.1:5000';
                 let params = {
                     userId: localStorage.getItem("registredStatus"),
                 };
@@ -456,6 +508,17 @@
                 await axios.post(this.baseUrl + '/api/get/achievments/user', params).then(response => (data = response.data.resp.all_achievments));
                 data === undefined ? this.allAchievements = this.allAchievements : this.allAchievements = this.allAchievements.concat(data);
                 console.log(data);
+                }
+                catch(error){
+                console.log(error);
+            }
+            try{
+                let baseUrl = 'http://127.0.0.1:5000';
+                let data = []
+                await axios.get(this.baseUrl + '/api/get/nfts').then(response => (data = response.data.resp));
+                console.log(data);
+                data === undefined ? this.allNFTs = this.allNFTs : this.allNFTs = this.allNFTs.concat(data);
+                
                 }
                 catch(error){
                 console.log(error);

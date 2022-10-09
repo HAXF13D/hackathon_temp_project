@@ -11,11 +11,11 @@
             <div id="achiev" class="test">
               <div class="row">
                 <div class="col-3 my-auto achiev-image">
-                  <img :src="user_achiev.img" class="p-1"/>
+                  <img src="https://via.placeholder.com/200x200" class="p-1"/>
                 </div>
                 <div class="col-8 default-text disabled pt-2">
-                  <h5 class="mb-1">{{user_achiev.name}}</h5>
-                  <p class="mb-2">{{user_achiev.descr}}</p>
+                  <h5 class="mb-1">{{user_achiev.header}}</h5>
+                  <p class="mb-2">{{user_achiev.description}}</p>
                 </div>
               </div>
             </div>
@@ -35,11 +35,11 @@
             <div id="achiev" class="test">
               <div class="row">
                 <div class="col-3 my-auto achiev-image">
-                  <img :src="achiev.image" class="p-1"/>
+                  <img src="https://via.placeholder.com/200x200" class="p-1"/>
                 </div>
                 <div class="col-8 default-text disabled pt-2">
-                  <h5 class="mb-1">{{achiev.name}}</h5>
-                  <p class="mb-2">{{achiev.descriprion}}</p>
+                  <h5 class="mb-1">{{achiev.header}}</h5>
+                  <p class="mb-2">{{achiev.description}}</p>
                 </div>
               </div>
             </div>
@@ -78,17 +78,28 @@ export default {
       };
       this.achiev_list = data['all_achievments'];
     },
+    async getDataFromServer(){
+      try{
+          let baseUrl = 'http://127.0.0.1:5000';
+          let params = {
+              userId: localStorage.getItem("registredStatus"),
+          };
+          let data = []
+          await axios.post(this.baseUrl + '/api/get/achievments/user', params).then(response => (data = response.data.resp));
+          this.achiev_list = data.all_achievments;
+          this.user_achiev_list = data.user_achievments
+          console.log(data);
+          }
+          catch(error){
+          console.log(error);
+      }
+    }
+
   },
   created:
     async function(){
-      try{
-        let params = {userId: localStorage.getItem('registredStatus')};
-        await axios.post(this.baseUrl + '/api/get/achievments/user', params).then(response => (this.writeUserAchievments(response.data)));
-      }
-      catch(error){
-        console.log(error);
-      };
-    }
+      this.getDataFromServer();
+    },
 
 }
 </script>
