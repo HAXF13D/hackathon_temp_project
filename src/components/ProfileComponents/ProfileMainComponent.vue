@@ -205,7 +205,7 @@
                 about: 'Я фронтенд разработчик и верстальщик',
                 sex: 'Male',
                 profilePhoto: '',
-                role: 'supervisor',
+                role: 'supervisor', // supervisor
             },
             //userNFTs Получаем запросом на клиенте, по адрессу кошелька, полученному с сервера
             inputName: undefined,

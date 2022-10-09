@@ -19,7 +19,7 @@
         methods: {
             searchUser(){
                 console.log(this.searchParameter);
-            }
+            },
         },
         components: {
         },

@@ -10,37 +10,13 @@
           <thead>
             <tr>
               <th 
-                v-if="userNameSort === 'INCREASE' " 
                 scope="col" 
-                class="ps-3 pb-1" 
-                @click="sortUserName()"><p class="mb-0 rating-text sort-choosed">Пользователь<i class="bi bi-sort-up ps-1"></i></p>
-              </th>
-              <th 
-                v-else-if="userNameSort === 'DECREASE' " 
-                scope="col" 
-                class="ps-3 disabled header-text pb-1 rating-text sort-choosed" 
-                @click="sortUserName()"><p class="mb-0 rating-text sort-choosed">Пользователь<i class="bi bi-sort-down ps-1"></i></p>
-              </th>
-              <th 
-                v-else scope="col" 
                 class="ps-3 disabled header-text pb-1 rating-text sort-choosedt"
                 @click="sortUserName()"><p class="mb-0 rating-text">Пользователь</p>
               </th>
 
               <th 
-                v-if="userBalanceSort === 'INCREASE' " 
                 scope="col" 
-                class="pe-3 disabled header-text pb-1 rating-text sort-choosed text-end" 
-                @click="sortBalance()"><p class="mb-0 rating-text sort-choosed">Баланс<i class="bi bi-sort-up ps-1"></i></p>
-              </th>
-              <th 
-                v-else-if="userBalanceSort === 'DECREASE' " 
-                scope="col" 
-                class="pe-3 disabled header-text pb-1 rating-text sort-choosed text-end" 
-                @click="sortBalance()"><p class="mb-0 rating-text sort-choosed">Баланс<i class="bi bi-sort-down ps-1"></i></p>
-              </th>
-              <th 
-                v-else scope="col" 
                 class="pe-3 disabled header-text pb-1 rating-text sort-choosedt text-end" 
                 @click="sortBalance()"><p class="mb-0 rating-text">Баланс</p>
               </th>
@@ -64,46 +40,15 @@
   import CustomHeader from '@/components/CustomHeader.vue';
   import UserSearch from '@/components/SendMoneyComponents/UserSearch.vue';
   import UserCard from '@/components/SendMoneyComponents/UserCard.vue';
+  import axios from 'axios';
 
   export default {
     name: 'rating',
     data: () => ({
-      usersArray: [
-        {
-          firstName: 'John', 
-          lastName: 'Doe', 
-          middleName:"Eduardovich", 
-          shortenWalletAdress: '9HtLA...J6JZP',
-          walletAdress: '9HtLARfdrcnSzeipRUe2GQTRLBhe62SQkMF6FTJ6JZP', 
-          id: '1', moneyAmount: '123', 
-          profilePicture: '',
-          about: 'Информация о пользователе'
-        },
-        {
-          firstName: 'Test', 
-          lastName: 'User', 
-          middleName: "", 
-          shortenWalletAdress: 'UHtLA...J6JZP',
-          walletAdress: '9HtLARfdrcnSzeipRUe2GQTRLBhe62SQkMF6FTJ6JZP',
-          id: '2', 
-          moneyAmount: '13475823', 
-          profilePicture: '',
-          about: 'Информация о пользователе'
-        },
-        {
-          firstName: 'Владимир', 
-          lastName: 'Шальнев', 
-          middleName: "Сергеевич", 
-          shortenWalletAdress: 'AHtLA...J6JZP',
-          walletAdress: '9HtLARfdrcnSzeipRUe2GQTRLBhe62SQkMF6FTJ6JZP',
-          id: '3', 
-          moneyAmount: '13475', 
-          profilePicture: '',
-          about: 'Информация о пользователе'
-        }
-      ],
+      usersArray: [],
       userNameSort: "NO",
-      userBalanceSort: "INCRESE",
+      userBalanceSort: "INCREASE",
+      baseUrl: 'http://127.0.0.1:5000'
     }),
     components: {
       CustomHeader,
@@ -111,31 +56,26 @@
       UserCard
     },
     methods: {
-      sortBalance(){
-        if (this.userBalanceSort === "INCREASE") {
-            this.userBalanceSort = "DECREASE";
+      async getDataFromServer(){
+        try{
+          let params = {
+            userBalanceSort: this.userBalanceSort,
+            userNameSort: this.userNameSort
+          };
+          console.log(this.userBalanceSort);
+          console.log(this.userNameSort);
+          await axios.post(this.baseUrl + '/api/rating', params).then(response => (this.usersArray = response.data.resp));
+          console.log(this.usersArray)
         }
-        else if (this.userBalanceSort === "DECREASE") {
-            this.userBalanceSort = "INCREASE";
+        catch(error){
+          console.log(error);
         }
-        else{
-            this.userBalanceSort = "DECREASE";
-            this.userNameSort = "NO";
-        }
-      },
-      sortUserName(){
-        if (this.userNameSort === "INCREASE") {
-            this.userNameSort = "DECREASE";
-        }
-        else if (this.userNameSort === "DECREASE") {
-            this.userNameSort = "INCREASE";
-        }
-        else{
-            this.userNameSort = "DECREASE";
-            this.userBalanceSort = "NO";
-        }
-      },
-    }
+      }
+    },
+    created:
+      async function(){
+        this.getDataFromServer();
+      }
   }
 </script>
 

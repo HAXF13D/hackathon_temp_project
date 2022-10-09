@@ -161,6 +161,20 @@
                 }
                 catch(error){
                     console.log(error);
+                    this.toast.error("Произошла ошибка!", {
+                        position: "bottom-right",
+                        timeout: 3000,
+                        closeOnClick: true,
+                        pauseOnFocusLoss: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        draggablePercent: 0.6,
+                        showCloseButtonOnHover: true,
+                        hideProgressBar: true,
+                        closeButton: "button",
+                        icon: true,
+                        rtl: false
+                    });
                 };
                 sendMoneyModal.hide();
                 console.log(this.amountToSend);
