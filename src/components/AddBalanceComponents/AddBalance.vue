@@ -10,37 +10,13 @@
           <thead>
             <tr>
               <th 
-                v-if="userNameSort === 'INCREASE' " 
                 scope="col" 
-                class="ps-3 pb-1" 
-                @click="sortUserName()"><p class="mb-0 rating-text sort-choosed">Пользователь<i class="bi bi-sort-up ps-1"></i></p>
-              </th>
-              <th 
-                v-else-if="userNameSort === 'DECREASE' " 
-                scope="col" 
-                class="ps-3 disabled header-text pb-1 rating-text sort-choosed" 
-                @click="sortUserName()"><p class="mb-0 rating-text sort-choosed">Пользователь<i class="bi bi-sort-down ps-1"></i></p>
-              </th>
-              <th 
-                v-else scope="col" 
                 class="ps-3 disabled header-text pb-1 rating-text sort-choosedt"
                 @click="sortUserName()"><p class="mb-0 rating-text">Пользователь</p>
               </th>
 
               <th 
-                v-if="userBalanceSort === 'INCREASE' " 
                 scope="col" 
-                class="pe-3 disabled header-text pb-1 rating-text sort-choosed text-end" 
-                @click="sortBalance()"><p class="mb-0 rating-text sort-choosed">Баланс<i class="bi bi-sort-up ps-1"></i></p>
-              </th>
-              <th 
-                v-else-if="userBalanceSort === 'DECREASE' " 
-                scope="col" 
-                class="pe-3 disabled header-text pb-1 rating-text sort-choosed text-end" 
-                @click="sortBalance()"><p class="mb-0 rating-text sort-choosed">Баланс<i class="bi bi-sort-down ps-1"></i></p>
-              </th>
-              <th 
-                v-else scope="col" 
                 class="pe-3 disabled header-text pb-1 rating-text sort-choosedt text-end" 
                 @click="sortBalance()"><p class="mb-0 rating-text">Баланс</p>
               </th>
