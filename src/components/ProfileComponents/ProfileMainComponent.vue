@@ -255,7 +255,7 @@
                         inputBirthYear: this.inputBirthYear,
                         inputTelephoneNumber: this.inputTelephoneNumber
                     };
-                    axios.post(this.baseUrl + '/api/', params).then(response => (console.log(response.data)));
+                    axios.get(this.baseUrl + '/api/', params).then(response => (console.log(response.data)));
                 }
                 catch(error){
                     console.log(error);
@@ -273,8 +273,10 @@
         },
         created:
             async function(){
+                const user_id = localStorage.getItem('registredStatus');
                 try{
-                    let params = {user_id: localStorage.getItem('registeredStatus')};
+                    
+                    let params = {"user_id": user_id};
                     await axios.get(this.baseUrl + '/api/user/info', params).then(response => (this.user = response.data.resp));
                 }
                 catch(error){

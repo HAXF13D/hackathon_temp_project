@@ -294,7 +294,7 @@
                             recipientId: this.user.id,
                             amoint: this.amountToSend
                         };
-                        axios.post(baseUrl + '/api/', params).then(response => (console.log(response.data)));
+                        axios.post(baseUrl + '/api/send/ruble', params).then(response => (console.log(response.data)));
                     }
                     catch(error){
                         console.log(error);
